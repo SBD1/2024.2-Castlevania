@@ -12,6 +12,7 @@
 | [Diego Carlito Rodrigues de Souza](https://github.com/DiegoCarlito)       | 221007690 |
 | [Márcio Henrique de Sousa Costa](https://github.com/DeM4rcio)             | 221039497 |
 | [Filipe Carvalho da Silva](https://github.com/Filipe-002)                 | 211030747 |
+| [Emivalto da Costa Tavares Junior](https://github.com/EmivaltoJrr)        | 180100271 |
 
 </div>
 
