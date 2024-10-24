@@ -3,7 +3,7 @@
 <div align="center"> <img src="docs/images/capa_castlevania.jpg" height="auto" width="auto"/> </div>
 <div align="center">Repositório para desenvolvimento de um MUD inspirado em Castlevania da disciplina de SBD1 - 2024.2</div>
 
-## Contribuidores
+## 🤝 Contribuidores
 
 <div align="center">
 
@@ -17,7 +17,7 @@
 
 </div>
 
-## Jogo
+## 🎮 Jogo
 
 Castlevania é um clássico jogo de ação e plataforma lançado em 1986 para o Nintendo Entertainment System (NES). O jogador assume o papel de Simon Belmont, um caçador de vampiros que pertence ao clã Belmont, cuja missão é derrotar o lendário Drácula. A história se passa no castelo de Drácula, que ressurge a cada 100 anos e espalha o terror pela Europa.
 
@@ -28,7 +28,7 @@ Simon Belmont deve atravessar o castelo cheio de monstros e criaturas sobrenatur
 - **Exploração e Combate**: O jogo é dividido em seis estágios com chefes no final de cada fase. Simon utiliza seu principal equipamento, o chicote "Vampire Killer", para atacar inimigos.
 - **Power-ups e Armas Secundárias**: Além do chicote, o jogador pode coletar armas secundárias como facas, machados e água benta, que consomem corações como "munição".
 
-## Apresentações
+## 📎 Apresentações
 
 <div align="center">
 
@@ -40,7 +40,7 @@ Simon Belmont deve atravessar o castelo cheio de monstros e criaturas sobrenatur
 
 </div>
 
-## Entregas
+## 📁 Entregas
 
 - Módulo 1
 
