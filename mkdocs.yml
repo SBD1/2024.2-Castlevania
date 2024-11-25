@@ -5,8 +5,12 @@ site_url: https://github.com/SBD1/2024.2-Castlevania
 site_name: Castlevania
 nav:
   - Inicio: "index.md"
-  - Diagramas:
-    - Diagrama Entidade-Relacionamento: "modelagem/der.md"
+  - Entrega 1:
+    - Diagrama Entidade Relacionamento: "modulo1/der.md"
+    - Modelo Entidade Relacionamento: "modulo1/mer.md"
+    - Dicionário de Dados: "modulo1/dd.md"
+    - Modelo Relacional: "modulo1/mr.md"
+
 
 theme:
   name: material
