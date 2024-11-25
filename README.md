@@ -44,7 +44,7 @@ Simon Belmont deve atravessar o castelo cheio de monstros e criaturas sobrenatur
 
 - Módulo 1
 
-  - [Diagrama Entidade-Relacionamento]()
-  - [Dicionário de Dados]()
-  - [Modelo Entidade-Relacionamento]()
-  - [Modelo Relacional]()
+  - [Diagrama Entidade-Relacionamento](./docs/modulo1/der.md)
+  - [Dicionário de Dados](./docs/modulo1/dd.md)
+  - [Modelo Entidade-Relacionamento](./docs/modulo1/mer.md)
+  - [Modelo Relacional](./docs/modulo1/mr.md)
