@@ -26,14 +26,8 @@ Abaixo está o nosso Diagrama Entidade-Relacionamento interativo:
 
 <center>
 
-<iframe 
-  src="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=DER.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1njfLp7fznInjPC8vfldhwvf4ip4v0jXC%26export%3Ddownload" 
-  width="100%" 
-  height="600px" 
-  style="border:none;">
-</iframe>
+[V1 do DER.](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=DER.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1njfLp7fznInjPC8vfldhwvf4ip4v0jXC%26export%3Ddownload)
 
-V1 do DER.
 
 ## Histórico de Versão
 | Versão | Data | Descrição | Autor(es) |

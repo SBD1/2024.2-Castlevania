@@ -40,14 +40,7 @@ Abaixo está o nosso Modelo Relacioanl interativo:
 
 <center>
 
-<iframe 
-  src="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=MR-Castlevania.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1iqkQ5bLyo5ngIUHikCxP1Zgu3P8RBQPV%26export%3Ddownload" 
-  width="100%" 
-  height="600px" 
-  style="border:none;">
-</iframe>
-
-V1 do MR.
+[V1 do MR.](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=MR-Castlevania.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1iqkQ5bLyo5ngIUHikCxP1Zgu3P8RBQPV%26export%3Ddownload)
 
 ## Histórico de Versão
 | Versão | Data | Descrição | Autor(es) |
