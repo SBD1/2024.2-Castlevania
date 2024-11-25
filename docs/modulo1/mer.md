@@ -18,6 +18,7 @@ O Modelo Entidade Relacionamento de um bancos de dados é um modelo conceitual q
         - **Contratante**
         - **Inimigo**
         - **Chefe**
+- **Instância Inimigo**
 - **Missão**
     - **Missão Principal**
     - **Contrato**
@@ -48,6 +49,7 @@ O Modelo Entidade Relacionamento de um bancos de dados é um modelo conceitual q
         - *Contratante*: {id_sala}
         - *Inimigo*: {hp, xp, absorção, atk, habilidade}
         - *Chefe*: {hp, xp, lvl, status, absorção, atk, item_especial, id_sala}
+- *Instância Inimigo*: {<ins>id_instancia</ins>, id_inimigo, id_sala, vida_atual, absorção, atk, habilidade, combat_status}
 - *Missão*: {<ins>id_missao</ins>, nome, descr, qtd_xp, recompensa, tipo}
   - *Missão Principal*: {id_dependencia}
   - *Contrato*: {id_contratante, id_dependencia}
@@ -83,19 +85,22 @@ O Modelo Entidade Relacionamento de um bancos de dados é um modelo conceitual q
 - (0,N) **PC** possui itens no **Inventário**  
   - (1,1) **Inventário** pertence a um único **PC**
 
-- (0,N) **Contrato** é atribuída por um **Contratante**  
-  - (1,1) **Contratante** pode atribuir várias **Contratos**
+- (1,1) **Instância de Inimigo** representa um **Inimigo**  
+  - (0,N) **Inimigo** pode ter várias instâncias 
+
+- (1,1) **Contrato** é atribuída por um **Contratante**  
+  - (0, N) **Contratante** pode atribuir várias **Contratos**
 - **Missão** possui especializações:
   - (1,1) **Missão Principal** é uma **Missão**
   - (1,1) **Contrato** é uma **Missão**
-- (0,N) **Missão Principal** pode depender de outra **Missão Principal**  
+- (0,1) **Missão Principal** pode depender de outra **Missão Principal**  
   - (0,1) **Missão Principal** pode ser pré-requisito de outra missão
-- (0,N) **Contrato** pode depender de um outro **Contrato**
+- (0,1) **Contrato** pode depender de um outro **Contrato**
 
 - (0,N) **Inventário** contém várias **Instâncias de Itens**  
   - (1,1) **Instância de Item** pertence a um único **Inventário**
-- (0,N) **Instância de Item** representa um **Item**  
-  - (1,1) **Item** pode ter várias instâncias
+- (1,1) **Instância de Item** representa um **Item**  
+  - (0,N) **Item** pode ter várias instâncias
 
 - (1,1) **NPC** pode iniciar um **Diálogo**  
   - (0,N) **Diálogo** pertence a um único **NPC**
