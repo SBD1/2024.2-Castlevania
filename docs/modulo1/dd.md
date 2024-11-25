@@ -228,7 +228,6 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 | descr   | varchar(200)      | descrição da região      | a-z, A-Z            |Not Null           |
 | dificuldade  | varchar(50)      | dificuldade da região (fácil, médio, difícil)     | a-z, A-Z            |Not Null           |
 
-
 ---
 
 ### Entidade: Mundo 
@@ -242,7 +241,6 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 | id-mundo    | int        | Código de identificação do mundo      | 1-1000             | PK, Not Null           |
 | nome    | varchar(200)      | nome do mundo         | a-z, A-Z            |Not Null           |
 | data   | date       | data em que o mundo foi criado      | Data válida            |Not Null           |
-
 
 ---
 
@@ -285,7 +283,6 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
 | id-inventario     | int        | Código de identificação do inventario        | 1-1000             | FK, Not Null           |
 | id-instancia-item    | int       | Código de identificação da instancia         | 1-1000            |FK, Not Null           |
-
 
 ---
 
@@ -330,36 +327,9 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 ---
 
-### Entidade: Contratos
-
-**Descrição**: Contratos contidos no mud
-
-**Observação**: Esta entidade vem de uma especialização da tabela Missão, com uma chave estrangeria da tabela Missão ,Contrato e Contratante
-
-| Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
-|-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-principal     | int        | Código de identificação do contrato        | 1-1000             | Pk,FK, Not Null           |
-| id-dependencia      | int        | Código de identificação da contrato dependente        | 1-1000             | FK, Not Null           |
-| id-contratante      | int        | Código do contrante        | 1-1000             | FK, Not Null           |
-
----
-
-### Entidade: Missão Principal
-
-**Descrição**: Missões principais contidos no mud
-
-**Observação**: Esta entidade vem de uma especialização da tabela Missão, com uma chave estrangeria da tabela Missão Principal e Missão
-
-| Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
-|-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-principal     | int        | Código de identificação da missao principal        | 1-1000             | Pk,FK, Not Null           |
-| id-dependencia      | int        | Código de identificação da missao principal dependente        | 1-1000             | FK, Not Null           |
-
----
-
 ### Entidade: Missão
 
-**Descrição**: Missões contidos no mud
+**Descrição**: Missões contidos no mud.
 
 **Observação**: Esta entidade irá armazenar todas as missões, sem chave estrangeira, ela é uma generalização que contém as tabelas Missão Principal e Contrato
 
@@ -370,13 +340,34 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 | qnt_xp       | int       | experiencia que a missão oferece de recompensa        | 1-1000           | Not Null           |
 | descricao      | varchar(200)       | detalhes da missão       | a-z, A-Z            | Not Null           |
 
+#### Missão Principal
+
+**Descrição**: Missões principais contidos no mud.
+
+**Observação**: Esta tabela contém chave estrangeira da tabela Missão Principal.
+
+| Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
+|-------------------|------------|--------------------------------------------|--------------------|------------------------|
+| id-dependencia      | int        | Código de identificação da missao principal dependente        | 1-1000             | FK, Not Null           |
+
+#### Contrato
+
+**Descrição**: Contratos contidos no mud.
+
+**Observação**: Esta tabela contém chaves estrangerias das tabelas Contrato e Contratante.
+
+| Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
+|-------------------|------------|--------------------------------------------|--------------------|------------------------|
+| id-dependencia      | int        | Código de identificação da contrato dependente        | 1-1000             | FK, Not Null           |
+| id-contratante      | int        | Código do contrante        | 1-1000             | FK, Not Null           |
+
 ---
 
 ### Entidade: Item
 
-**Descrição**: Itens contidos do mud
+**Descrição**: Itens contidos do mud.
 
-**Observação**: Esta entidade vem de uma generalização que tera como espealizações as tabelas Chave, Grimorio, Arma e Consumivel
+**Observação**: Esta entidade vem de uma generalização que terá como espealizações as tabelas Chave, Grimorio, Arma e Consumivel
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
@@ -386,57 +377,48 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 | preço       | varchar(50)       | valor do item         | a-z, A-Z            | Not Null           |
 | eh_unico      | varchar(50)       | informação se é um unico item        | a-z, A-Z            | Not Null           |
 
----
-
-### Entidade: Chave
+#### Chave
 
 **Descrição**: Chaves contidos do mud
 
-**Observação**: Esta entidade vem de uma especialização da tabela Item, com uma chave estrangeria da tabela Item 
+**Observação**: Esta tabela não contém chave estrangeira.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-item      | int        | Código de identificação do item          | 1-1000             | Fk, Not Null           |
-| requerido       | varchar(50)       | qual bau esta chave é utilizado         | a-z, A-Z            | Not Null           |
+| requerido       | varchar(50)       | Qual bau esta chave é utilizado         | a-z, A-Z            | Not Null           |
 
----
+#### Arma
 
-### Entidade: Arma
+**Descrição**: Armas contidos do mud.
 
-**Descrição**: Armas contidos do mud
-
-**Observação**: Esta entidade vem de uma especialização da tabela Item, com uma chave estrangeria da tabela Item 
+**Observação**: Esta tabela não contém chave estrangeira.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-item       | int        | Código de identificação do item          | 1-1000             | Fk, Not Null           |
 | dano-base       | int        | dano base da arma         | 1-1000             | Not Null           |
 
----
+#### Consumível
 
-### Entidade: Consumível
+**Descrição**: Consumíveis contidos do mud.
 
-**Descrição**: Consumíveis contidos do mud
-
-**Observação**: Esta entidade vem de uma especialização da tabela Item, com uma chave estrangeria da tabela Item e Efeito
+**Observação**: Esta tabela contém chave estrangeira da tabela Efeito.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-grimorio        | int        | Código de identificação do item          | 1-1000             | Fk, Not Null           |
-| efeito        | int        | Código de identificação do efeito          | 1-1000             | Fk, Not Null           |
+| id_efeito        | int        | Código de identificação do efeito          | 1-1000             | Fk, Not Null           |
+| quantidade        | int        | Quantidade de consumíveis          | 1-1000             | Not Null           |
+
+#### Grimório
+
+**Descrição**: Grimórios contidos do mud.
+
+**Observação**: Esta tabela contém chave estrangeira da tabela Habilidade.
+
+| Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
+|-------------------|------------|--------------------------------------------|--------------------|------------------------|
+| habilidade-id        | int        | Código de identificação da habilidade vinculada ao grimório           | 1-1000             | FK, Not Null           |
 
 ---
-
-### Entidade: Grimorio
-
-**Descrição**: Grimorios contidos do mud
-**Observação**: Esta tabela é usada para exemplificar como preencher um dicionário de dados. Os valores e descrições são fictícios.
-
-Esta entidade vem de uma especialização da tabela Item, com umc a chave | Nome Variávestrangeria da tabela Itemel     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
-|-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-exemplo        | int        | Código de identificação do exemplo           | 1-1000             | PK, Not Null           |
-| nomgrimorio        | varchar(50)| Nome associado ao exemplo                  | a-z, A-Z           | Not Null               |
-| data-criacao      | date       | Data em que o exemplo foi critem        | Data válida        | NoFkNull               |
 
 ### Entidade: Habilidade
 
