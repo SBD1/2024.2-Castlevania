@@ -246,9 +246,9 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 ### Entidade: Diálogo
 
-**Descrição**: Dialogos do mud
+**Descrição**: Dialogos do mud.
 
-**Observação**: Esta entidade irá armazenas todos os dialogos dos personagens, tendo uma chave estrangeira na tabela Personagem
+**Observação**: Esta entidade irá armazenas todos os dialogos dos personagens, tendo uma chave estrangeira na tabela Personagem.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
@@ -260,18 +260,19 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 ### Entidade: Transação
 
-**Descrição**: Transação entre o mercador e o jogador
+**Descrição**: Transação entre o mercador e o jogador.
 
-**Observação**: Esta entidade irá gerenciar as compras e vendas no mud, tendo chave estrangeira nas tabelas Mercador e PC
+**Observação**: Esta entidade irá gerenciar as compras e vendas no mud, tendo chave estrangeira nas tabelas Mercador e PC.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
 | id-transação    | int        | Código de identificação da transação       | 1-1000             | PK, Not Null           |
 | id-mercador    | int       | Código de identificação do mercador         | 1-1000            |FK, Not Null           |
 | id-pc    | int       | Código de identificação do personagem        | 1-1000            |FK, Not Null           |
-| valor   | int       | valor n gociado        | 1-1000            |F ot Null           |
+| valor   | int       | Valor negociado        | 1-1000            |Not Null           |
+| tipo    | enum('venda', 'compra')       | Qual tipo de transação        | 'venda' , 'compra'            | Not Null           |
 
-| tipo    | varchar(50)       | qual tipo de transação (venda, compra)        | venda , compra            |FK, Not Null           |---
+---
 
 ### Entidade: Inventário 
 
