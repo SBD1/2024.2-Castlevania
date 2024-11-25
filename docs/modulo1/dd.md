@@ -274,6 +274,21 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 ---
 
+### Entidade: Combate
+
+**Descrição**: Combate entre o PC e Instância de Inimigo.
+
+**Observação**: Esta tabela contém chaves estrangeiras das tabelas PC e Instância Inimigo.
+
+| Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
+|-------------------|------------|--------------------------------------------|--------------------|------------------------|
+| id_combate    | int        | Código de identificação do Combate      | 1-1000             | PK, Not Null           |
+| id_pc    | int       | Código de identificação do pc         | 1-1000            |FK, Not Null           |
+| id_inimigo    | int       | Código de identificação da instância inimigo        | 1-1000            |FK, Not Null           |
+| resultado    | enum('venceu', 'derrotado', 'fugiu')       | Resultado do combate       | 'venceu' , 'derrotado', 'fugiu'            | Not Null           |
+
+---
+
 ### Entidade: Inventário 
 
 **Descrição**: Inventário do jogador 
