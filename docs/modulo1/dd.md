@@ -391,7 +391,7 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 | descricao       | varchar(50)       | descricao geral do item         | a-z, A-Z            | Not Null           |
 | nome       | varchar(50)       | nome do item         | a-z, A-Z            | Not Null           |
 | preço       | varchar(50)       | valor do item         | a-z, A-Z            | Not Null           |
-| eh_unico      | varchar(50)       | informação se é um unico item        | a-z, A-Z            | Not Null           |
+| eh_unico      | boolean       | informação se é um unico item        | True, False            | Not Null           |
 
 #### Chave
 
