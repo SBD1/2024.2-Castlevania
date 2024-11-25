@@ -129,48 +129,50 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 | absorção      | int       | Redução do dano que o chefe recebe            | 1-1000        | Not Null               |
 | atk             | int | Dano básico causado pelo inimigo                   | 1-1000       | Not Null |
 | item_especial            | int    | Item dropado pelo chefe    | 1-1000        | FK, Not Null               |
-| id_sala            | int    | Sala em que o chefe está    | 1-1000        | FK, Not Null               |
+| id_sala            | int    | Indica a sala em que o chefe está    | 1-1000        | FK, Not Null               |
 
 ---
 
 ### Entidade: Instância Inimigo
 
-**Descrição**: Esta entidade serve como um modelo para ilustrar como as informações são organizadas e descritas em um banco de dados. Inclui variáveis típicas, tipos de dados, valores permitidos e restrições.
+**Descrição**: Uma instância de NPC inimigo representa um personagem não jogável que atua como oponente no jogo. 
+Essa instância é responsável por gerenciar as interações do inimigo com o ambiente, outros NPCs e o jogador, 
+desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
-**Observação**: Esta tabela é usada para exemplificar como preencher um dicionário de dados. Os valores e descrições são fictícios.
-
-| Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
-|-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-exemplo        | int        | Código de identificação do exemplo           | 1-1000             | PK, Not Null           |
-| nome              | varchar(50)| Nome associado ao exemplo                  | a-z, A-Z           | Not Null               |
-| data-criacao      | date       | Data em que o exemplo foi criado            | Data válida        | Not Null               |
-| valor             | decimal(10,2)| Valor numérico do exemplo                   | 0.00-9999.99       | Not Null, Check (>= 0) |
-| ativo             | boolean    | Indicador se o exemplo está ativo ou não    | True, False        | Not Null               |
-
----
-
-### Entidade: Exemplo
-
-**Descrição**: Esta entidade serve como um modelo para ilustrar como as informações são organizadas e descritas em um banco de dados. Inclui variáveis típicas, tipos de dados, valores permitidos e restrições.
-
-**Observação**: Esta tabela é usada para exemplificar como preencher um dicionário de dados. Os valores e descrições são fictícios.
+**Observação**: Esta tabela contém chaves estrangeiras das tabelas Sala e Inimigo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-exemplo        | int        | Código de identificação do exemplo           | 1-1000             | PK, Not Null           |
-| nome              | varchar(50)| Nome associado ao exemplo                  | a-z, A-Z           | Not Null               |
-| data-criacao      | date       | Data em que o exemplo foi criado            | Data válida        | Not Null               |
-| valor             | decimal(10,2)| Valor numérico do exemplo                   | 0.00-9999.99       | Not Null, Check (>= 0) |
-| ativo             | boolean    | Indicador se o exemplo está ativo ou não    | True, False        | Not Null               |
-
+| id_instancia        | int        | Código de identificação da instância de inimigo           | 1-1000             | PK, Not Null           |
+| id_inimigo        | int        | Código de identificação do inimigo           | 1-1000             | FK, Not Null           |
+| id_sala        | int        | Código de identificação da sala que a instância de inimigo está         | 1-1000             | FK, Not Null           |
+| vida_atual             | int| Vida atual da instância de inimigo                   | 1-1000       | Not Null |
+| absorção      | int       | Redução do dano que a instância de inimigo recebe            | 1-1000        | Not Null               |
+| atk             | int | Dano básico causado pela isntância de inimigo                   | 1-1000       | Not Null |
+| habilidade            | int    | Acréscimo no dano básico do inimigo    | 1-1000        | Not Null               |
+| combat_status              | varchar(50) | Estado da instância de inimigo("Confuso", "Envenenado", "Normal")                  | 1-1000           | Not Null               |
 
 ---
 
-### Entidade: Bau
+### Entidade: Checkpoint
 
-**Descrição**: Baus contidos no jogo
+**Descrição**: é um marco no progresso do jogador dentro do jogo, utilizado para salvar o estado atual e permitir que o jogador continue a partir desse ponto em caso de derrota ou ao retornar ao jogo.
 
-**Observação**: Esta entidade irá armazenas os baus que o jogo oferece, tendo chave estrangeira na tabela Instância item
+**Observação**: Esta tabela contém cahves estrangeiras das tabelas Sala e PC.
+
+| Nome Variável     | Tipo           | Descrição                                    | Valores Permitidos         | Restrições de Domínio      |
+|-------------------|----------------|----------------------------------------------|----------------------------|----------------------------|
+| id-checkpoint     | int            | Identificador único do checkpoint            | 1-1000               | PK, Not Null               |
+| id_sala           | int            | Referência à sala onde o checkpoint está     | 1-1000  | FK, Not Null               |
+| id_pc             | int            | Referência ao personagem jogável associado   | 1-1000    | FK, Not Null               |
+
+---
+
+### Entidade: Baú
+
+**Descrição**: Baús contidos no jogo
+
+**Observação**: Esta entidade irá armazenas os baús que o jogo oferece, tendo chave estrangeira na tabela Instância item
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
@@ -181,7 +183,7 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 
 ---
 
-### Entidade: Baus
+### Entidade: Baús
 
 **Descrição**: Baus contidos nas salas
 
@@ -191,8 +193,6 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
 | id-sala   | int        | Código de identificação da sala     | 1-1000             | PK,FK, Not Null           |
 | id-bau   | int        | Código de identificação do bau     | 1-1000             | PK,FK, Not Null           |
-
-
 
 ---
 
@@ -301,7 +301,6 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 | id-mercador       | int       | Código de identificação de mercador        | 1-1000            | FK,Not Null           |
 | id-instancia-item    | int       | Código de identificação da instancia         | 1-1000            |FK, Not Null           |
 
-
 ---
 
 ### Entidade: Instância Item
@@ -328,7 +327,6 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
 | id-missao      | int        | Código de identificação da missao         | 1-1000             | FK,PK, Not Null           |
 | id-pc      | int        | Código de identificação do personagem        | 1-1000             | FK,PK, Not Null           |
-
 
 ---
 
@@ -357,8 +355,6 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 | id-principal     | int        | Código de identificação da missao principal        | 1-1000             | Pk,FK, Not Null           |
 | id-dependencia      | int        | Código de identificação da missao principal dependente        | 1-1000             | FK, Not Null           |
 
-
-
 ---
 
 ### Entidade: Missão
@@ -373,7 +369,6 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 | nome       | varchar(50)       | nome da missao        | a-z, A-Z            | Not Null           |
 | qnt_xp       | int       | experiencia que a missão oferece de recompensa        | 1-1000           | Not Null           |
 | descricao      | varchar(200)       | detalhes da missão       | a-z, A-Z            | Not Null           |
-
 
 ---
 
@@ -390,6 +385,7 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 | nome       | varchar(50)       | nome do item         | a-z, A-Z            | Not Null           |
 | preço       | varchar(50)       | valor do item         | a-z, A-Z            | Not Null           |
 | eh_unico      | varchar(50)       | informação se é um unico item        | a-z, A-Z            | Not Null           |
+
 ---
 
 ### Entidade: Chave
@@ -428,6 +424,7 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
 | id-grimorio        | int        | Código de identificação do item          | 1-1000             | Fk, Not Null           |
 | efeito        | int        | Código de identificação do efeito          | 1-1000             | Fk, Not Null           |
+
 ---
 
 ### Entidade: Grimorio
@@ -455,6 +452,7 @@ Esta entidade vem de uma especialização da tabela Item, com umc a chave | Nome
 | efeito            | varchar(50)| efeito relacionado a habilidade                   | a-z, A-Z        | Not Null |
 | tipo            | varchar(50)   | tipo da habilidade    | a-z, A-Z         | Not Null               |
 | custo         | varchar(50)   | valor da habilidade   | a-z, A-Z         | Not Null               |
+
 ---
 
 ### Entidade: Efeito 
