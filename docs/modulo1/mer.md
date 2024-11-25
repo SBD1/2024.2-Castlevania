@@ -36,7 +36,8 @@ O Modelo Entidade Relacionamento de um bancos de dados é um modelo conceitual q
 - **Mundo**
 - **Baú**
 - **Loja**
-- **Transação** 
+- **Transação**
+- **Combate**
 - **Habilidade**
 - **Efeito**
 
@@ -68,6 +69,7 @@ O Modelo Entidade Relacionamento de um bancos de dados é um modelo conceitual q
 - *Baú*: {<ins>id_bau</ins>, id_sala, qtd-itens, qtd-gold}
 - *Loja*: {<ins>id_loja</ins>, id_sala, id_intancias_itens}
 - *Transação*: {<ins>id_transacao</ins>, id_mercador, id_pc, valor, tipo}
+- *Combate*: {<ins>id_combate</ins>, id_pc, id_inimigo, resultado}
 - *Habilidade*: {<ins>id_habilidade</ins>, id_habilidade_dependente, nome, descr, id_efeito, custo_mana}
 - *Efeito*: {<ins>id_efeito</ins>, descr, alcance, duracao}
 
@@ -138,6 +140,9 @@ O Modelo Entidade Relacionamento de um bancos de dados é um modelo conceitual q
   - (0,N) **PC** pode realizar várias **Transações**
 - (0,N) **Transação** inclui várias **Instâncias de Itens**  
   - (1,1) **Instância de Item** pode estar em várias **Transações**
+
+- (0,N) **PC** pode derrotar várias **Instâncias de Inimigos**
+  - (0,1) **Instância de Inimigo** pode ser derrotada por **PC**
 
 - (1,1) **Habilidade** pode depender de outra **Habilidade**  
   - (0,1) **Habilidade** pode ser pré-requisito de outra habilidade
