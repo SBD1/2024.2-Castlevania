@@ -40,7 +40,7 @@ mkdocs serve
 
 | Módulo | Link da gravação             | Data       |
 | ------ | ---------------------------- | ---------- |
-| 1      | [Apresentação Módulo 1]()    | Em andamento 🛠. |
+| 1      | [Apresentação Módulo 1](./docs/apresentacao/modulo1.md)    | 25/11/2024 |
 | 2      | [Apresentação Módulo 2]()    | Em andamento 🛠. |
 | 3      | [Apresentação Módulo 3]()    | Em andamento 🛠. |
 
