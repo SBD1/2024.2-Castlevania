@@ -1,4 +1,4 @@
-# Castlevania
+# 2024.2-Castlevania
 
 <div align="center"> <img src="docs/assets/images/capa_castlevania.jpg" height="auto" width="auto"/> </div>
 <div align="center">Repositório para desenvolvimento de um MUD inspirado em Castlevania da disciplina de SBD1 - 2024.2</div>
