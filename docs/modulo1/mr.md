@@ -36,7 +36,7 @@ O Modelo Relacional oferece uma forma eficiente e lógica de organizar e acessar
 
 ### Modelo Relacional (MR)
 
-Abaixo está o nosso Modelo Relacioanl interativo:
+Abaixo está o nosso Modelo Relacional interativo:
 
 <center>
 
