@@ -52,15 +52,15 @@ O Modelo Entidade Relacionamento de um bancos de dados é um modelo conceitual q
         - *Chefe*: {hp, xp, lvl, status, absorção, atk, item_especial, id_sala}
 - *Instância Inimigo*: {<ins>id_instancia</ins>, id_inimigo, id_sala, vida_atual, absorção, atk, habilidade, combat_status}
 - *Missão*: {<ins>id_missao</ins>, nome, descr, qtd_xp, recompensa, tipo}
-  - *Missão Principal*: {id_dependencia}
-  - *Contrato*: {id_contratante, id_dependencia}
+    - *Missão Principal*: {id_dependencia}
+    - *Contrato*: {id_contratante, id_dependencia}
 - *Inventário*: {<ins>id-inventario</ins>, id_instancias_itens, capacidade, qtd-itens}
 - *Diálogo*: {<ins>id-dialogo</ins>, texto, proximo-dialogo-id}
 - *Item*: {<ins>id_item</ins>, nome, tipo, descricao, eh_unico, valor}
-  - *Grimório*: {habilidade-id}
-  - *Consumível*: {id_efeito, quantidade}
-  - *Arma*: {dano_base}
-  - *Chave*: {requerido-id}
+    - *Grimório*: {habilidade-id}
+    - *Consumível*: {id_efeito, quantidade}
+    - *Arma*: {dano_base}
+    - *Chave*: {requerido-id}
 - *Instância de Item*: {<ins>id_instancia_item</ins>, id_item, id_sala}
 - *Checkpoint*: {<ins>id-checkpoint</ins>, id_sala, id_pc}
 - *Sala*: {<ins>id_sala</ins>, id_sala_conectada, id_regiao, nome, descr}
