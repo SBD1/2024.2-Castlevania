@@ -54,3 +54,9 @@ mkdocs serve
   - [Dicionário de Dados](./docs/modulo1/dd.md)
   - [Modelo Entidade-Relacionamento](./docs/modulo1/mer.md)
   - [Modelo Relacional](./docs/modulo1/mr.md)
+
+- Módulo 2
+
+  - [DDL]()
+  - [DML]()
+  - [Álgebra Relacional]()
