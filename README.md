@@ -57,6 +57,7 @@ mkdocs serve
 
 - Módulo 2
 
+  - [Normalização](./docs/modulo2/normalizacao.md)
   - [DDL]()
   - [DML]()
   - [Álgebra Relacional]()
