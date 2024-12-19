@@ -33,8 +33,6 @@ Na tabela item, todos os atributos (``id_sala_conectada``, ``id_regiao``, ``nome
 
 ---
 
----
-
 ## Tabela Bau
 
 > id-bau➡ itens
@@ -78,7 +76,6 @@ Na tabela item, todos os atributos (``localização``, ``hp``, ``level`` , `stat
 
 ---
 
-
 ## Tabela Checkpoint
 
 > id-checkpoint ➡ id_sala, id_pc
@@ -107,17 +104,31 @@ Na tabela item, todos os atributos (``nome``e ``id-data``)  depende diretamente 
 
 Essa tabela trata-se de uma instância de um NPC denominado inimigo, que possuía os seguintes valores:
 
-<center>![Tabela instancia_inimigo](image.png)</center>
+<center>
+
+![Tabela instancia_inimigo](image.png)
+
+</center>
 
 A tabela se encontra na 1ª FN, pois não existiam valores divididos e divisão de atributos. Porém, ao aplicar a 2ª FN, foi identificado que haviam atributos que não dependiam única e excluisivamente da chave primária id_instancia, sendo retirados e colocados em outra tabela. Mesma coisa com a 3ª FN. A tabela normalizada ficou assim:
 
-<center>![Tabela instancia_inimigo normalizada](image-1.png)</center>
+<center>
+
+![./Tabela instancia_inimigo normalizada](image-1.png)
+
+</center>
+
+---
 
 ## Tabela Inimigo
 
 A tabela trata-se do perfil de um inimigo.
 
-<center>![Tabela inimigo](image-2.png)</center>
+<center>
+
+![Tabela inimigo](image-2.png)
+
+</center>
 
 
 ## Histórico de Versão
