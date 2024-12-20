@@ -14,8 +14,7 @@ O processo de normalização se divide em 5 etapas, chamadas de Formas Normais (
 
 * **4ª Forma Normal (4FN)**:  A 4FN exige que não existam dependências multivaloradas, onde um único atributo poderia ser relacionado a múltiplos valores de outro atributo de forma independente.
 
-
-## Tabelas a serem Normalizadas
+### Tabelas a serem Normalizadas
 
 Todas as tabelas contidas na [primeira versão do MR](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=MR-Castlevania.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1iqkQ5bLyo5ngIUHikCxP1Zgu3P8RBQPV%26export%3Ddownload) ( modelo relacional), entraram no processo de normalização, sendo detalhadas a seguir.
 
@@ -23,11 +22,11 @@ Todas as tabelas contidas na [primeira versão do MR](https://viewer.diagrams.ne
 
 ## Tabela Sala
 
-> id-sala➡ id_sala_conectada, id_regiao, nome e descr
+> id-sala ➡ id_sala_conectada, id_regiao, nome e descr
 
-Na tabela Sala, os atributos `id-sala` , ``id_sala_conectada``, ``id_regiao``, ``nome`` e `descr` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Na tabela Sala, os atributos `id-sala` , `id_sala_conectada`, `id_regiao`, `nome` e `descr` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
  Como a tabela possui apenas uma chave primária simples (id-sala), automaticamente todos os atributos dependem da chave em sua totalidade.
-Na tabela item, todos os atributos (``id_sala_conectada``, ``id_regiao``, ``nome`` e `descr`)  depende diretamente do `id-sala`, atendendo ao critério da 3ª Forma Normal.
+Na tabela item, todos os atributos (`id_sala_conectada`, `id_regiao`, `nome` e `descr`)  depende diretamente do `id-sala`, atendendo ao critério da 3ª Forma Normal.
 
  A tabela Sala, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
 
@@ -35,7 +34,7 @@ Na tabela item, todos os atributos (``id_sala_conectada``, ``id_regiao``, ``nome
 
 ## Tabela Bau
 
-> id-bau➡ itens
+> id-bau ➡ itens
 
 Na tabela Bau, o atributo `itens` fere essa propriedade isso porque terá vários itens sendo um atributo multivalorado. Para que atende a esse critério, será necessário que o atributo `itens` sejá parte da chave primária, tornando `id-bau` e `itens` chave primária composta.
 
@@ -54,9 +53,9 @@ Na tabela Bau todos os atributos são chaves.
 
 ## Tabela Baus
 
-> id-bau, id-sala➡
+> id-bau ➡ id-sala
 
-Na tabela Baus, os atributos `id-sala` , ``id_bau`` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Na tabela Baus, os atributos `id-sala` , `id_bau` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
  Como a tabela Baus possui apenas chave primária , automaticamente todos os atributos dependem da chave em sua totalidade.
 Na tabela Baus, por não existir atributos não chave, automaticamente já é atendido a 3ª  Forma normal.
 
@@ -68,9 +67,9 @@ Na tabela Baus, por não existir atributos não chave, automaticamente já é at
 
 > id-Chefe ➡ localização, hp, level, status, atk, item_especial
 
-Na tabela Chefe , os atributos `id-chefe` , ``localização``, `hp`, `level`, `status`, `atk` e `item_especial` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Na tabela Chefe , os atributos `id-chefe` , `localização`, `hp`, `level`, `status`, `atk` e `item_especial` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
  Como a tabela Chefe possui apenas uma chave primária , automaticamente todos os atributos dependem da chave em sua totalidade.
-Na tabela item, todos os atributos (``localização``, ``hp``, ``level`` , `status`, `atk`, `item_especial`)  depende diretamente do `id-chefe`, atendendo ao critério da 3ª Forma Normal.
+Na tabela item, todos os atributos (`localização`, `hp`, `level` , `status`, `atk`, `item_especial`)  depende diretamente do `id-chefe`, atendendo ao critério da 3ª Forma Normal.
 
  A tabela Chefe, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
 
@@ -80,9 +79,9 @@ Na tabela item, todos os atributos (``localização``, ``hp``, ``level`` , `stat
 
 > id-checkpoint ➡ id_sala, id_pc
 
-Na tabela Checkpoint , os atributos `id-checkpoint` , ``id_sala``e `id_pc`, atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Na tabela Checkpoint , os atributos `id-checkpoint` , `id_sala`e `id_pc`, atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
  Como a tabela Checkpoint possui apenas uma chave primária , automaticamente todos os atributos dependem da chave em sua totalidade.
-Na tabela item, todos os atributos (``id_sala``e ``id_pc``)  depende diretamente do `id-checkpoint`, atendendo ao critério da 3ª Forma Normal.
+Na tabela item, todos os atributos (`id_sala`e `id_pc`)  depende diretamente do `id-checkpoint`, atendendo ao critério da 3ª Forma Normal.
 
  A tabela Checkpoint, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
 
@@ -92,9 +91,9 @@ Na tabela item, todos os atributos (``id_sala``e ``id_pc``)  depende diretamente
 
 > id-mundo ➡ nome, data
 
-Na tabela Mundo , os atributos `id-mundo` , ``nome``e `data`, atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Na tabela Mundo , os atributos `id-mundo` , `nome`e `data`, atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
  Como a tabela Mundo possui apenas uma chave primária , automaticamente todos os atributos dependem da chave em sua totalidade.
-Na tabela item, todos os atributos (``nome``e ``id-data``)  depende diretamente do `id-mundo`, atendendo ao critério da 3ª Forma Normal.
+Na tabela item, todos os atributos (`nome`e `id-data`)  depende diretamente do `id-mundo`, atendendo ao critério da 3ª Forma Normal.
 
  A tabela Mundo, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
 
