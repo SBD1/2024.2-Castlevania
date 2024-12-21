@@ -99,35 +99,75 @@ Na tabela item, todos os atributos (`nome`e `id-data`)  depende diretamente do `
 
 ---
 
-## Tabela Instância_Inimigo
+## Tabela Instância Inimigo
 
-Essa tabela trata-se de uma instância de um NPC denominado inimigo, que possuía os seguintes valores:
+> idInstancia ➡ idInimigo, localizacao, hp, absorcao, atk, habilidade, combatStatus
 
-<center>
+Nessa tabela, observamos algumas violações às formas normais. Se tratando da primeira, não foram encontradas violações, mas quando tratamos da 2ª FN, identificamos que existem atributos que não dependem exclusivamente da chave primária, como o campo localização e os demais campos, hp, atk, habilidade, entre outros.
 
-![Tabela instancia_inimigo](image.png)
+### Correção
 
-</center>
-
-A tabela se encontra na 1ª FN, pois não existiam valores divididos e divisão de atributos. Porém, ao aplicar a 2ª FN, foi identificado que haviam atributos que não dependiam única e excluisivamente da chave primária id_instancia, sendo retirados e colocados em outra tabela. Mesma coisa com a 3ª FN. A tabela normalizada ficou assim:
-
-<center>
-
-![./Tabela instancia_inimigo normalizada](image-1.png)
-
-</center>
+Foi criada uma tabela, statusNPC, que armazena todos os dados relacionados à atributos do NPC, como vida, dano, etc. Assim, para que um inimigo possua atributos, é necessário que tenha um idInstancia, atendendo à 2ª FN. Fazendo isso eliminamos também as dependências transitivas, atendendo assim à 3ª FN e a FNBC.
 
 ---
 
 ## Tabela Inimigo
 
-A tabela trata-se do perfil de um inimigo.
+> id-inimigo ➡ hp, xp, absorcao, atk, habilidade
 
-<center>
+A tabela se encontra na 1ª FN, por não haver atributos repetidos, ou seja, seus dados são atômicos. Porém enfrentamos o mesmo problema encontrado na tabela instanciaInimigo, com atributos não dependendo excluisivamente da chave idInimigo.
 
-![Tabela inimigo](image-2.png)
+### Correção
 
-</center>
+Foram retirados os campos de hp, atk, absorcao, etc, sendo referenciados em outra tabela através do campo idStatus. Além disso, tornamos o campo idInimigo uma chave primária, atendendo assim às 2ª e 3ª FN.
+
+---
+
+## Tabela Região
+
+> idRegiao ➡ idRegiaoConectada, idMundo, nome, desc, dificuldade
+
+Atende à 1ª FN, por somente possuir valores atômicos, com cada linha sendo única. Também atende à 2ª FN por não possuir dependências parciais e por fim, atende à 3ª FN por não possuir dependências transitivas, por sua vez, também atende à FNBC.
+
+---
+
+## Tabela Habilidade
+
+idHabilidade ➡ idHabilidadeDependente, idGrimorio, efeito, tipo, custo, descricao
+
+A tabela cumpre a 1ª Forma Normal porque todos os valores armazenados nas colunas são atômicos, ou seja, indivisíveis, e cada linha apresenta um identificador único. Ela também satisfaz a 2ª Forma Normal, já que não existem dependências parciais, ou seja, todas as colunas não-chave dependem integralmente da chave primária. Por fim, a tabela está em conformidade com a 3ª Forma Normal, pois não apresenta dependências transitivas, ou seja, não há colunas não-chave dependendo de outras colunas não-chave. Assim, ela também segue a FNBC (Forma Normal de Boyce-Codd).
+
+---
+
+## Tabela Grimório
+
+> idGrimorio ➡ idHabilidade
+
+Esta tabela respeita a 1ª Forma Normal, pois cada célula contém apenas um valor indivisível, garantindo que os dados sejam atômicos, e as linhas são identificadas unicamente. Na 2ª Forma Normal, não há dependências parciais, já que todas as colunas não-chave dependem completamente da chave primária. Na 3ª Forma Normal, a ausência de dependências transitivas entre colunas não-chave mostra que a tabela é eficiente. Dessa forma, ela também atende aos critérios da FNBC.
+
+---
+
+## Tabela Consumível
+
+> idItem ➡ efeito
+
+Em relação à 1ª Forma Normal, a tabela está normalizada porque armazena apenas valores atômicos em cada célula, e cada linha possui um identificador exclusivo. Quanto à 2ª Forma Normal, não existem dependências parciais, ou seja, todas as colunas que não fazem parte da chave primária dependem inteiramente dela. Na 3ª Forma Normal, a tabela não apresenta dependências transitivas, uma vez que as colunas não-chave não dependem umas das outras. Por isso, ela também segue os princípios da FNBC.
+
+---
+
+## Tabela Arma 
+
+> idItem ➡ danoBase
+
+A tabela atende à 1ª Forma Normal, já que os dados armazenados são atômicos e não há repetições ou conjuntos de valores em uma mesma célula. Além disso, a tabela segue a 2ª Forma Normal porque não possui dependências parciais, garantindo que todas as colunas não-chave dependam da chave primária por completo. No que diz respeito à 3ª Forma Normal, não há dependências transitivas entre colunas não-chave. Por essas razões, a tabela também está em conformidade com a FNBC.
+
+--
+
+## Tabela Chave
+
+> idItem ➡ requerido
+
+Cumprindo a 1ª Forma Normal, a tabela contém apenas valores atômicos, sendo todos os dados indivisíveis, e cada linha tem um identificador exclusivo. Ela também obedece à 2ª Forma Normal, pois não existem dependências parciais entre as colunas, já que todas dependem diretamente da chave primária. Além disso, ao atender à 3ª Forma Normal, a tabela não apresenta dependências transitivas, tornando-a eficiente e bem projetada. Assim, ela segue os princípios da FNBC.
 
 ---
 
@@ -207,3 +247,4 @@ A tabela **Item**, com atributos atômicos e monovalorados, não apresenta tais 
 | `1.0`  | 13/12/2024 | Primeira versão da Normalização  | [Márcio Henrique](https://github.com/DeM4rcio) |
 | `1.1`  | 13/12/2024 | Normalização das tabelas (Mundo, Checkpoint, Sala, Bau, Baus, Chefe)  | [Márcio Henrique](https://github.com/DeM4rcio) |
 | `1.2`  | 20/12/2024 | Normalização das tabelas (PC, Transação, Combate, Inventário, Instância Item, Item)  | [Diego Carlito](https://github.com/DiegoCarlito) |
+| `1.3`  | 21/12/2024 | Normalização das tabelas (instanciaInimigo, inimigo, regiao, habilidade, grimorio, consumivel, arma, chave)  | [Filipe Carvalho](https://github.com/filipe-002) |
