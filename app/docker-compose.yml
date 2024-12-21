@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Use postgres/example user/password credentials
 version: '3.9'
 
@@ -7,12 +8,27 @@ services:
     image: postgres:13
     environment:
       POSTGRES_DB: postgres
+=======
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: dbname
+>>>>>>> c2f3f53f606f3beb9745cf11ba2f28b426298fb9
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+<<<<<<< HEAD
 
 volumes:
   postgres_data:
+=======
+volumes:
+  postgres_data:
+ 
+>>>>>>> c2f3f53f606f3beb9745cf11ba2f28b426298fb9
