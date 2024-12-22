@@ -13,11 +13,11 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-exemplo        | int        | Código de identificação do exemplo           | 1-1000             | PK, Not Null           |
-| nome              | varchar(50)| Nome associado ao exemplo                  | a-z, A-Z           | Not Null               |
-| data-criacao      | date       | Data em que o exemplo foi criado            | Data válida        | Not Null               |
-| valor             | decimal(10,2)| Valor numérico do exemplo                   | 0.00-9999.99       | Not Null, Check (>= 0) |
-| ativo             | boolean    | Indicador se o exemplo está ativo ou não    | True, False        | Not Null               |
+| id-exemplo        | int        | Código de identificação do exemplo          | 1-1000            | PK, Not Null           |
+| nome              | varchar(50)| Nome associado ao exemplo                   | a-z, A-Z          | Not Null               |
+| data-criacao      | date       | Data em que o exemplo foi criado            | Data válida       | Not Null               |
+| valor             | decimal(10,2)| Valor numérico do exemplo                 | 0.00-9999.99      | Not Null, Check (>= 0) |
+| ativo             | boolean    | Indicador se o exemplo está ativo ou não    | True, False       | Not Null               |
 
   <font size="3"><p style="text-align: center"><b>Autores:</b> <a href="https://github.com/DiegoCarlito">Diego Carlito</a></font>
 
@@ -44,10 +44,10 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id_personagem        | int        | Código de identificação do personagem           | 1-1000             | PK, Not Null           |
-| nome              | varchar(50)| Nome associado ao personagem                  | a-z, A-Z           | Not Null               |
-| descr      | varchar(50)       | Descrição do personagem            | a-z, A-Z        | Not Null               |
-| tipo             | varchar(50) | Tipo de personagem                   | a-z, A-Z       | Not Null |
+| id_personagem     | int        | Código de identificação do personagem      | 1-1000             | PK, Not Null           |
+| nome              | varchar(50)| Nome associado ao personagem               | a-z, A-Z           | Not Null               |
+| descr             | varchar(50)| Descrição do personagem                    | a-z, A-Z           | Not Null               |
+| tipo              | varchar(50)| Tipo de personagem                         | a-z, A-Z           | Not Null               |
 
 
 #### PC
@@ -58,16 +58,16 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| hp       | int        | Ponto de vida do pc           | 1-1000             | Not Null           |
-| mp             | int | Pontos de mana do pc                  | 1-1000          | Not Null               |
-| xp      | int       | Ponto de experiência do pc            | 1-1000        | Not Null               |
-| absorção            | int | Redução do dano que o pc recebe                   | 1-1000       | Not Null |
-| atk             | int    | Quantidade de dano básica do pc    | 1-1000        | Not Null               |
-| lvl             | int    | Level do pc    | 1-1000        | Not Null               |
-| luck             | int    | Indica a sorte do pc   | 1-1000        | Not Null               |
-| combat_status             | varchar(50)    | Indica o estado do pc("Confuso", "Envenenado", "Normal")    | a-z, A-Z       | Not Null               |
-| coins             | int    | Indica a quantidaade de moedas do pc    | 1-1000       | Not Null               |
-| id_sala             | int    | Indica a sala em o pc está    | 1-1000        | FK, Not Null               |
+| hp                | int        | Ponto de vida do pc                        | 1-1000             | Not Null               |
+| mp                | int        | Pontos de mana do pc                       | 1-1000             | Not Null               |
+| xp                | int        | Ponto de experiência do pc                 | 1-1000             | Not Null               |
+| absorção          | int        | Redução do dano que o pc recebe            | 1-1000             | Not Null               |
+| atk               | int        | Quantidade de dano básica do pc            | 1-1000             | Not Null               |
+| lvl               | int        | Level do pc                                | 1-1000             | Not Null               |
+| luck              | int        | Indica a sorte do pc                       | 1-1000             | Not Null               |
+| combat_status     | varchar(50)| Indica o estado do pc("Confuso", "Envenenado", "Normal")        | a-z, A-Z   | Not Null  |
+| coins             | int        | Indica a quantidaade de moedas do pc       | 1-1000             | Not Null               |
+| id_sala           | int        | Indica a sala em o pc está                 | 1-1000             | FK, Not Null           |
 
 
 #### NPC
@@ -78,7 +78,7 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| tipo       | varchar(50)        | Indica o tipo de NPC           | a-z, A-Z             | Not Null           |
+| tipo              | varchar(50)| Indica o tipo de NPC                       | a-z, A-Z           | Not Null               |
 
 ##### Mercador
 
@@ -88,7 +88,7 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id_sala        | int        | Indica a sala em que o mercador está           | 1-1000             | FK, Not Null           |
+| id_sala           | int        | Indica a sala em que o mercador está       | 1-1000             | FK, Not Null           |
 
 ##### Contratante
 
@@ -98,7 +98,7 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id_sala        | int        | Indica a sala em que o contratante está            | 1-1000             | FK, Not Null           |
+| id_sala           | int        | Indica a sala em que o contratante está    | 1-1000             | FK, Not Null           |
 
 ##### Inimigo
 
@@ -108,11 +108,11 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| hp       | int        | Pontos de vida do inimigo           | 1-1000             | Not Null           |
-| xp              | int | Pontos de experiência fornecidos ao derrotar o inimigo                  | 1-1000           | Not Null               |
-| absorção      | int       | Redução do dano que o inimigo recebe            | 1-1000        | Not Null               |
-| atk             | int | Dano básico causado pelo inimigo                   | 1-1000       | Not Null |
-| habilidade            | int    | Acréscimo no dano básico do inimigo    | 1-1000        | Not Null               |
+| hp                | int        | Pontos de vida do inimigo                  | 1-1000             | Not Null               |
+| xp                | int        | Pontos de experiência fornecidos ao derrotar o inimigo | 1-1000 | Not Null               |
+| absorção          | int        | Redução do dano que o inimigo recebe       | 1-1000             | Not Null               |
+| atk               | int        | Dano básico causado pelo inimigo           | 1-1000             | Not Null               |
+| habilidade        | int        | Acréscimo no dano básico do inimigo        | 1-1000             | Not Null               |
 
 ##### Chefe
 
@@ -122,14 +122,14 @@ Um dicionário de dados é um recurso essencial na área da ciência de dados e 
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| hp       | int        | Pontos de vida do chefe           | 1-1000             | Not Null           |
-| xp              | int | Pontos de experiência fornecidos ao derrotar o chefe                  | 1-1000           | Not Null               |
-| lvl              | int | Nível do chefe                  | 1-1000           | Not Null               |
-| status              | varchar(50) | Estado do chefe("Confuso", "Envenenado", "Normal")                  | 1-1000           | Not Null               |
-| absorção      | int       | Redução do dano que o chefe recebe            | 1-1000        | Not Null               |
-| atk             | int | Dano básico causado pelo inimigo                   | 1-1000       | Not Null |
-| item_especial            | int    | Item dropado pelo chefe    | 1-1000        | FK, Not Null               |
-| id_sala            | int    | Indica a sala em que o chefe está    | 1-1000        | FK, Not Null               |
+| hp                | int        | Pontos de vida do chefe                    | 1-1000             | Not Null               |
+| xp                | int        | Pontos de experiência fornecidos ao derrotar o chefe  | 1-1000  | Not Null               |
+| lvl               | int        | Nível do chefe                             | 1-1000             | Not Null               |
+| status            | varchar(50)| Estado do chefe("Confuso", "Envenenado", "Normal")   | 1-1000   | Not Null               |
+| absorção          | int        | Redução do dano que o chefe recebe         | 1-1000             | Not Null               |
+| atk               | int        | Dano básico causado pelo inimigo           | 1-1000             | Not Null               |
+| item_especial     | int        | Item dropado pelo chefe                    | 1-1000             | FK, Not Null           |
+| id_sala           | int        | Indica a sala em que o chefe está          | 1-1000             | FK, Not Null           |
 
 ---
 
@@ -143,14 +143,14 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id_instancia        | int        | Código de identificação da instância de inimigo           | 1-1000             | PK, Not Null           |
-| id_inimigo        | int        | Código de identificação do inimigo           | 1-1000             | FK, Not Null           |
-| id_sala        | int        | Código de identificação da sala que a instância de inimigo está         | 1-1000             | FK, Not Null           |
-| vida_atual             | int| Vida atual da instância de inimigo                   | 1-1000       | Not Null |
-| absorção      | int       | Redução do dano que a instância de inimigo recebe            | 1-1000        | Not Null               |
-| atk             | int | Dano básico causado pela isntância de inimigo                   | 1-1000       | Not Null |
-| habilidade            | int    | Acréscimo no dano básico do inimigo    | 1-1000        | Not Null               |
-| combat_status              | varchar(50) | Estado da instância de inimigo("Confuso", "Envenenado", "Normal")                  | 1-1000           | Not Null               |
+| id_instancia      | int        | Código de identificação da instância de inimigo    | 1-1000     | PK, Not Null           |
+| id_inimigo        | int        | Código de identificação do inimigo         | 1-1000             | FK, Not Null           |
+| id_sala           | int        | Código de identificação da sala que a instância de inimigo está | 1-1000  | FK, Not Null |
+| vida_atual        | int| Vida atual da instância de inimigo                 | 1-1000             | Not Null               |
+| absorção          | int       | Redução do dano que a instância de inimigo recebe  | 1-1000      | Not Null               |
+| atk               | int | Dano básico causado pela isntância de inimigo     | 1-1000             | Not Null               |
+| habilidade        | int    | Acréscimo no dano básico do inimigo            | 1-1000             | Not Null               |
+| combat_status     | varchar(50) | Estado da instância de inimigo("Confuso", "Envenenado", "Normal")  | 1-1000  | Not Null |
 
 ---
 
@@ -162,9 +162,9 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo           | Descrição                                    | Valores Permitidos         | Restrições de Domínio      |
 |-------------------|----------------|----------------------------------------------|----------------------------|----------------------------|
-| id-checkpoint     | int            | Identificador único do checkpoint            | 1-1000               | PK, Not Null               |
-| id_sala           | int            | Referência à sala onde o checkpoint está     | 1-1000  | FK, Not Null               |
-| id_pc             | int            | Referência ao personagem jogável associado   | 1-1000    | FK, Not Null               |
+| id-checkpoint     | int            | Identificador único do checkpoint            | 1-1000                     | PK, Not Null               |
+| id_sala           | int            | Referência à sala onde o checkpoint está     | 1-1000                     | FK, Not Null               |
+| id_pc             | int            | Referência ao personagem jogável associado   | 1-1000                     | FK, Not Null               |
 
 ---
 
@@ -176,8 +176,8 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-bau   | int        | Código de identificação do bau     | 1-1000             | PK, Not Null           |
-| itens   | int        | Código de instância de itens     | 1-1000             | FK, Not Null           |
+| id-bau            | int        | Código de identificação do bau             | 1-1000             | PK, Not Null           |
+| itens             | int        | Código de instância de itens               | 1-1000             | FK, Not Null           |
 
 
 
@@ -191,8 +191,8 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-sala   | int        | Código de identificação da sala     | 1-1000             | PK,FK, Not Null           |
-| id-bau   | int        | Código de identificação do bau     | 1-1000             | PK,FK, Not Null           |
+| id-sala           | int        | Código de identificação da sala            | 1-1000             | PK,FK, Not Null        |
+| id-bau            | int        | Código de identificação do bau             | 1-1000             | PK,FK, Not Null        |
 
 ---
 
@@ -204,11 +204,11 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-sala   | int        | Código de identificação da sala     | 1-1000             | PK, Not Null           |
-| id-sala-conectada   | int        | Código de identificação da sala conectada      | 1-1000             | FK, Not Null           |
-| id-regiao    | int        | Código de identificação da regiao      | 1-1000             | FK, Not Null           |
-| nome    | varchar(200)      | nome da sala         | a-z, A-Z            |Not Null           |
-| descr   | varchar(200)      | descrição da sala      | a-z, A-Z            |Not Null           |
+| id-sala           | int        | Código de identificação da sala            | 1-1000             | PK, Not Null           |
+| id-sala-conectada | int        | Código de identificação da sala conectada  | 1-1000             | FK, Not Null           |
+| id-regiao         | int        | Código de identificação da regiao          | 1-1000             | FK, Not Null           |
+| nome              | varchar(200) | nome da sala                             | a-z, A-Z           |Not Null                |
+| descr             | varchar(200) | descrição da sala                        | a-z, A-Z           |Not Null                |
 
 
 ---
@@ -221,12 +221,12 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-regiao    | int        | Código de identificação da regiao      | 1-1000             | PK, Not Null           |
-| id-região-conectada    | int       | Código de identificação da região conectada         | 1-1000            |FK, Not Null           |
-| id-mundo   | int       | Código de identificação do mundo        | 1-1000            |FK, Not Null           |
-| nome    | varchar(200)      | nome do mundo         | a-z, A-Z            |Not Null           |
-| descr   | varchar(200)      | descrição da região      | a-z, A-Z            |Not Null           |
-| dificuldade  | varchar(50)      | dificuldade da região (fácil, médio, difícil)     | a-z, A-Z            |Not Null           |
+| id-regiao         | int        | Código de identificação da regiao          | 1-1000             | PK, Not Null           |
+| id-região-conectada| int       | Código de identificação da região conectada| 1-1000             |FK, Not Null            |
+| id-mundo          | int        | Código de identificação do mundo           | 1-1000             |FK, Not Null            |
+| nome              | varchar(200)| nome do mundo                             | a-z, A-Z           |Not Null                |
+| descr             | varchar(200)| descrição da região                       | a-z, A-Z           |Not Null                |
+| dificuldade       | varchar(50) | dificuldade da região (fácil, médio, difícil) | a-z, A-Z       |Not Null                |
 
 ---
 
@@ -238,9 +238,9 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-mundo    | int        | Código de identificação do mundo      | 1-1000             | PK, Not Null           |
-| nome    | varchar(200)      | nome do mundo         | a-z, A-Z            |Not Null           |
-| data   | date       | data em que o mundo foi criado      | Data válida            |Not Null           |
+| id-mundo          | int        | Código de identificação do mundo           | 1-1000             | PK, Not Null           |
+| nome              | varchar(200) | nome do mundo                            | a-z, A-Z           |Not Null                |
+| data              | date       | data em que o mundo foi criado             | Data válida        |Not Null                |
 
 ---
 
@@ -252,9 +252,9 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-dialogo    | int        | Código de identificação do dialogo       | 1-1000             | PK, Not Null           |
-| id-personagem    | int       | Código de identificação do personagem         | 1-1000            |FK, Not Null           |
-| text   | varchar(200)       | texto do diálogo       | a-z, A-Z             |Not Null           |
+| id-dialogo        | int        | Código de identificação do dialogo         | 1-1000             | PK, Not Null           |
+| id-personagem     | int        | Código de identificação do personagem      | 1-1000             |FK, Not Null            |
+| text              | varchar(200) | texto do diálogo                         | a-z, A-Z           |Not Null                |
 
 ---
 
@@ -266,11 +266,11 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-transação    | int        | Código de identificação da transação       | 1-1000             | PK, Not Null           |
-| id-mercador    | int       | Código de identificação do mercador         | 1-1000            |FK, Not Null           |
-| id-pc    | int       | Código de identificação do personagem        | 1-1000            |FK, Not Null           |
-| valor   | int       | Valor negociado        | 1-1000            |Not Null           |
-| tipo    | enum('venda', 'compra')       | Qual tipo de transação        | 'venda' , 'compra'            | Not Null           |
+| id-transação      | int        | Código de identificação da transação       | 1-1000             | PK, Not Null           |
+| id-mercador       | int        | Código de identificação do mercador        | 1-1000             |FK, Not Null            |
+| id-pc             | int        | Código de identificação do personagem      | 1-1000             |FK, Not Null            |
+| valor             | int        | Valor negociado                            | 1-1000             |Not Null                |
+| tipo              | enum('venda', 'compra') | Qual tipo de transação        | 'venda' , 'compra' | Not Null               |
 
 ---
 
@@ -282,10 +282,10 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id_combate    | int        | Código de identificação do Combate      | 1-1000             | PK, Not Null           |
-| id_pc    | int       | Código de identificação do pc         | 1-1000            |FK, Not Null           |
-| id_inimigo    | int       | Código de identificação da instância inimigo        | 1-1000            |FK, Not Null           |
-| resultado    | enum('venceu', 'derrotado', 'fugiu')       | Resultado do combate       | 'venceu' , 'derrotado', 'fugiu'            | Not Null           |
+| id_combate        | int        | Código de identificação do Combate         | 1-1000             | PK, Not Null           |
+| id_pc             | int        | Código de identificação do pc              | 1-1000             |FK, Not Null            |
+| id_inimigo        | int        | Código de identificação da instância inimigo   | 1-1000         |FK, Not Null            |
+| resultado      | enum('venceu', 'derrotado', 'fugiu') | Resultado do combate | 'venceu' , 'derrotado', 'fugiu' | Not Null |
 
 ---
 
@@ -297,8 +297,8 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-inventario     | int        | Código de identificação do inventario        | 1-1000             | FK, Not Null           |
-| id-instancia-item    | int       | Código de identificação da instancia         | 1-1000            |FK, Not Null           |
+| id-inventario     | int        | Código de identificação do inventario      | 1-1000             | FK, Not Null           |
+| id-instancia-item | int        | Código de identificação da instancia       | 1-1000             |FK, Not Null            |
 
 ---
 
@@ -310,9 +310,9 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-loja      | int        | Código de identificação da loja         | 1-1000             | PK, Not Null           |
-| id-mercador       | int       | Código de identificação de mercador        | 1-1000            | FK,Not Null           |
-| id-instancia-item    | int       | Código de identificação da instancia         | 1-1000            |FK, Not Null           |
+| id-loja           | int        | Código de identificação da loja            | 1-1000             | PK, Not Null           |
+| id-mercador       | int        | Código de identificação de mercador        | 1-1000             | FK,Not Null            |
+| id-instancia-item | int        | Código de identificação da instancia       | 1-1000             | FK, Not Null           |
 
 ---
 
@@ -324,9 +324,9 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-instancia      | int        | Código de identificação da instancia         | 1-1000             | PK, Not Null           |
-| id-item       | int       | Código de identificação de item         | 1-1000            | FK,Not Null           |
-| localização     | int       | Código de identificação da localização         | 1-1000            |FK, Not Null           |
+| id-instancia      | int        | Código de identificação da instancia       | 1-1000             | PK, Not Null           |
+| id-item           | int        | Código de identificação de item            | 1-1000             | FK,Not Null            |
+| localização       | int        | Código de identificação da localização     | 1-1000             |FK, Not Null            |
 
 ---
 
@@ -338,8 +338,8 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-missao      | int        | Código de identificação da missao         | 1-1000             | FK,PK, Not Null           |
-| id-pc      | int        | Código de identificação do personagem        | 1-1000             | FK,PK, Not Null           |
+| id-missao         | int        | Código de identificação da missao          | 1-1000             | FK,PK, Not Null        |
+| id-pc             | int        | Código de identificação do personagem      | 1-1000             | FK,PK, Not Null        |
 
 ---
 
@@ -351,10 +351,10 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-missao      | int        | Código de identificação da missao         | 1-1000             | Pk, Not Null           |
-| nome       | varchar(50)       | nome da missao        | a-z, A-Z            | Not Null           |
-| qnt_xp       | int       | experiencia que a missão oferece de recompensa        | 1-1000           | Not Null           |
-| descricao      | varchar(200)       | detalhes da missão       | a-z, A-Z            | Not Null           |
+| id-missao         | int        | Código de identificação da missao          | 1-1000             | Pk, Not Null           |
+| nome              | varchar(50)| nome da missao                             | a-z, A-Z           | Not Null               |
+| qnt_xp            | int        | experiencia que a missão oferece de recompensa  | 1-1000        | Not Null               |
+| descricao         | varchar(200) | detalhes da missão                       | a-z, A-Z           | Not Null               |
 
 #### Missão Principal
 
@@ -364,7 +364,7 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-dependencia      | int        | Código de identificação da missao principal dependente        | 1-1000             | FK, Not Null           |
+| id-dependencia    | int        | Código de identificação da missao principal dependente | 1-1000 | FK, Not Null           |
 
 #### Contrato
 
@@ -374,8 +374,8 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-dependencia      | int        | Código de identificação da contrato dependente        | 1-1000             | FK, Not Null           |
-| id-contratante      | int        | Código do contrante        | 1-1000             | FK, Not Null           |
+| id-dependencia    | int        | Código de identificação da contrato dependente | 1-1000         | FK, Not Null           |
+| id-contratante    | int        | Código do contrante                        | 1-1000             | FK, Not Null           |
 
 ---
 
@@ -387,11 +387,11 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-item      | int        | Código de identificação do item          | 1-1000             | Pk, Not Null           |
-| descricao       | varchar(50)       | descricao geral do item         | a-z, A-Z            | Not Null           |
-| nome       | varchar(50)       | nome do item         | a-z, A-Z            | Not Null           |
-| preço       | varchar(50)       | valor do item         | a-z, A-Z            | Not Null           |
-| eh_unico      | boolean       | informação se é um unico item        | True, False            | Not Null           |
+| id-item           | int        | Código de identificação do item            | 1-1000             | Pk, Not Null           |
+| descricao         | varchar(50)| descricao geral do item                    | a-z, A-Z           | Not Null               |
+| nome              | varchar(50)| nome do item                               | a-z, A-Z           | Not Null               |
+| preço             | varchar(50)| valor do item                              | a-z, A-Z           | Not Null               |
+| eh_unico          | boolean    | informação se é um unico item              | True, False        | Not Null               |
 
 #### Chave
 
@@ -401,7 +401,7 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| requerido       | varchar(50)       | Qual bau esta chave é utilizado         | a-z, A-Z            | Not Null           |
+| requerido         |varchar(50) | Qual bau esta chave é utilizado            | a-z, A-Z           | Not Null               |
 
 #### Arma
 
@@ -411,7 +411,7 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| dano-base       | int        | dano base da arma         | 1-1000             | Not Null           |
+| dano-base         | int        | dano base da arma                          | 1-1000             | Not Null               |
 
 #### Consumível
 
@@ -421,8 +421,8 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id_efeito        | int        | Código de identificação do efeito          | 1-1000             | Fk, Not Null           |
-| quantidade        | int        | Quantidade de consumíveis          | 1-1000             | Not Null           |
+| id_efeito         | int        | Código de identificação do efeito          | 1-1000             | Fk, Not Null           |
+| quantidade        | int        | Quantidade de consumíveis                  | 1-1000             | Not Null               |
 
 #### Grimório
 
@@ -432,7 +432,7 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| habilidade-id        | int        | Código de identificação da habilidade vinculada ao grimório           | 1-1000             | FK, Not Null           |
+| habilidade-id     | int        | Código de identificação da habilidade vinculada ao grimório| 1-1000 | FK, Not Null       |
 
 ---
 
@@ -444,12 +444,12 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-habildade      | int        | Código de identificação da habilidade         | 1-1000             | PK, Not Null           |
-| id_habilidade_dependente| int| codigo para habilidade que a mesma tem dependência                 | 1-1000           |FK, Not Null               |
-| id-grimorio      | int       | codigo para grimorio            | Data válida        | 1-1000              |FK, Not Null
-| efeito            | varchar(50)| efeito relacionado a habilidade                   | a-z, A-Z        | Not Null |
-| tipo            | varchar(50)   | tipo da habilidade    | a-z, A-Z         | Not Null               |
-| custo         | varchar(50)   | valor da habilidade   | a-z, A-Z         | Not Null               |
+| id-habildade      | int        | Código de identificação da habilidade      | 1-1000             | PK, Not Null           |
+| id_habilidade_dependente| int  | codigo para habilidade que a mesma tem dependência | 1-1000     | FK, Not Null           |
+| id-grimorio      | int         | codigo para grimorio                       | 1-1000             | FK, Not Null           |
+| efeito           | varchar(50) | efeito relacionado a habilidade            | a-z, A-Z           | Not Null               |
+| tipo             | varchar(50) | tipo da habilidade                         | a-z, A-Z           | Not Null               |
+| custo            | varchar(50) | valor da habilidade                        | a-z, A-Z           | Not Null               |
 
 ---
 
@@ -461,9 +461,9 @@ desempenhando um papel essencial na mecânica e na dinâmica de combate do jogo.
 
 | Nome Variável     | Tipo       | Descrição                                  | Valores Permitidos | Restrições de Domínio |
 |-------------------|------------|--------------------------------------------|--------------------|------------------------|
-| id-efeito       | int        | Código de identificação do efeito         | 1-1000             | PK, Not Null           |
-| alcance            | varchar(50)| até aonde o efeito é adquirido                 | a-z, A-Z           | Not Null               |
-| duração     | int      | tempo de duração do efeito          | 1-1000        | Not Null               |
+| id-efeito         | int        | Código de identificação do efeito          | 1-1000             | PK, Not Null           |
+| alcance           | varchar(50)| até aonde o efeito é adquirido             | a-z, A-Z           | Not Null               |
+| duração           | int        | tempo de duração do efeito                 | 1-1000             | Not Null               |
 
 ---
 
