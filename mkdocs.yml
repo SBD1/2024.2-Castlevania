@@ -13,7 +13,7 @@ nav:
     - Dicionário de Dados: "modulo1/dd.md"
     - Modelo Relacional: "modulo1/mr.md"
   - Entrega 2:
-    - Normalização: "modulo2/normalizacao.md"
+    - Normalização: "modulo2/norm.md"
 
 
 theme:
