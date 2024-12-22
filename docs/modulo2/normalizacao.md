@@ -161,7 +161,7 @@ Em relação à 1ª Forma Normal, a tabela está normalizada porque armazena ape
 
 A tabela atende à 1ª Forma Normal, já que os dados armazenados são atômicos e não há repetições ou conjuntos de valores em uma mesma célula. Além disso, a tabela segue a 2ª Forma Normal porque não possui dependências parciais, garantindo que todas as colunas não-chave dependam da chave primária por completo. No que diz respeito à 3ª Forma Normal, não há dependências transitivas entre colunas não-chave. Por essas razões, a tabela também está em conformidade com a FNBC.
 
---
+---
 
 ## Tabela Chave
 
@@ -175,9 +175,9 @@ Cumprindo a 1ª Forma Normal, a tabela contém apenas valores atômicos, sendo t
 
 > id-pc ➡ hp, mp, xp, absorção, atk, lvl, luck, combat_status, coins, localização
 
-Na tabela PC, os atributos `id-pc`, `hp`, `mp`, `xp`, `absorção`, `atk`, `lvl`, `luck`, `combat_status`, `coins` e `localização` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.  
-Como a tabela PC possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.  
-Na tabela PC, todos os atributos (`hp`, `mp`, `xp`, `absorção`, `atk`, `lvl`, `luck`, `combat_status`, `coins`, `localização`) dependem diretamente do `id-pc`, atendendo ao critério da 3ª Forma Normal.  
+Na tabela PC, os atributos `id-pc`, `hp`, `mp`, `xp`, `absorção`, `atk`, `lvl`, `luck`, `combat_status`, `coins` e `localização` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela PC possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela PC, todos os atributos (`hp`, `mp`, `xp`, `absorção`, `atk`, `lvl`, `luck`, `combat_status`, `coins`, `localização`) dependem diretamente do `id-pc`, atendendo ao critério da 3ª Forma Normal.
 
 A tabela PC, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
 
@@ -187,9 +187,9 @@ A tabela PC, com atributos atômicos e monovalorados, não apresenta tais depend
 
 > id-transação ➡ id_mercador, id_pc, valor, tipo_transação
 
-Na tabela **Transação**, os atributos `id-transação`, `id_mercador`, `id_pc`, `valor` e `tipo_transação` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.  
-Como a tabela **Transação** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.  
-Na tabela **Transação**, todos os atributos (`id_mercador`, `id_pc`, `valor`, `tipo_transação`) dependem diretamente do `id-transação`, atendendo ao critério da 3ª Forma Normal.  
+Na tabela **Transação**, os atributos `id-transação`, `id_mercador`, `id_pc`, `valor` e `tipo_transação` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Transação** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Transação**, todos os atributos (`id_mercador`, `id_pc`, `valor`, `tipo_transação`) dependem diretamente do `id-transação`, atendendo ao critério da 3ª Forma Normal.
 
 A tabela **Transação**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
 
@@ -197,11 +197,11 @@ A tabela **Transação**, com atributos atômicos e monovalorados, não apresent
 
 ## Tabela Combate
 
-> id-combate ➡ id_pc, id_inimigo, resultado  
+> id-combate ➡ id_pc, id_inimigo, resultado
 
-Na tabela **Combate**, os atributos `id-combate`, `id_pc`, `id_inimigo` e `resultado` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.  
-Como a tabela **Combate** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.  
-Na tabela **Combate**, todos os atributos (`id_pc`, `id_inimigo`, `resultado`) dependem diretamente do `id-combate`, atendendo ao critério da 3ª Forma Normal.  
+Na tabela **Combate**, os atributos `id-combate`, `id_pc`, `id_inimigo` e `resultado` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Combate** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Combate**, todos os atributos (`id_pc`, `id_inimigo`, `resultado`) dependem diretamente do `id-combate`, atendendo ao critério da 3ª Forma Normal.
 
 A tabela **Combate**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
 
@@ -209,11 +209,11 @@ A tabela **Combate**, com atributos atômicos e monovalorados, não apresenta ta
 
 ## Tabela Inventário
 
-> id-inventario ➡ id_instancias_itens, capacidade, qtd-itens  
+> id-inventario ➡ id_instancias_itens, capacidade, qtd-itens
 
-Na tabela **Inventário**, os atributos `id-inventario`, `id_instancias_itens`, `capacidade` e `qtd-itens` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.  
-Como a tabela **Inventário** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.  
-Na tabela **Inventário**, todos os atributos (`id_instancias_itens`, `capacidade`, `qtd-itens`) dependem diretamente do `id-inventario`, atendendo ao critério da 3ª Forma Normal.  
+Na tabela **Inventário**, os atributos `id-inventario`, `id_instancias_itens`, `capacidade` e `qtd-itens` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Inventário** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Inventário**, todos os atributos (`id_instancias_itens`, `capacidade`, `qtd-itens`) dependem diretamente do `id-inventario`, atendendo ao critério da 3ª Forma Normal.
 
 A tabela **Inventário**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
 
@@ -221,11 +221,11 @@ A tabela **Inventário**, com atributos atômicos e monovalorados, não apresent
 
 ## Tabela Instância Item
 
-> id-instancia-item ➡ id_item, id_sala  
+> id-instancia-item ➡ id_item, id_sala
 
-Na tabela **Instância Item**, os atributos `id-instancia-item`, `id_item` e `id_sala` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.  
-Como a tabela **Instância Item** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.  
-Na tabela **Instância Item**, todos os atributos (`id_item`, `id_sala`) dependem diretamente do `id-instancia-item`, atendendo ao critério da 3ª Forma Normal.  
+Na tabela **Instância Item**, os atributos `id-instancia-item`, `id_item` e `id_sala` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Instância Item** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Instância Item**, todos os atributos (`id_item`, `id_sala`) dependem diretamente do `id-instancia-item`, atendendo ao critério da 3ª Forma Normal.
 
 A tabela **Instância Item**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
 
@@ -233,13 +233,85 @@ A tabela **Instância Item**, com atributos atômicos e monovalorados, não apre
 
 ## Tabela Item
 
-> id-item ➡ nome, tipo, descricao, eh_unico, valor  
+> id-item ➡ nome, tipo, descricao, eh_unico, valor
 
-Na tabela **Item**, os atributos `id-item`, `nome`, `tipo`, `descricao`, `eh_unico` e `valor` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.  
-Como a tabela **Item** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.  
-Na tabela **Item**, todos os atributos (`nome`, `tipo`, `descricao`, `eh_unico`, `valor`) dependem diretamente do `id-item`, atendendo ao critério da 3ª Forma Normal.  
+Na tabela **Item**, os atributos `id-item`, `nome`, `tipo`, `descricao`, `eh_unico` e `valor` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Item** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Item**, todos os atributos (`nome`, `tipo`, `descricao`, `eh_unico`, `valor`) dependem diretamente do `id-item`, atendendo ao critério da 3ª Forma Normal.
 
 A tabela **Item**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
+
+---
+
+## Tabela Efeito
+
+> id-efeito ➡ alcance, duracao
+
+Na tabela **Efeito**, os atributos `id-efeito`, `alcance` e `duracao` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Efeito** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Efeito**, todos os atributos (`alcance`, `duracao`) dependem diretamente do `id-efeito`, atendendo ao critério da 3ª Forma Normal.
+
+A tabela **Efeito**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
+
+---
+
+## Tabela Personagem
+
+> id-personagem ➡ nome, descrição, tipo
+
+Na tabela **Personagem**, os atributos `id-personagem`, `nome`, `descrição` e `tipo` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Personagem** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Personagem**, os atributos (`nome`, `descrição`, `tipo`) dependem diretamente do `id-personagem`, atendendo ao critério da 3ª Forma Normal.
+
+A tabela **Personagem**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
+
+---
+
+## Tabela NPC
+
+> id-npc ➡ tipo
+
+Na tabela **NPC**, os atributos `id-npc` e `tipo` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **NPC** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **NPC**, o atributo `tipo` depende diretamente do `id-npc`, atendendo ao critério da 3ª Forma Normal.
+
+A tabela **NPC**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
+
+---
+
+## Tabela Contratante
+
+> id-contratante ➡ localização
+
+Na tabela **Contratante**, os atributos `id-contratante` e `localização` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Contratante** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Contratante**, o atributo `localização` depende diretamente do `id-contratante`, atendendo ao critério da 3ª Forma Normal.
+
+A tabela **Contratante**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
+
+---
+
+## Tabela Mercador
+
+> id-mercador ➡ localização
+
+Na tabela **Mercador**, os atributos `id-mercador` e `localização` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Mercador** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Mercador**, o atributo `localização` depende diretamente do `id-mercador`, atendendo ao critério da 3ª Forma Normal.
+
+A tabela **Mercador**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
+
+---
+
+## Tabela Loja
+
+> id-loja ➡ id_mercador, id_instâncias_itens
+
+Na tabela **Loja**, os atributos `id-loja`, `id_mercador` e `id_instâncias_itens` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Loja** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Loja**, todos os atributos (`id_mercador`, `id_instâncias_itens`) dependem diretamente do `id-loja`, atendendo ao critério da 3ª Forma Normal.
+
+A tabela **Loja**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
 
 ## Histórico de Versão
 | Versão | Data | Descrição | Autor(es) |
@@ -248,3 +320,4 @@ A tabela **Item**, com atributos atômicos e monovalorados, não apresenta tais 
 | `1.1`  | 13/12/2024 | Normalização das tabelas (Mundo, Checkpoint, Sala, Bau, Baus, Chefe)  | [Márcio Henrique](https://github.com/DeM4rcio) |
 | `1.2`  | 20/12/2024 | Normalização das tabelas (PC, Transação, Combate, Inventário, Instância Item, Item)  | [Diego Carlito](https://github.com/DiegoCarlito) |
 | `1.3`  | 21/12/2024 | Normalização das tabelas (instanciaInimigo, inimigo, regiao, habilidade, grimorio, consumivel, arma, chave)  | [Filipe Carvalho](https://github.com/filipe-002) |
+| `1.4`  | 22/12/2024 | Normalização das tabelas (Efeito, Personagem, NPC, Contratante, Mercador, Loja)  | [Diego Carlito](https://github.com/DiegoCarlito) |
