@@ -58,6 +58,6 @@ mkdocs serve
 - Módulo 2
 
   - [Normalização](./docs/modulo2/norm.md)
-  - [DDL](./docs/modulo2/DDL.sql)
+  - [DDL](./docs/modulo2/ddl.md)
   - [DML]()
   - [Álgebra Relacional]()
