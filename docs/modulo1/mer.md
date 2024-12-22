@@ -48,7 +48,7 @@ O Modelo Entidade Relacionamento de um bancos de dados é um modelo conceitual q
     - *NPC*: {tipo}
         - *Mercador*: {id_sala}
         - *Contratante*: {id_sala}
-        - *Inimigo*: {hp, xp, absorcao, atk, habilidade, combat_status}
+        - *Inimigo*: {hp, xp, absorcao, atk, habilidade}
         - *Chefe*: {hp, xp, lvl, combat_status, absorção, atk, item_especial, id_sala}
 - *Instância Inimigo*: {<ins>id_instancia_inimigo</ins>, id_inimigo, id_sala, vida_atual, absorcao, atk, habilidade, combat_status}
 - *Missão*: {<ins>id_missao</ins>, nome, descricao, qtd_xp, tipo}
@@ -60,7 +60,7 @@ O Modelo Entidade Relacionamento de um bancos de dados é um modelo conceitual q
     - *Grimório*: {xp_necessario}
     - *Consumível*: {id_efeito, quantidade}
     - *Arma*: {dano}
-    - *Chave*: {requerido-id}
+    - *Chave*: {bau_requerido}
 - *Instância de Item*: {<ins>id_instancia_item</ins>, id_item, id_sala}
 - *Checkpoint*: {<ins>id_checkpoint</ins>, id_sala, id_pc}
 - *Sala*: {<ins>id_sala</ins>, id_sala_conectada, id_regiao, nome, descricao}
