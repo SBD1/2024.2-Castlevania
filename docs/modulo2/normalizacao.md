@@ -313,6 +313,66 @@ Na tabela **Loja**, todos os atributos (`id_mercador`, `id_instâncias_itens`) d
 
 A tabela **Loja**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
 
+---
+
+## Tabela Missão
+
+> id-missao ➡ nome, qtd_xp, descr
+
+Na tabela **Missão**, os atributos `id-missao`, `nome`, `qtd_xp` e `descricao` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Missão** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Missão**, os atributos (`nome`, `qtd_xp`, `descricao`) dependem diretamente do `id-missao`, atendendo ao critério da 3ª Forma Normal.
+
+A tabela **Missão**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
+
+---
+
+## Tabela Contrato
+
+> id-contrato ➡ id-contratante, id-dependencia
+
+Na tabela **Contrato**, os atributos `id-contrato`, `id-contratante` e `id-dependencia` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Contrato** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Contrato**, os atributos (`id-contratante`, `id-dependencia`) dependem diretamente do `id-contrato`, atendendo ao critério da 3ª Forma Normal.
+
+A tabela **Contrato**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
+
+---
+
+## Tabela Missão Principal
+
+> id-principal ➡ id-dependencia
+
+Na tabela **Missão Principal**, os atributos `id-principal` e `id-dependencia` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Missão Principal** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Missão Principal**, o atributo `id-dependencia` depende diretamente do `id-principal`, atendendo ao critério da 3ª Forma Normal.
+
+A tabela **Missão Principal**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
+
+---
+
+## Tabela Missões Realizadas
+
+> id_missao, id_pc ➡ (nenhum outro atributo)
+
+Na tabela **Missões Realizadas**, os atributos `id_missao` e `id_pc` formam a chave primária composta, garantindo que ela esteja na 1ª Forma Normal, pois todos os atributos são atômicos e monovalorados.  
+Como não há outros atributos além da chave composta, todos os atributos dependem automaticamente da totalidade da chave primária, atendendo ao critério da 2ª Forma Normal.
+Na tabela **Missões Realizadas**, não existem atributos que possam depender transitivamente da chave primária composta, atendendo também à 3ª Forma Normal.
+
+A tabela **Missões Realizadas**, com atributos atômicos e sem dependências multivaloradas, satisfaz a 4ª Forma Normal.
+
+---
+
+## Tabela Diálogo
+
+> id-dialogo ➡ id-personagem, texto
+
+Na tabela **Diálogo**, os atributos `id-dialogo`, `id-personagem` e `texto` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela **Diálogo** possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela **Diálogo**, os atributos (`id-personagem`, `texto`) dependem diretamente do `id-dialogo`, atendendo ao critério da 3ª Forma Normal.
+
+A tabela **Diálogo**, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.
+
 ## Histórico de Versão
 | Versão | Data | Descrição | Autor(es) |
 | :-: | :-: | :-: | :-: | 
@@ -321,3 +381,4 @@ A tabela **Loja**, com atributos atômicos e monovalorados, não apresenta tais 
 | `1.2`  | 20/12/2024 | Normalização das tabelas (PC, Transação, Combate, Inventário, Instância Item, Item)  | [Diego Carlito](https://github.com/DiegoCarlito) |
 | `1.3`  | 21/12/2024 | Normalização das tabelas (instanciaInimigo, inimigo, regiao, habilidade, grimorio, consumivel, arma, chave)  | [Filipe Carvalho](https://github.com/filipe-002) |
 | `1.4`  | 22/12/2024 | Normalização das tabelas (Efeito, Personagem, NPC, Contratante, Mercador, Loja)  | [Diego Carlito](https://github.com/DiegoCarlito) |
+| `1.5`  | 22/12/2024 | Normalização das tabelas (Missão, Contrato, Missão Principal, Missões Realizadas, Diálogo)  | [Diego Carlito](https://github.com/DiegoCarlito) |
