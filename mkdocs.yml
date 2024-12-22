@@ -14,6 +14,7 @@ nav:
     - Modelo Relacional: "modulo1/mr.md"
   - Entrega 2:
     - Normalização: "modulo2/norm.md"
+    - Data Definition Language: "modulo2/ddl.md"
 
 
 theme:
