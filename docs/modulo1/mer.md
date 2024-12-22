@@ -43,112 +43,155 @@ O Modelo Entidade Relacionamento de um bancos de dados é um modelo conceitual q
 
 ## Atributos
 
-- *Personagem*: {<ins>id_personagem</ins>, nome, descr, tipo}
-    - *PC*: {hp, mp, xp, absorção, atk, lvl, luck, combat_status, coins, id_sala}
+- *Personagem*: {<ins>id_personagem</ins>, nome, descricao, tipo}
+    - *PC*: {hp, mp, xp, absorcao, atk, lvl, luck, combat_status, coins, id_sala}
     - *NPC*: {tipo}
         - *Mercador*: {id_sala}
         - *Contratante*: {id_sala}
-        - *Inimigo*: {hp, xp, absorção, atk, habilidade}
+        - *Inimigo*: {hp, xp, absorcao, atk, habilidade}
         - *Chefe*: {hp, xp, lvl, status, absorção, atk, item_especial, id_sala}
-- *Instância Inimigo*: {<ins>id_instancia</ins>, id_inimigo, id_sala, vida_atual, absorção, atk, habilidade, combat_status}
-- *Missão*: {<ins>id_missao</ins>, nome, descr, qtd_xp, recompensa, tipo}
+- *Instância Inimigo*: {<ins>id_instancia_inimigo</ins>, id_inimigo, id_sala, vida_atual, absorcao, atk, habilidade, combat_status}
+- *Missão*: {<ins>id_missao</ins>, nome, descricao, qtd_xp, tipo}
     - *Missão Principal*: {id_dependencia}
     - *Contrato*: {id_contratante, id_dependencia}
-- *Inventário*: {<ins>id-inventario</ins>, id_instancias_itens, capacidade, qtd-itens}
-- *Diálogo*: {<ins>id-dialogo</ins>, texto, proximo-dialogo-id}
+- *Inventário*: {<ins>id_inventario</ins>, id_instancia_item, capacidade, qtd_item}
+- *Diálogo*: {<ins>id_dialogo</ins>, id_personagem, texto}
 - *Item*: {<ins>id_item</ins>, nome, tipo, descricao, eh_unico, valor}
-    - *Grimório*: {habilidade-id}
+    - *Grimório*: {xp_necessario}
     - *Consumível*: {id_efeito, quantidade}
-    - *Arma*: {dano_base}
+    - *Arma*: {dano}
     - *Chave*: {requerido-id}
 - *Instância de Item*: {<ins>id_instancia_item</ins>, id_item, id_sala}
-- *Checkpoint*: {<ins>id-checkpoint</ins>, id_sala, id_pc}
-- *Sala*: {<ins>id_sala</ins>, id_sala_conectada, id_regiao, nome, descr}
-- *Região*: {<ins>id_regiao</ins>, id_mundo, nome, descr, dificuldade}
+- *Checkpoint*: {<ins>id_checkpoint</ins>, id_sala, id_pc}
+- *Sala*: {<ins>id_sala</ins>, id_sala_conectada, id_regiao, nome, descricao}
+- *Região*: {<ins>id_regiao</ins>, id_mundo, nome, descricao, dificuldade}
 - *Mundo*: {<ins>id_mundo</ins>, nome, data}
-- *Baú*: {<ins>id_bau</ins>, id_sala, qtd-itens, qtd-gold}
-- *Loja*: {<ins>id_loja</ins>, id_sala, id_intancias_itens}
-- *Transação*: {<ins>id_transacao</ins>, id_mercador, id_pc, valor, tipo}
-- *Combate*: {<ins>id_combate</ins>, id_pc, id_inimigo, resultado}
-- *Habilidade*: {<ins>id_habilidade</ins>, id_habilidade_dependente, nome, descr, id_efeito, custo_mana}
-- *Efeito*: {<ins>id_efeito</ins>, descr, alcance, duracao}
+- *Baú*: {<ins>id_bau</ins>, id_sala, itens, coins}
+- *Loja*: {<ins>id_loja</ins>, id_intancias_itens}
+- *Transação*: {<ins>id_transacao</ins>, id_mercador, id_pc, valor, tipo_transacao}
+- *Combate*: {<ins>id_combate</ins>, id_pc, id_instancia_inimigo, resultado}
+- *Habilidade*: {<ins>id_habilidade</ins>, id_habilidade_dependente, id_grimorio, id_efeito, tipo, custo_mp}
+- *Efeito*: {<ins>id_efeito</ins>, alcance, duracao}
 
 ## Relacionamentos
 
-- (1,1) **PC** está em uma **Sala**  
+- **PC *está* em Sala**
+  - (1,1) **PC** está em uma **Sala**
   - (0,N) **Sala** pode conter vários PCs
-- (1,1) **NPC** está em uma **Sala**  
+
+- **NPC *está* em Sala**
+  - (1,1) **NPC** está em uma **Sala**
   - (0,N) **Sala** pode conter vários NPCs
-- **NPC** possui especializações:
+
+- **NPC *possui* especializações**
   - (1,1) **Mercador** é um **NPC**
   - (1,1) **Contratante** é um **NPC**
   - (1,1) **Inimigo** é um **NPC**
   - (1,1) **Chefe** é um **NPC**
-- (0,N) **PC** possui itens no **Inventário**  
+
+- **PC *possui* Inventário**
+  - (0,N) **PC** possui itens no **Inventário**
   - (1,1) **Inventário** pertence a um único **PC**
 
-- (1,1) **Instância de Inimigo** representa um **Inimigo**  
-  - (0,N) **Inimigo** pode ter várias instâncias 
+- **Inimigo *possui* Instância Inimigo**
+  - (1,1) **Instância Inimigo** representa um **Inimigo**
+  - (0,N) **Inimigo** pode ter várias instâncias
 
-- (1,1) **Contrato** é atribuída por um **Contratante**  
-  - (0, N) **Contratante** pode atribuir várias **Contratos**
-- **Missão** possui especializações:
+- **Contratante *fornece* Contrato**
+  - (1,1) **Contrato** é atribuída por um **Contratante**
+  - (0,N) **Contratante** pode atribuir várias **Contratos**
+  - (0,1) **Contrato** pode depender de um outro **Contrato**
+
+
+- **Missão *possui* especializações**
   - (1,1) **Missão Principal** é uma **Missão**
   - (1,1) **Contrato** é uma **Missão**
-- (0,1) **Missão Principal** pode depender de outra **Missão Principal**  
-  - (0,1) **Missão Principal** pode ser pré-requisito de outra missão
-- (0,1) **Contrato** pode depender de um outro **Contrato**
 
-- (0,N) **Inventário** contém várias **Instâncias de Itens**  
+- **Missão Principal *depende* de outra Missão Principal**
+  - (0,1) **Missão Principal** pode depender de outra **Missão Principal**
+  - (0,1) **Missão Principal** pode ser pré-requisito de outra missão
+
+- **Inventário *possui* Instâncias de Itens**
+  - (0,N) **Inventário** contém várias **Instâncias de Itens**  
   - (1,1) **Instância de Item** pertence a um único **Inventário**
-- (1,1) **Instância de Item** representa um **Item**  
+
+- **Item *possui* Instância Item**
+  - (1,1) **Instância Item** representa um **Item**  
   - (0,N) **Item** pode ter várias instâncias
 
-- (1,1) **NPC** pode iniciar um **Diálogo**  
-  - (0,N) **Diálogo** pertence a um único **NPC**
-- (0,1) **Diálogo** pode apontar para um próximo **Diálogo**  
+- **Personagem *possui* Diálogo**
+  - (1,1) **Personagem** pode iniciar um **Diálogo**
+  - (0,N) **Diálogo** pertence a um único **Personagem**
+  - (0,1) **Diálogo** pode apontar para um próximo **Diálogo**  
   - (1,1) **Diálogo** pode ser parte de uma cadeia sequencial
 
-- (1,1) **Item** é classificado como:
-  - **Grimório**, **Consumível**, **Arma** ou **Chave** (1,1)
-- (0,N) **Item** pode ser vendido em várias **Lojas**  
-  - (0,N) **Loja** pode vender vários **Itens**
-- (0,N) **Item** pode estar em vários **Baús**  
+- **Item *possui* especializações**
+  - (1,1) **Grimório** é um **Item**
+  - (1,1) **Consumível** é um **Item**
+  - (1,1) **Arma** é um **Item**
+  - (1,1) **Chave** é um **Item**
+
+- **Loja *contém* Item**
+  - (0,N) **Item** pode estar contido em várias **Lojas**  
+  - (0,N) **Loja** pode conter vários **Itens**
+
+- **Item *está* em Baú**
+  - (0,N) **Item** pode estar em vários **Baús**  
   - (1,1) **Baú** pode conter vários **Itens**
-- (0,N) **Item** pode ser parte de uma **Transação**  
+
+- **Transação *envolve* Item**
+  - (0,N) **Item** pode ser parte de uma **Transação**  
   - (1,1) **Transação** envolve pelo menos um **Item**
 
-- (1,1) **Checkpoint** está em uma **Sala**  
+- **Sala *contém* Checkpoint**
+  - (1,1) **Checkpoint** está em uma **Sala**  
   - (0,N) **Sala** pode conter vários **Checkpoints**
-- (0,N) **Checkpoint** está associado a um **PC**
 
-- (1,1) **Sala** pertence a uma única **Região**  
+- **Checkpont *está* associado a um PC**
+  - (0,N) **Checkpoint** está associado a um **PC**
+
+- **Região *contém* Sala**
+  - (1,1) **Sala** pertence a uma única **Região**
   - (0,N) **Região** contém várias **Salas**
-- (0,N) **Sala** pode se conectar a outras **Salas**
 
-- (1,1) **Região** pertence a um único **Mundo**  
+- **Sala *conecta* Sala**
+  - (0,N) **Sala** pode se conectar a outras **Salas**
+
+- **Mundo *contém* Região**
+  - (1,1) **Região** pertence a um único **Mundo**  
   - (0,N) **Mundo** contém várias **Regiões**
 
-- (1,1) **Loja** possui um único **Mercador**  
-  - (1,1) **Mercador** está associado a uma única **Loja**
-- (0,N) **Loja** pode vender várias **Instâncias de Itens**  
-  - (0,N) **Instância de Item** pode estar em várias **Lojas**
+- **Mercador *possui* Loja**
+  - (1,1) **Loja** possui um único **Mercador**  
+  - (1,1) **Mercador** possui uma única **Loja**
 
-- (1,1) **Transação** envolve um **Mercador**  
+- **Loja *possui* Instância Item**
+  - (0,N) **Loja** possui várias **Instâncias Itens**  
+  - (0,N) **Instância Item** pode estar em várias **Lojas**
+
+- **Mercador *realiza* Transação**
+  - (1,1) **Transação** envolve um **Mercador**  
   - (0,N) **Mercador** pode realizar várias **Transações**
-- (1,1) **Transação** envolve um **PC**  
+
+- **Transação *envolve* PC**
+  - (1,1) **Transação** envolve um **PC**  
   - (0,N) **PC** pode realizar várias **Transações**
-- (0,N) **Transação** inclui várias **Instâncias de Itens**  
+
+- **Transação *inclui* Instância Item**
+  - (0,N) **Transação** inclui várias **Instâncias de Itens**  
   - (1,1) **Instância de Item** pode estar em várias **Transações**
 
-- (0,N) **PC** pode derrotar várias **Instâncias de Inimigos**
-  - (0,1) **Instância de Inimigo** pode ser derrotada por **PC**
+- **PC *derrota* Instância Inimigo**
+  - (0,N) **PC** pode derrotar várias **Instâncias Inimigos**
+  - (0,1) **Instância Inimigo** pode ser derrotada por **PC**
 
-- (1,1) **Habilidade** pode depender de outra **Habilidade**  
+- **Habilidade *depende* de outra Habilidade**
+  - (1,1) **Habilidade** pode depender de outra **Habilidade**  
   - (0,1) **Habilidade** pode ser pré-requisito de outra habilidade
-- (1,1) **Habilidade** está associada a um único **Efeito**
 
-- (0,N) **Efeito** pode ser usado por várias **Habilidades**
+- **Habilidade *contém* Efeito**
+  - (0,1) **Habilidade** pode conter vários **Efeitos**
+  - (0,N) **Efeito** pode estar contido em várias **Habilidades**
 
 <center>
 
@@ -156,5 +199,6 @@ O Modelo Entidade Relacionamento de um bancos de dados é um modelo conceitual q
 | Versão | Data | Descrição | Autor(es) |
 | :-: | :-: | :-: | :-: | 
 | `1.0`  | 24/11/2024 | Primeira versão  do MER  | [Diego Carlito](https://github.com/DiegoCarlito) |
+| `2.0`  | 22/12/2024 | Segunda versão  do MER  | [Diego Carlito](https://github.com/DiegoCarlito) |
 
 </center>
