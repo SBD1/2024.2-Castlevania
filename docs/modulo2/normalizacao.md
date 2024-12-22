@@ -40,9 +40,7 @@ Na tabela Bau, o atributo `itens` fere essa propriedade isso porque terá vário
 
 ### Correção
 
-tornando `itens` como chave primária e mudando seu nome para melhor clareza para `item` agora ele atende a **1ª Forma Normal**.
-
-##
+Tornando `itens` como chave primária e mudando seu nome para melhor clareza para `item` agora ele atende a **1ª Forma Normal**.
 
  Como a tabela possui apenas dois atributos das quais compõe a chave a primária (composta) não é ferido a 2ª Forma Normal.
 Na tabela Bau todos os atributos são chaves.
@@ -53,7 +51,7 @@ Na tabela Bau todos os atributos são chaves.
 
 ## Tabela Baus
 
-> id-bau ➡ id-sala
+> id-bau, id-sala ➡ (nenhum outro atributo)
 
 Na tabela Baus, os atributos `id-sala` , `id_bau` atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
  Como a tabela Baus possui apenas chave primária , automaticamente todos os atributos dependem da chave em sua totalidade.
