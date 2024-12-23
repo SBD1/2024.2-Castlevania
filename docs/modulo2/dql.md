@@ -19,6 +19,31 @@ DQL é a sigla para Data Query Language. É uma linguagem de consulta de dados q
    SELECT vida FROM Personagem WHERE id = %s;
 ```
 
+ **Consultar salas conectadas a partir do personagem:**
+   ```sql
+    SELECT sala.id_sala
+    FROM Sala sala
+    JOIN Personagem personagem ON personagem.id_sala = personagem.id_sala
+    WHERE personagem.id_sala_conectada = (
+        SELECT personagem.id_sala_conectada
+        FROM Sala sala2
+        WHERE sala2.id_sala = personagem.id_sala
+    );
+   ```
+
+**Quantidade de Inimigos na sala**
+
+```sql
+
+  SELECT Instancia_inimigo.id_instancia
+  FROM Instancia_inimigo
+  WHERE id_sala = (
+    SELECT id_sala
+    FROM Personagem
+    WHERE id_pc = %s
+  ) 
+
+```
 
 <center>
 
@@ -26,7 +51,7 @@ DQL é a sigla para Data Query Language. É uma linguagem de consulta de dados q
 | Versão | Data | Descrição | Autor(es) |
 | :-: | :-: | :-: | :-: | 
 | `1.0`  | 23/12/2024 | Primeira versão do DQL | [Márcio Henrique](https://github.com/DeM4rcio)  |
-
+| `1.1`  | 23/12/2024 | Acresentando consultas  | [Márcio Henrique](https://github.com/DeM4rcio)  |
 
 </center>
 
