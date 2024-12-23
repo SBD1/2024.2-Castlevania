@@ -36,7 +36,39 @@ INSERT INTO NPC (id_personagem, tipo) VALUES
 INSERT INTO Mercador (id_personagem, id_sala) VALUES 
 (2, 2);
 
+INSERT INTO Inimigo (id_personagem, hp, xp, absorcao, atk, habilidade) VALUES 
+(3, 50, 10, 5, 10, 5);
 
+INSERT INTO InstanciaInimigo (id_instancia, id_inimigo, id_sala, vida_atual, absorcao, atk, habilidade, combat_status) VALUES 
+(1, 3, 3, 50, 5, 10, 5, 'Normal');
+
+INSERT INTO Item (id_item, nome, descricao) VALUES 
+(1, 'Espada de Ferro', 'Uma espada básica.'),
+(2, 'Poção de Cura', 'Recupera 50 pontos de vida.');
+
+INSERT INTO InstanciaItem (id_instancia_item, id_item, id_sala) VALUES 
+(1, 1, 1),
+(2, 2, 2);
+
+INSERT INTO Bau (id_bau, itens) VALUES 
+(1, 1);
+
+
+INSERT INTO SalaBau (id_bau, id_sala) VALUES 
+(1, 1);
+
+INSERT INTO Missao (id_missao, nome, qnt_xp, descricao) VALUES 
+(1, 'Derrotar o Morcegos', 50, 'Encontre e elimine os morcegos no castelo.');
+
+
+INSERT INTO MissoesRealizadas (id_missao, id_pc) VALUES 
+(1, 1);
+
+
+INSERT INTO Combate (id_combate, id_pc, id_inimigo, resultado) VALUES 
+(1, 1, 1, 'venceu');
+
+COMMIT;
 ```
 
 <center>
