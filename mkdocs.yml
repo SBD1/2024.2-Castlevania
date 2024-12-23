@@ -17,6 +17,7 @@ nav:
     - Data Definition Language: "modulo2/ddl.md"
     - Data Manipulation Language: "modulo2/dml.md"
     - Data Query Language: "modulo2/dql.md"
+    - Terminal: "modulo2/terminal.md"
 
 
 theme:
