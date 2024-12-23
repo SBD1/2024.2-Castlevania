@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS SalaBau (
     PRIMARY KEY (id_bau, id_sala)
 );
 
-CREATE TABLE Sala (
+CREATE TABLE IF NOT EXISTS Sala (
     id_sala INT NOT NULL PRIMARY KEY,
     id_sala_conectada INT NOT NULL,
     id_regiao INT NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE Sala (
     FOREIGN KEY (id_regiao) REFERENCES Regiao(id_regiao)
 );
 
-CREATE TABLE Regiao (
+CREATE TABLE IF NOT EXISTS Regiao (
     id_regiao INT NOT NULL PRIMARY KEY,
     id_regiao_conectada INT NOT NULL,
     id_mundo INT NOT NULL,
@@ -110,20 +110,20 @@ CREATE TABLE Regiao (
     FOREIGN KEY (id_mundo) REFERENCES Mundo(id_mundo)
 );
 
-CREATE TABLE Mundo (
+CREATE TABLE IF NOT EXISTS Mundo (
     id_mundo INT NOT NULL PRIMARY KEY,
     nome VARCHAR(200) NOT NULL,
     data DATE NOT NULL
 );
 
-CREATE TABLE Dialogo (
+CREATE TABLE IF NOT EXISTS Dialogo (
     id_dialogo INT NOT NULL PRIMARY KEY,
     id_personagem INT NOT NULL,
     texto VARCHAR(200) NOT NULL,
     FOREIGN KEY (id_personagem) REFERENCES Personagem(id_personagem)
 );
 
-CREATE TABLE Transacao (
+CREATE TABLE IF NOT EXISTS Transacao (
     id_transacao INT NOT NULL PRIMARY KEY,
     id_mercador INT NOT NULL,
     id_pc INT NOT NULL,
@@ -133,7 +133,7 @@ CREATE TABLE Transacao (
     FOREIGN KEY (id_pc) REFERENCES PC(id_pc)
 );
 
-CREATE TABLE Combate (
+CREATE TABLE IF NOT EXISTS Combate (
     id_combate INT NOT NULL PRIMARY KEY,
     id_pc INT NOT NULL,
     id_inimigo INT NOT NULL,
@@ -142,14 +142,14 @@ CREATE TABLE Combate (
     FOREIGN KEY (id_inimigo) REFERENCES InstanciaInimigo(id_inimigo)
 );
 
-CREATE TABLE Inventario (
+CREATE TABLE IF NOT EXISTS Inventario (
     id_inventario INT NOT NULL,
     id_instancia_item INT NOT NULL,
     PRIMARY KEY (id_inventario, id_instancia_item),
     FOREIGN KEY (id_instancia_item) REFERENCES InstanciaItem(id_instancia_item)
 );
 
-CREATE TABLE Loja (
+CREATE TABLE IF NOT EXISTS Loja (
     id_loja INT NOT NULL PRIMARY KEY,
     id_mercador INT NOT NULL,
     id_instancia_item INT NOT NULL,
@@ -157,7 +157,7 @@ CREATE TABLE Loja (
     FOREIGN KEY (id_instancia_item) REFERENCES InstanciaItem(id_instancia_item)
 );
 
-CREATE TABLE InstanciaItem (
+CREATE TABLE IF NOT EXISTS InstanciaItem (
     id_instancia_item INT NOT NULL PRIMARY KEY,
     id_item INT NOT NULL,
     id_sala INT NOT NULL,
@@ -165,7 +165,7 @@ CREATE TABLE InstanciaItem (
     FOREIGN KEY (id_sala) REFERENCES Sala(id_sala)
 );
 
-CREATE TABLE MissoesRealizadas (
+CREATE TABLE IF NOT EXISTS MissoesRealizadas (
     id_missao INT NOT NULL,
     id_pc INT NOT NULL,
     PRIMARY KEY (id_missao, id_pc),
@@ -173,21 +173,21 @@ CREATE TABLE MissoesRealizadas (
     FOREIGN KEY (id_pc) REFERENCES PC(id_pc)
 );
 
-CREATE TABLE Missao (
+CREATE TABLE IF NOT EXISTS Missao (
     id_missao INT NOT NULL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
     qnt_xp INT NOT NULL,
     descricao VARCHAR(200) NOT NULL
 );
 
-CREATE TABLE MissaoPrincipal (
+CREATE TABLE IF NOT EXISTS MissaoPrincipal (
     id_missao INT NOT NULL PRIMARY KEY,
     id_dependencia INT NOT NULL,
     FOREIGN KEY (id_missao) REFERENCES Missao(id_missao),
     FOREIGN KEY (id_dependencia) REFERENCES Missao(id_missao)
 );
 
-CREATE TABLE Contrato (
+CREATE TABLE IF NOT EXISTS Contrato (
     id_missao INT NOT NULL PRIMARY KEY,
     id_dependencia INT NOT NULL,
     id_contratante INT NOT NULL,
@@ -196,33 +196,33 @@ CREATE TABLE Contrato (
     FOREIGN KEY (id_contratante) REFERENCES Contratante(id_contratante)
 );
 
-CREATE TABLE Item (
+CREATE TABLE IF NOT EXISTS Item (
     id_item INT NOT NULL PRIMARY KEY,
     nome VARCHAR(200) NOT NULL,
     descricao VARCHAR(200) NOT NULL
 );
 
-CREATE TABLE Chave (
+CREATE TABLE IF NOT EXISTS Chave (
     bau_requerido VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE Arma (
+CREATE TABLE IF NOT EXISTS Arma (
     dano INT NOT NULL CHECK (dano BETWEEN 1 AND 1000)
 );
 
-CREATE TABLE Consumivel (
+CREATE TABLE IF NOT EXISTS Consumivel (
     id_efeito INT NOT NULL,
     quantidade INT NOT NULL CHECK (quantidade BETWEEN 1 AND 1000),
     FOREIGN KEY (id_efeito) REFERENCES Efeito(id_efeito)
 );
 
-CREATE TABLE Grimorio (
+CREATE TABLE IF NOT EXISTS Grimorio (
     xp_necessario INT NOT NULL CHECK (xp_necessario BETWEEN 1 AND 1000),
     id_habilidade INT NOT NULL,
     FOREIGN KEY (id_habilidade) REFERENCES Habilidade(id_habilidade)
 );
 
-CREATE TABLE Habilidade (
+CREATE TABLE IF NOT EXISTS Habilidade (
     id_habilidade INT PRIMARY KEY NOT NULL CHECK (id_habilidade BETWEEN 1 AND 1000),
     id_habilidade_dependente INT NOT NULL,
     id_grimorio INT NOT NULL,
@@ -233,7 +233,7 @@ CREATE TABLE Habilidade (
     FOREIGN KEY (id_grimorio) REFERENCES Grimorio(id_grimorio)
 );
 
-CREATE TABLE Efeito (
+CREATE TABLE IF NOT EXISTS Efeito (
     id_efeito INT PRIMARY KEY NOT NULL CHECK (id_efeito BETWEEN 1 AND 1000),
     alcance INT NOT NULL CHECK (alcance BETWEEN 0 AND 1000),
     duracao INT NOT NULL CHECK (duracao BETWEEN 1 AND 1000)
