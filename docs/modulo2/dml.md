@@ -77,6 +77,6 @@ COMMIT;
 | Versão | Data | Descrição | Autor(es) |
 | :-: | :-: | :-: | :-: | 
 | `1.0`  | 22/12/2024 | Primeira versão do DML | [Márcio Henrique](https://github.com/DeM4rcio)  |
-
+| `1.1`  | 22/12/2024 | Complementando a primeira versão do DML | [Márcio Henrique](https://github.com/DeM4rcio)  |
 
 </center>
