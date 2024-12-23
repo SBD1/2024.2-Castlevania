@@ -15,6 +15,8 @@ nav:
   - Entrega 2:
     - Normalização: "modulo2/norm.md"
     - Data Definition Language: "modulo2/ddl.md"
+    - Data Manipulation Language: "modulo2/dml.md"
+    - Data Query Language: "modulo2/dql.md"
 
 
 theme:
