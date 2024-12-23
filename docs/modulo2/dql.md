@@ -4,6 +4,32 @@ DQL é a sigla para Data Query Language. É uma linguagem de consulta de dados q
 
 ### Consulta ao banco de dados
 
+ **Listar todos os mundos**
+
+ ```sql
+SELECT * FROM Mundo;
+
+ ```
+
+  **Listar todas as regiões e seus respectivos mundos**
+
+ ```sql
+SELECT Regiao.nome AS regiao, Mundo.nome AS mundo
+FROM Regiao
+JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
+
+ ```
+ 
+ **Detalhes de um personagem específico**
+
+ ```sql
+  SELECT *
+  FROM Personagem
+  WHERE id_personagem = %s;
+
+ ```
+ 
+
  **Selecionar jogadores registrados:**
    ```sql
    SELECT nome FROM Personagem;
@@ -35,7 +61,7 @@ DQL é a sigla para Data Query Language. É uma linguagem de consulta de dados q
 
 ```sql
 
-  SELECT Instancia_inimigo.id_instancia
+  SELECT COUNT(Instancia_inimigo.id_instancia)
   FROM Instancia_inimigo
   WHERE id_sala = (
     SELECT id_sala
@@ -44,6 +70,17 @@ DQL é a sigla para Data Query Language. É uma linguagem de consulta de dados q
   ) 
 
 ```
+
+**Atualizar o resultado do combate**
+
+```sql
+
+ UPDATE Combate SET resultado = "venceu" WHERE id_combate = %s;
+
+```
+
+
+
 
 <center>
 
