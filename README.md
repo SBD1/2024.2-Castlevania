@@ -41,7 +41,7 @@ mkdocs serve
 | Módulo | Link da gravação             | Data       |
 | ------ | ---------------------------- | ---------- |
 | 1      | [Apresentação Módulo 1](https://youtu.be/StAxu6V-pvs?si=bhTU_5ZB98D4P6_M)    | 25/11/2024 |
-| 2      | [Apresentação Módulo 2]()    | Em andamento 🛠. |
+| 2      | [Apresentação Módulo 2](https://youtu.be/nT-5Z1CONrc?si=xSQ4u3-1xHR65ZMX)    | 23/12/2024 |
 | 3      | [Apresentação Módulo 3]()    | Em andamento 🛠. |
 
 </div>
@@ -61,4 +61,3 @@ mkdocs serve
   - [DDL](./docs/modulo2/ddl.md)
   - [DML](./docs/modulo2/dml.md)
   - [DQL](./docs/modulo2/dql.md)
-  - [Álgebra Relacional]()
