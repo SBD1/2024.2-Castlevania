@@ -6,47 +6,53 @@ DQL é a sigla para Data Query Language. É uma linguagem de consulta de dados q
 
  **Listar todos os mundos**
 
- ```sql
-SELECT * FROM Mundo;
+```sql
+ 
+  SELECT * FROM Mundo;
 
- ```
+```
 
   **Listar todas as regiões e seus respectivos mundos**
 
- ```sql
+```sql
 SELECT Regiao.nome AS regiao, Mundo.nome AS mundo
 FROM Regiao
 JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 
- ```
+```
  
  **Detalhes de um personagem específico**
 
- ```sql
+```sql
   SELECT *
   FROM Personagem
   WHERE id_personagem = %s;
 
- ```
+```
  
 
  **Selecionar jogadores registrados:**
-   ```sql
+```sql
+
    SELECT nome FROM Personagem;
-   ```
+
+```
 
  **Selecionar Missão do jogador:**
-   ```sql
+```sql
+
    SELECT nome FROM Missao WHERE id_missao = %s;
-   ```
+   
+```
 
  **Consultar Vida do jogador:**
- ```sql
+```sql
    SELECT vida FROM Personagem WHERE id = %s;
 ```
 
  **Consultar salas conectadas a partir do personagem:**
-   ```sql
+```sql
+
     SELECT sala.id_sala
     FROM Sala sala
     JOIN Personagem personagem ON personagem.id_sala = personagem.id_sala
@@ -55,7 +61,8 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
         FROM Sala sala2
         WHERE sala2.id_sala = personagem.id_sala
     );
-   ```
+
+```
 
 **Quantidade de Inimigos na sala**
 
