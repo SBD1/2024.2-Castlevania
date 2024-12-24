@@ -124,6 +124,24 @@ def abrir_bau(cursor, conn, id_personagem):
     else:
         print("Não há baús nesta sala.")
 
+# Função para exibir o inventário do personagem
+def exibir_inventario(cursor, id_personagem):
+    print("\n=== INVENTÁRIO ===")
+    cursor.execute("""
+        SELECT i.nome, i.descricao
+        FROM Inventario inv
+        JOIN InstanciaItem ii ON inv.id_instancia_item = ii.id_instancia_item
+        JOIN Item i ON ii.id_item = i.id_item
+        WHERE inv.id_personagem = ?
+    """, (id_personagem,))
+    itens = cursor.fetchall()
+
+    if itens:
+        for i, item in enumerate(itens, start=1):
+            print(f"{i}. {item[0]} - {item[1]}")
+    else:
+        print("O inventário está vazio!")
+
 # Menu principal
 def menu_principal():
     conn = conectar_banco()
@@ -137,7 +155,8 @@ def menu_principal():
         print("3. Exibir Status do Personagem")
         print("4. Abrir Baú")
         print("5. Iniciar Combate")
-        print("6. Sair")
+        print("6. Exibir Inventário")
+        print("7. Sair")
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
@@ -164,6 +183,10 @@ def menu_principal():
             iniciar_combate(cursor, conn, id_personagem)
 
         elif opcao == "6":
+            # Exibir inventário
+            exibir_inventario(cursor, id_personagem)
+
+        elif opcao == "7":
             print("Saindo do jogo...")
             break
 
