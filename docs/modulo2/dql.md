@@ -4,7 +4,7 @@ DQL é a sigla para Data Query Language. É uma linguagem de consulta de dados q
 
 ### Consulta ao banco de dados
 
- **Listar todos os mundos**
+#### **1. Listar todos os mundos**
 
 ```sql
  
@@ -12,7 +12,7 @@ DQL é a sigla para Data Query Language. É uma linguagem de consulta de dados q
 
 ```
 
-  **Listar todas as regiões e seus respectivos mundos**
+####  **2. Listar todas as regiões e seus respectivos mundos**
 
 ```sql
 SELECT Regiao.nome AS regiao, Mundo.nome AS mundo
@@ -21,7 +21,7 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 
 ```
  
- **Detalhes de um personagem específico**
+#### **3. Detalhes de um personagem específico**
 
 ```sql
   SELECT *
@@ -31,26 +31,26 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 ```
  
 
- **Selecionar jogadores registrados:**
+#### **4. Selecionar jogadores registrados:**
 ```sql
 
    SELECT nome FROM Personagem;
 
 ```
 
- **Selecionar Missão do jogador:**
+#### **5. Selecionar Missão do jogador:**
 ```sql
 
    SELECT nome FROM Missao WHERE id_missao = %s;
    
 ```
 
- **Consultar Vida do jogador:**
+#### **6. Consultar Vida do jogador:**
 ```sql
    SELECT vida FROM Personagem WHERE id = %s;
 ```
 
- **Consultar salas conectadas a partir do personagem:**
+#### **7. Consultar salas conectadas a partir do personagem:**
 ```sql
 
     SELECT sala.id_sala
@@ -64,7 +64,7 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 
 ```
 
-**Quantidade de Inimigos na sala**
+#### **8. Quantidade de Inimigos na sala**
 
 ```sql
 
@@ -78,7 +78,7 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 
 ```
 
-**Atualizar o resultado do combate**
+#### **9. Atualizar o resultado do combate**
 
 ```sql
 
@@ -86,7 +86,7 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 
 ```
 
-**Consultar o total gasto em transações de venda**
+#### **10. Consultar o total gasto em transações de venda**
 
 ```sql
 
@@ -94,7 +94,7 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 
 ```
 
-**Atualizar status de combate do chefe**
+#### **11. Atualizar status de combate do chefe**
 
 ```sql
 
@@ -105,7 +105,7 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 >OBS: Todos os status do chefe ou inimigo terá como base esse script, tal que será setado a depender da ação do personagem **UPDATE Chefe SET "Atributo a ser atualizado" WHERE id_personagem = %s**, por exemplo: O personagem reliza um ataque que diminui em 10 de HP do chefe, então o script de update seria dessa forma: **UPDATE Chefe SET hp = "Novo valor de vida" WHERE id_personagem = %s**
 
 
-**Listar todos os itens do inventário do personagem**
+#### **12. Listar todos os itens do inventário do personagem**
 
 ```sql
 
@@ -113,7 +113,7 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 
 ```
 
-**Listar todos os itens de um bau**
+#### **13. Listar todos os itens de um bau**
 
 ```sql
 
@@ -121,6 +121,29 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 
 ```
 
+#### **14. Listar missões pendentes do personagem**
+
+```sql
+
+  SELECT PC.nome AS personagem, MissaoPrincipal.nome AS missao_dependente
+  FROM MissaoPrincipal
+  LEFT JOIN MissoesRealizadas ON MissaoPrincipal.id_missao = MissoesRealizadas.id_missao
+  JOIN PC ON PC.id_personagem = MissoesRealizadas.id_pc
+  WHERE MissoesRealizadas.id_missao IS NULL;
+
+```
+
+#### **15. Missões que trazem mais recompensas**
+
+```sql
+
+  SELECT Missao.nome, Missao.qnt_xp, Missao.descricao
+  FROM Missao
+  ORDER BY Missao.qnt_xp DESC
+  LIMIT 5;
+
+
+```
 
 
 
@@ -132,6 +155,6 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 | :-: | :-: | :-: | :-: | 
 | `1.0`  | 23/12/2024 | Primeira versão do DQL | [Márcio Henrique](https://github.com/DeM4rcio)  |
 | `1.1`  | 23/12/2024 | Acresentando consultas  | [Márcio Henrique](https://github.com/DeM4rcio)  |
-
+| `1.1`  | 12/01/2024 | Acresentando consultas  | [Márcio Henrique](https://github.com/DeM4rcio)  |
 </center>
 

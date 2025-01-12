@@ -18,6 +18,7 @@ nav:
     - Data Definition Language: "modulo2/ddl.md"
     - Data Manipulation Language: "modulo2/dml.md"
     - Data Query Language: "modulo2/dql.md"
+    - Algebra Relacional: "modulo2/algebra_relacional.md"
     - Terminal: "modulo2/terminal.md"
 
 
