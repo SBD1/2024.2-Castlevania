@@ -86,6 +86,42 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 
 ```
 
+**Consultar o total gasto em transações de venda**
+
+```sql
+
+  SELECT SUM(Valor) FROM Transacao WHERE tipo = 'venda'
+
+```
+
+**Atualizar status de combate do chefe**
+
+```sql
+
+  UPDATE Chefe SET combat_status = "confuso" WHERE id_personagem = %s
+
+```
+
+>OBS: Todos os status do chefe ou inimigo terá como base esse script, tal que será setado a depender da ação do personagem **UPDATE Chefe SET "Atributo a ser atualizado" WHERE id_personagem = %s**, por exemplo: O personagem reliza um ataque que diminui em 10 de HP do chefe, então o script de update seria dessa forma: **UPDATE Chefe SET hp = "Novo valor de vida" WHERE id_personagem = %s**
+
+
+**Listar todos os itens do inventário do personagem**
+
+```sql
+
+  SELECT Instancia_item from inventario WHERE id_inventario = (SELECT id_personagem FROM PC WHERE id = %s)
+
+```
+
+**Listar todos os itens de um bau**
+
+```sql
+
+  SELECT itens from Bau WHERE id_bau = %s
+
+```
+
+
 
 
 

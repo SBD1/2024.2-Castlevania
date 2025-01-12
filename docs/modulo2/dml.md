@@ -68,6 +68,15 @@ INSERT INTO MissoesRealizadas (id_missao, id_pc) VALUES
 INSERT INTO Combate (id_combate, id_pc, id_inimigo, resultado) VALUES 
 (1, 1, 1, 'venceu');
 
+INSERT INTO Inventario (id_inventario, id_instacia_item ) VALUES 
+(1, 1);
+
+INSERT INTO Loja(id_loja, id_mercador, id_instacia_item) VALUES
+(1,1,1);
+
+INSERT INTO Contrato(id_missao, id_dependencia, id_contratante) VALUES
+(1,1,1)
+
 COMMIT;
 ```
 
@@ -78,5 +87,5 @@ COMMIT;
 | :-: | :-: | :-: | :-: | 
 | `1.0`  | 22/12/2024 | Primeira versão do DML | [Márcio Henrique](https://github.com/DeM4rcio)  |
 | `1.1`  | 22/12/2024 | Complementando a primeira versão do DML | [Márcio Henrique](https://github.com/DeM4rcio)  |
-
+| `1.1`  | 12/01/2024 | Complementando DML | [Márcio Henrique](https://github.com/DeM4rcio)  |
 </center>
