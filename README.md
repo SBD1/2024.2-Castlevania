@@ -61,3 +61,4 @@ mkdocs serve
   - [DDL](./docs/modulo2/ddl.md)
   - [DML](./docs/modulo2/dml.md)
   - [DQL](./docs/modulo2/dql.md)
+  - [Álgebra Relacional](./docs/modulo2/algebra_relacional.md)
