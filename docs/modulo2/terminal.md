@@ -1,4 +1,4 @@
-# Detalhamento do Código: Terminal RPG Completo
+# Detalhamento do Código
 
 Este documento apresenta o detalhamento do código criado para um terminal em Python que interage com um banco de dados criado para o Castlevania. O terminal permite movimentação pelo mapa, combate, interação com baús e exibição de status do personagem.
 
@@ -136,19 +136,19 @@ Escolha uma opção:
 ## 📜 Estrutura do Código
 
 - **Conexão com o Banco**:
-  - `conectar_banco()`
+    - `conectar_banco()`
 - **Mapa**:
-  - `exibir_mapa(cursor, id_sala_atual)`
+    - `exibir_mapa(cursor, id_sala_atual)`
 - **Movimentação**:
-  - `mover_personagem(cursor, conn, id_personagem, id_sala_destino)`
+    - `mover_personagem(cursor, conn, id_personagem, id_sala_destino)`
 - **Status do Personagem**:
-  - `exibir_status(cursor, id_personagem)`
+    - `exibir_status(cursor, id_personagem)`
 - **Combate**:
-  - `iniciar_combate(cursor, conn, id_personagem)`
+    - `iniciar_combate(cursor, conn, id_personagem)`
 - **Baús**:
-  - `abrir_bau(cursor, conn, id_personagem)`
+    - `abrir_bau(cursor, conn, id_personagem)`
 - **Menu Principal**:
-  - `menu_principal()`
+    - `menu_principal()`
 
 
 ---
