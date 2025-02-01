@@ -52,7 +52,7 @@ Algumas consultas realizadas no projeto:
 #### **7. Consultar salas conectadas a partir do personagem:**
 ```
 
-πid_sala​(σPersonagem.id_sala_conectada=Sala.id_sala​(Personagem⋈Sala))
+πid_sala_destino,direcao,descricao_conexao​(σPC.id_sala=Conexao.id_sala_origem​(PC⋈Conexao))
 
 ```
 
