@@ -1,12 +1,64 @@
 BEGIN TRANSACTION;
 
+-- Tabelas base
+CREATE TABLE IF NOT EXISTS Mundo (
+    id_mundo SERIAL NOT NULL PRIMARY KEY,
+    nome VARCHAR(200) NOT NULL,
+    data DATE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Item (
+    id_item SERIAL NOT NULL PRIMARY KEY,
+    nome VARCHAR(200) NOT NULL,
+    descricao VARCHAR(200) NOT NULL
+);
+
+
+
 CREATE TABLE IF NOT EXISTS Personagem (
     id_personagem SERIAL PRIMARY KEY NOT NULL,
     nome VARCHAR(50) NOT NULL,
     descricao VARCHAR(50) NOT NULL,
+    tipo VARCHAR(3) NOT NULL,
     CHECK (tipo IN ('PC', 'NPC'))
 );
 
+CREATE TABLE IF NOT EXISTS Regiao (
+    id_regiao SERIAL NOT NULL PRIMARY KEY,
+    id_regiao_conectada INT NOT NULL,
+    id_mundo INT NOT NULL,
+    nome VARCHAR(200) NOT NULL,
+    descricao VARCHAR(200) NOT NULL,
+    dificuldade VARCHAR(50) NOT NULL,
+    CHECK (id_regiao != id_regiao_conectada),
+    FOREIGN KEY (id_regiao_conectada) REFERENCES Regiao(id_regiao),
+    FOREIGN KEY (id_mundo) REFERENCES Mundo(id_mundo)
+);
+
+CREATE TABLE IF NOT EXISTS Sala (
+    id_sala SERIAL NOT NULL PRIMARY KEY,
+    id_regiao INT NOT NULL,
+    nome VARCHAR(200) NOT NULL,
+    descricao VARCHAR(200) NOT NULL,
+    FOREIGN KEY (id_regiao) REFERENCES Regiao(id_regiao)
+);
+
+CREATE TABLE IF NOT EXISTS InstanciaItem (
+    id_instancia_item SERIAL NOT NULL PRIMARY KEY,
+    id_item INT NOT NULL,
+    id_sala INT NOT NULL,
+    FOREIGN KEY (id_item) REFERENCES Item(id_item),
+    FOREIGN KEY (id_sala) REFERENCES Sala(id_sala)
+);
+
+CREATE TABLE IF NOT EXISTS Missao (
+    id_missao SERIAL NOT NULL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    qnt_xp INT NOT NULL,
+    descricao VARCHAR(200) NOT NULL
+);
+
+-- Tabelas dependentes
 CREATE TABLE IF NOT EXISTS PC (
     id_personagem SERIAL PRIMARY KEY REFERENCES Personagem(id_personagem),
     hp INT NOT NULL CHECK (hp BETWEEN 0 AND 1000),
@@ -16,6 +68,7 @@ CREATE TABLE IF NOT EXISTS PC (
     atk INT NOT NULL CHECK (atk BETWEEN 0 AND 1000),
     lvl INT NOT NULL CHECK (lvl BETWEEN 1 AND 1000),
     luck INT NOT NULL CHECK (luck BETWEEN 0 AND 1000),
+    combat_status VARCHAR(20) NOT NULL,
     CHECK (combat_status IN ('Confuso', 'Envenenado', 'Normal')),
     coins INT NOT NULL CHECK (coins BETWEEN 0 AND 1000),
     id_sala INT NOT NULL REFERENCES Sala(id_sala)
@@ -50,6 +103,7 @@ CREATE TABLE IF NOT EXISTS Chefe (
     hp INT NOT NULL CHECK (hp BETWEEN 1 AND 1000),
     xp INT NOT NULL CHECK (xp BETWEEN 1 AND 1000),
     lvl INT NOT NULL CHECK (lvl BETWEEN 1 AND 1000),
+    combat_status VARCHAR(20) NOT NULL,
     CHECK (combat_status IN ('Confuso', 'Envenenado', 'Normal')),
     absorcao INT NOT NULL CHECK (absorcao BETWEEN 1 AND 1000),
     atk INT NOT NULL CHECK (atk BETWEEN 1 AND 1000),
@@ -65,6 +119,7 @@ CREATE TABLE IF NOT EXISTS InstanciaInimigo (
     absorcao INT NOT NULL CHECK (absorcao BETWEEN 1 AND 1000),
     atk INT NOT NULL CHECK (atk BETWEEN 1 AND 1000),
     habilidade INT NOT NULL CHECK (habilidade BETWEEN 1 AND 1000),
+    combat_status VARCHAR(20) NOT NULL,
     CHECK (combat_status IN ('Confuso', 'Envenenado', 'Normal'))
 );
 
@@ -82,16 +137,7 @@ CREATE TABLE IF NOT EXISTS Bau (
 CREATE TABLE IF NOT EXISTS SalaBau (
     id_bau INT NOT NULL REFERENCES Bau(id_bau),
     id_sala INT NOT NULL REFERENCES Sala(id_sala),
-    SERIAL PRIMARY KEY (id_bau, id_sala)
-    UNIQUE (id_bau) -- Garante que um baú só esteja em uma sala
-);
-
-CREATE TABLE IF NOT EXISTS Sala (
-    id_sala SERIAL NOT NULL PRIMARY KEY,
-    id_regiao INT NOT NULL,
-    nome VARCHAR(200) NOT NULL,
-    descricao VARCHAR(200) NOT NULL,
-    FOREIGN KEY (id_regiao) REFERENCES Regiao(id_regiao)
+    PRIMARY KEY (id_bau, id_sala)
 );
 
 CREATE TABLE IF NOT EXISTS Conexao (
@@ -103,24 +149,6 @@ CREATE TABLE IF NOT EXISTS Conexao (
     FOREIGN KEY (id_sala_origem) REFERENCES Sala(id_sala),
     FOREIGN KEY (id_sala_destino) REFERENCES Sala(id_sala),
     CHECK (direcao IN ('Norte', 'Sul', 'Leste', 'Oeste'))
-);
-
-CREATE TABLE IF NOT EXISTS Regiao (
-    id_regiao SERIAL NOT NULL PRIMARY KEY,
-    id_regiao_conectada INT NOT NULL,
-    id_mundo INT NOT NULL,
-    nome VARCHAR(200) NOT NULL,
-    descricao VARCHAR(200) NOT NULL,
-    dificuldade VARCHAR(50) NOT NULL,
-    FOREIGN KEY (id_regiao_conectada) REFERENCES Regiao(id_regiao),
-    FOREIGN KEY (id_mundo) REFERENCES Mundo(id_mundo)
-    CHECK (id_regiao != id_regiao_conectada) -- Evita loops
-);
-
-CREATE TABLE IF NOT EXISTS Mundo (
-    id_mundo SERIAL NOT NULL PRIMARY KEY,
-    nome VARCHAR(200) NOT NULL,
-    data DATE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Dialogo (
@@ -135,18 +163,20 @@ CREATE TABLE IF NOT EXISTS Transacao (
     id_mercador INT NOT NULL,
     id_pc INT NOT NULL,
     valor INT NOT NULL,
+    tipo VARCHAR(10) NOT NULL,
     CHECK (tipo IN ('venda', 'compra')),
-    FOREIGN KEY (id_mercador) REFERENCES Mercador(id_mercador),
-    FOREIGN KEY (id_pc) REFERENCES PC(id_pc)
+    FOREIGN KEY (id_mercador) REFERENCES Mercador(id_personagem),
+    FOREIGN KEY (id_pc) REFERENCES PC(id_personagem)
 );
 
 CREATE TABLE IF NOT EXISTS Combate (
     id_combate SERIAL NOT NULL PRIMARY KEY,
     id_pc INT NOT NULL,
     id_inimigo INT NOT NULL,
+    resultado VARCHAR(20) NOT NULL,
     CHECK (resultado IN ('venceu', 'derrotado', 'fugiu')),
-    FOREIGN KEY (id_pc) REFERENCES PC(id_pc),
-    FOREIGN KEY (id_inimigo) REFERENCES InstanciaInimigo(id_inimigo)
+    FOREIGN KEY (id_pc) REFERENCES PC(id_personagem),
+    FOREIGN KEY (id_inimigo) REFERENCES InstanciaInimigo(id_instancia)
 );
 
 CREATE TABLE IF NOT EXISTS Inventario (
@@ -159,31 +189,18 @@ CREATE TABLE IF NOT EXISTS Loja (
     id_loja SERIAL NOT NULL PRIMARY KEY,
     id_mercador INT NOT NULL,
     id_instancia_item INT NOT NULL,
-    FOREIGN KEY (id_mercador) REFERENCES Mercador(id_mercador),
+    FOREIGN KEY (id_mercador) REFERENCES Mercador(id_personagem),
     FOREIGN KEY (id_instancia_item) REFERENCES InstanciaItem(id_instancia_item)
 );
 
-CREATE TABLE IF NOT EXISTS InstanciaItem (
-    id_instancia_item SERIAL NOT NULL PRIMARY KEY,
-    id_item INT NOT NULL,
-    id_sala INT NOT NULL,
-    FOREIGN KEY (id_item) REFERENCES Item(id_item),
-    FOREIGN KEY (id_sala) REFERENCES Sala(id_sala)
-);
+
 
 CREATE TABLE IF NOT EXISTS MissoesRealizadas (
     id_missao SERIAL NOT NULL,
     id_pc INT NOT NULL,
-    SERIAL PRIMARY KEY (id_missao, id_pc),
+    PRIMARY KEY (id_missao, id_pc),
     FOREIGN KEY (id_missao) REFERENCES Missao(id_missao),
-    FOREIGN KEY (id_pc) REFERENCES PC(id_pc)
-);
-
-CREATE TABLE IF NOT EXISTS Missao (
-    id_missao SERIAL NOT NULL PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL,
-    qnt_xp INT NOT NULL,
-    descricao VARCHAR(200) NOT NULL
+    FOREIGN KEY (id_pc) REFERENCES PC(id_personagem)
 );
 
 CREATE TABLE IF NOT EXISTS MissaoPrincipal (
@@ -196,15 +213,9 @@ CREATE TABLE IF NOT EXISTS Contrato (
     id_missao SERIAL NOT NULL PRIMARY KEY REFERENCES Missao(id_missao),
     id_dependencia INT NOT NULL,
     id_contratante INT NOT NULL,
+    CHECK (id_missao != id_dependencia),
     FOREIGN KEY (id_dependencia) REFERENCES Contrato(id_missao),
-    FOREIGN KEY (id_contratante) REFERENCES Contratante(id_contratante)
-    CHECK (id_missao != id_dependencia) -- Evita loops
-);
-
-CREATE TABLE IF NOT EXISTS Item (
-    id_item SERIAL NOT NULL PRIMARY KEY,
-    nome VARCHAR(200) NOT NULL,
-    descricao VARCHAR(200) NOT NULL
+    FOREIGN KEY (id_contratante) REFERENCES Contratante(id_personagem)
 );
 
 CREATE TABLE IF NOT EXISTS Chave (
@@ -217,11 +228,23 @@ CREATE TABLE IF NOT EXISTS Arma (
     dano INT NOT NULL CHECK (dano BETWEEN 1 AND 1000)
 );
 
+CREATE TABLE IF NOT EXISTS Efeito (
+    id_efeito SERIAL PRIMARY KEY,
+    tipo VARCHAR(50) NOT NULL,
+    descricao TEXT NOT NULL,
+    FOREIGN KEY (id_efeito) REFERENCES Efeito(id_efeito)
+);
+
 CREATE TABLE  IF NOT EXISTS Consumivel (
     id_item SERIAL PRIMARY KEY REFERENCES Item(id_item),
     id_efeito INT NOT NULL,
     quantidade INT NOT NULL CHECK (quantidade BETWEEN 1 AND 1000),
     FOREIGN KEY (id_efeito) REFERENCES Efeito(id_efeito)
+);
+
+CREATE TABLE IF NOT EXISTS Habilidade (
+    id_habilidade SERIAL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Grimorio (
@@ -231,21 +254,8 @@ CREATE TABLE IF NOT EXISTS Grimorio (
     FOREIGN KEY (id_habilidade) REFERENCES Habilidade(id_habilidade)
 );
 
-CREATE TABLE IF NOT EXISTS Habilidade (
-    id_habilidade SERIAL PRIMARY KEY NOT NULL CHECK (id_habilidade BETWEEN 1 AND 1000),
-    id_habilidade_dependente INT NOT NULL,
-    id_grimorio INT NOT NULL,
-    efeito VARCHAR(50) NOT NULL,
-    tipo VARCHAR(50) NOT NULL,
-    custo_mp INT NOT NULL CHECK (custo_mp BETWEEN 1 AND 1000),
-    FOREIGN KEY (id_habilidade_dependente) REFERENCES Habilidade(id_habilidade),
-    FOREIGN KEY (id_grimorio) REFERENCES Grimorio(id_grimorio)
-);
 
-CREATE TABLE IF NOT EXISTS Efeito (
-    id_efeito SERIAL PRIMARY KEY NOT NULL CHECK (id_efeito BETWEEN 1 AND 1000),
-    alcance INT NOT NULL CHECK (alcance BETWEEN 0 AND 1000),
-    duracao INT NOT NULL CHECK (duracao BETWEEN 1 AND 1000)
-);
+
+
 
 COMMIT;

@@ -8,6 +8,7 @@ class DatabaseController:
         self.host = host
         self.port = port
         self.create_database(self.dbname)
+        self.create_tables()
 
     def create_database(self, dbname):
         """Cria um novo banco de dados."""
@@ -98,3 +99,48 @@ class DatabaseController:
         cursor.execute("INSERT INTO Dialogo (id_personagem, texto) VALUES (%s, %s)", (player_id, "Preciso de sua ajuda para derrotar os inimigos!"))
         self.conn.commit()
         cursor.close()
+    
+    def create_tables(self):
+        """Cria as tabelas Personagem e PC se não existirem."""
+        conn = psycopg2.connect(
+            dbname=self.dbname,
+            user=self.user,
+            password=self.password,
+            host=self.host,
+            port=self.port
+        )
+        cursor = conn.cursor()
+        
+        try:
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS Personagem (
+                    id_personagem SERIAL PRIMARY KEY NOT NULL,
+                    nome VARCHAR(50) NOT NULL,
+                    descricao VARCHAR(50) NOT NULL,
+                    tipo VARCHAR(3) NOT NULL CHECK (tipo IN ('PC', 'NPC'))
+                );
+            ''')
+            
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS PC (
+                    id_personagem SERIAL PRIMARY KEY REFERENCES Personagem(id_personagem),
+                    hp INT NOT NULL CHECK (hp BETWEEN 0 AND 1000),
+                    mp INT NOT NULL CHECK (mp BETWEEN 0 AND 1000),
+                    xp INT NOT NULL CHECK (xp BETWEEN 0 AND 1000),
+                    absorcao INT NOT NULL CHECK (absorcao BETWEEN 0 AND 1000),
+                    atk INT NOT NULL CHECK (atk BETWEEN 0 AND 1000),
+                    lvl INT NOT NULL CHECK (lvl BETWEEN 1 AND 1000),
+                    luck INT NOT NULL CHECK (luck BETWEEN 0 AND 1000),
+                    combat_status VARCHAR(10) CHECK (combat_status IN ('Confuso', 'Envenenado', 'Normal')),
+                    coins INT NOT NULL CHECK (coins BETWEEN 0 AND 1000),
+                    id_sala INT NOT NULL REFERENCES Sala(id_sala)
+                );
+            ''')
+            
+            conn.commit()
+            print("Tabelas verificadas e criadas, se necessário.")
+        except Exception as e:
+            print(f"Erro ao criar tabelas: {e}")
+        finally:
+            cursor.close()
+            conn.close()
