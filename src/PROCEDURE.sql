@@ -96,3 +96,23 @@ BEGIN
     RAISE NOTICE 'Compra realizada com sucesso!';
 END;
 $$;
+
+CREATE OR REPLACE FUNCTION respawn_inimigo()
+RETURNS TRIGGER AS $$
+DECLARE
+    nova_sala INT;
+BEGIN
+    
+    SELECT id_sala INTO nova_sala
+    FROM Sala
+    WHERE id_sala <> OLD.id_sala  
+    ORDER BY RANDOM()
+    LIMIT 1;
+
+   
+    INSERT INTO InstanciaInimigo (id_inimigo, id_sala, vida_atual, absorcao, atk, habilidade, combat_status)
+    VALUES (OLD.id_inimigo, nova_sala, 100, OLD.absorcao, OLD.atk, OLD.habilidade, 'Normal');
+
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;

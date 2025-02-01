@@ -82,3 +82,8 @@ CREATE TRIGGER trigger_valida_tipo_npc_chefe
 BEFORE INSERT OR UPDATE ON Chefe
 FOR EACH ROW
 EXECUTE FUNCTION valida_tipo_npc();
+
+CREATE OR REPLACE TRIGGER trigger_respawn_inimigo
+AFTER DELETE ON InstanciaInimigo
+FOR EACH ROW
+EXECUTE FUNCTION respawn_inimigo();
