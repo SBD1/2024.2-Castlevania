@@ -1,160 +1,166 @@
-import sqlite3
+import time
+import psycopg2
+from control import DatabaseController
+from interacoes import exibir_dialogo, exibir_dialogo_mercador, exibir_dialogo_contratante
 
-# Conexão com o banco de dados
-def conectar_banco():
-    return sqlite3.connect('rpg.db')  # Substitua pelo caminho correto do seu banco de dados
+class TerminalInterface:
+    def __init__(self, db_controller: DatabaseController):
+        self.db_controller = db_controller
+        self.current_player_id = None  # Variável para armazenar o ID do jogador selecionado
 
-# Função para criar as tabelas no banco de dados
-def criar_tabelas():
-    conn = conectar_banco()
-    cursor = conn.cursor()
+    def run(self):
+        while True:
+            print("\nMenu:")
+            print("1. Adicionar Novo Jogador")
+            print("2. Listar Jogadores")
+            print("3. Selecionar Jogador e Iniciar Jogo")
+            print("4. Executar Script SQL")
+            print("5. Sair")
 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Personagem (
-        id_personagem INTEGER PRIMARY KEY,
-        nome TEXT,
-        hp INTEGER,
-        mp INTEGER,
-        xp INTEGER,
-        coins INTEGER
-    );
-    """)
+            choice = input("Escolha uma opção: ").strip()
 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Sala (
-        id_sala INTEGER PRIMARY KEY,
-        nome TEXT,
-        descricao TEXT,
-        id_sala_conectada INTEGER,
-        FOREIGN KEY (id_sala_conectada) REFERENCES Sala (id_sala)
-    );
-    """)
+            if choice == "1":
+                self.add_player()
+            elif choice == "2":
+                self.list_players()
+            elif choice == "3":
+                self.select_player_and_start_game()
+            elif choice == "4":
+                self.run_sql_script()
+            elif choice == "5":
+                print("Saindo...")
+                break
+            else:
+                print("Opção inválida, tente novamente.")
 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS PC (
-        id_personagem INTEGER PRIMARY KEY,
-        id_sala INTEGER,
-        FOREIGN KEY (id_personagem) REFERENCES Personagem (id_personagem),
-        FOREIGN KEY (id_sala) REFERENCES Sala (id_sala)
-    );
-    """)
-
-    conn.commit()
-
-    # Verifica se a tabela Sala está vazia e insere algumas salas básicas
-    cursor.execute("SELECT COUNT(*) FROM Sala")
-    if cursor.fetchone()[0] == 0:
-        # Inserindo algumas salas padrão para testes
-        cursor.execute("INSERT INTO Sala (id_sala, nome, descricao, id_sala_conectada) VALUES (0, 'Sala Inicial', 'A sala de início do jogo.', 1);")
-        cursor.execute("INSERT INTO Sala (id_sala, nome, descricao, id_sala_conectada) VALUES (1, 'Arena', 'Uma arena para batalhas.', 0);")
-        conn.commit()
-    conn.close()
-
-# Função para exibir o mapa (salas conectadas)
-def exibir_mapa(cursor, id_sala_atual):
-    print("\n=== MAPA ===")
-    
-    # Exibe a descrição da sala atual
-    cursor.execute("SELECT nome, descricao FROM Sala WHERE id_sala = ?", (id_sala_atual,))
-    sala_atual = cursor.fetchone()
-
-    if sala_atual:
-        print(f"Você está em: {sala_atual[0]} - {sala_atual[1]}")
-    
-    # Exibe as salas conectadas
-    cursor.execute("SELECT s.id_sala, s.nome FROM Sala s JOIN Sala s2 ON s.id_sala = s2.id_sala_conectada WHERE s2.id_sala = ?", (id_sala_atual,))
-    salas_conectadas = cursor.fetchall()
-
-    if salas_conectadas:
-        print("\nSalas conectadas:")
-        for sala in salas_conectadas:
-            print(f"[{sala[0]}] {sala[1]}")
-    else:
-        print("Não há salas conectadas.")
-
-# Função para mover o personagem
-def mover_personagem(cursor, conn, id_personagem, id_sala_destino):
-    cursor.execute("SELECT id_sala FROM Sala WHERE id_sala = ?", (id_sala_destino,))
-    sala_existe = cursor.fetchone()
-
-    if not sala_existe:
-        print("Sala inválida!")
-        return
-
-    cursor.execute("UPDATE PC SET id_sala = ? WHERE id_personagem = ?", (id_sala_destino, id_personagem))
-    conn.commit()
-    print("Você se moveu para a nova sala.")
-
-# Menu principal
-def menu_principal():
-    criar_tabelas()  # Chama a função para criar as tabelas
-    conn = conectar_banco()
-    cursor = conn.cursor()
-
-    id_personagem = 1  # ID do personagem jogável (definido para o exemplo)
-    
-    # Verifica se o personagem já existe, se não, cria
-    cursor.execute("SELECT COUNT(*) FROM Personagem")
-    if cursor.fetchone()[0] == 0:
-        cursor.execute("INSERT INTO Personagem (nome, hp, mp, xp, coins) VALUES ('Jogador', 100, 50, 0, 0)")
-        conn.commit()
-
-    cursor.execute("SELECT id_sala FROM PC WHERE id_personagem = ?", (id_personagem,))
-    id_sala_atual = cursor.fetchone()[0] if cursor.fetchone() else None
-
-    if not id_sala_atual:
-        cursor.execute("INSERT INTO PC (id_personagem, id_sala) VALUES (?, 1)", (id_personagem,))
-        conn.commit()
-        id_sala_atual = 1  # ID da sala inicial
-
-    while True:
-        print("\n=== MENU ===")
-        print("1. Exibir Mapa")
-        print("2. Mover Personagem")
-        print("3. Exibir Status do Personagem")
-        print("4. Abrir Baú")
-        print("5. Iniciar Combate")
-        print("6. Exibir Inventário")
-        print("7. Sair")
-        opcao = input("Escolha uma opção: ")
-
-        if opcao == "1":
-            # Exibir o mapa
-            exibir_mapa(cursor, id_sala_atual)
-
-        elif opcao == "2":
-            # Mover personagem
-            id_sala_destino = input("Digite o ID da sala para onde deseja ir: ")
-            mover_personagem(cursor, conn, id_personagem, int(id_sala_destino))
-
-            # Atualiza a sala atual após mover
-            cursor.execute("SELECT id_sala FROM PC WHERE id_personagem = ?", (id_personagem,))
-            id_sala_atual = cursor.fetchone()[0]
-
-        elif opcao == "3":
-            # Exibir status do personagem
-            print("Será implementado depois...")
-
-        elif opcao == "4":
-            # Abrir baú
-            print("Será implementado depois...")
-
-        elif opcao == "5":
-            # Iniciar combate
-            print("Será implementado depois...")
-
-        elif opcao == "6":
-            # Exibir inventário
-            print("Será implementado depois...")
-
-        elif opcao == "7":
-            print("Saindo do jogo...")
-            break
-
+    def add_player(self):
+        jogador_nome = input("Digite o nome do novo jogador: ").strip()
+        if jogador_nome:
+            self.db_controller.connect()
+            self.db_controller.add_player(jogador_nome)
+            self.db_controller.close()
         else:
-            print("Opção inválida!")
+            print("Nome do jogador não pode estar vazio.")
 
-    conn.close()
+    def list_players(self):
+        self.db_controller.connect()
+        jogadores = self.db_controller.get_registered_players()
+        self.db_controller.close()
+        if jogadores:
+            print("\nJogadores Registrados:")
+            for jogador in jogadores:
+                print(f"- {jogador}")
+        else:
+            print("Nenhum jogador registrado.")
+
+    def list_connections(self):
+        self.db_controller.connect()
+        connections = self.db_controller.get_available_connections(self.current_player_id)
+        self.db_controller.close()
+        if connections:
+            for connection in connections:
+                print(f"-[{connection[0]}] {connection[1]}: {connection[2]}")
+        else:
+            print("Nenhuma conexão registrada.")
+
+    def select_player_and_start_game(self):
+        self.db_controller.connect()
+        jogadores = self.db_controller.get_registered_players()
+        self.db_controller.close()
+
+        if not jogadores:
+            print("Nenhum jogador registrado para iniciar o jogo.")
+            return
+
+        print("\nEscolha um jogador para iniciar:")
+        for index, jogador in enumerate(jogadores):
+            print(f"{index + 1}. {jogador}")
+
+        print("")
+
+        choice = input("Digite o número do jogador escolhido: ").strip()
+        try:
+            choice_index = int(choice) - 1
+            if 0 <= choice_index < len(jogadores):
+                self.current_player_id = choice_index + 1  # Considera o ID como o índice + 1
+                print(f"Jogador {jogadores[choice_index]} selecionado. Iniciando o jogo...")
+                self.start_game()
+            else:
+                print("Número inválido. Tente novamente.")
+        except ValueError:
+            print("Entrada inválida. Por favor, digite um número.")
+
+    def start_game(self):
+        # Introdução ao jogo
+        jogador_id = self.current_player_id
+        exibir_dialogo(self.db_controller, 1, jogador_id)
+
+        # Interações com NPCs
+        self.db_controller.criar_interacao_mercador(jogador_id)
+        exibir_dialogo_mercador(self.db_controller, 2)
+        self.db_controller.criar_interacao_contratante(jogador_id)
+        exibir_dialogo_contratante(self.db_controller, 3)
+
+        # Lógica de movimentação do jogador
+        self.player_movement()
+
+    def player_movement(self):
+        # Lógica de movimentação do jogador utilizando `self.current_player_id`
+        while True:
+            print("\nMovimento do Jogador:")
+            print("1. Mover para outra sala")
+            print("2. Ver status do jogador")
+            print("3. Sair do jogo")
+
+            choice = input("Escolha uma opção: ").strip()
+
+            print("")
+
+            if choice == "1":
+                self.list_connections()
+                self.move_player()
+            elif choice == "2":
+                self.show_player_status()
+            elif choice == "3":
+                print("Saindo do jogo...")
+                break
+            else:
+                print("Opção inválida, tente novamente.")
+
+    def move_player(self):
+        print("")
+        destino = input("Digite o número da direção para se mover: ").strip()
+        if destino.isdigit():
+            try:
+                self.db_controller.connect()
+                self.db_controller.move_player(self.current_player_id, int(destino))
+                self.db_controller.close()
+            except Exception as e:
+                print(f"Erro ao mover jogador: {e}")
+        else:
+            print("Número da sala inválido.")
+
+    def show_player_status(self):
+        self.db_controller.connect()
+        jogador_status = self.db_controller.get_status(self.current_player_id)
+        self.db_controller.close()
+        if jogador_status:
+            jogador = jogador_status[0]
+            print(f"[Status do jogador] \n Nome: {jogador[0]} \n Nível: {jogador[1]} \n XP: {jogador[2]} \n HP: {jogador[3]}/{jogador[4]} \n Sala atual: {jogador[5]}")
+        else:
+            print("Nenhuma conexão registrada.")
+
+    def run_sql_script(self):
+        script_path = input("Digite o caminho do script SQL a ser executado: ").strip()
+        if script_path:
+            self.db_controller.connect()
+            self.db_controller.execute_sql_script(script_path)
+            self.db_controller.close()
+        else:
+            print("Caminho do script não pode estar vazio.")
+
 
 if __name__ == "__main__":
-    menu_principal()
+    db_controller = DatabaseController()
+    terminal_interface = TerminalInterface(db_controller)
+    terminal_interface.run()
