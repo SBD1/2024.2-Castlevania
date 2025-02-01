@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS Personagem (
 
 CREATE TABLE IF NOT EXISTS Regiao (
     id_regiao SERIAL NOT NULL PRIMARY KEY,
-    id_regiao_conectada INT NOT NULL,
+    id_regiao_conectada INT,
     id_mundo INT NOT NULL,
     nome VARCHAR(200) NOT NULL,
     descricao VARCHAR(200) NOT NULL,
@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS MissaoPrincipal (
 
 CREATE TABLE IF NOT EXISTS Contrato (
     id_missao SERIAL NOT NULL PRIMARY KEY REFERENCES Missao(id_missao),
-    id_dependencia INT NOT NULL,
+    id_dependencia INT,
     id_contratante INT NOT NULL,
     CHECK (id_missao != id_dependencia),
     FOREIGN KEY (id_dependencia) REFERENCES Contrato(id_missao),

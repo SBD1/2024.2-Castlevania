@@ -44,9 +44,24 @@ class DatabaseController:
     def close(self):
         if self.conn:
             self.conn.close()
+    
+    def add_sala_principal(self):
+        cursor = self.conn.cursor()
+        cursor.execute("INSERT INTO Mundo (id_mundo, nome, data) VALUES (1, 'Mundo 1', '2024-01-01')")
+        cursor.execute("INSERT INTO Regiao (id_regiao, id_regiao_conectada, id_mundo, nome, descricao, dificuldade) VALUES (1, NULL, 1, 'Jardim do castelo', 'Jardim do castelo do dracula.', 'Fácil')")
+        cursor.execute("INSERT INTO Sala (id_sala, id_regiao, nome, descricao) VALUES (1, 1, 'Jardim do castelo', 'O início da aventura.')")
+        self.conn.commit()
+        cursor.close()
 
     def add_player(self, nome):
         cursor = self.conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM PERSONAGEM")
+        count = cursor.fetchone()[0]
+
+        # Se não houver nenhum personagem, cria a sala principal
+        if count == 0:
+            self.add_sala_principal()
+
         cursor.execute("INSERT INTO Personagem (nome, descricao, tipo) VALUES (%s, %s, %s) RETURNING id_personagem", (nome, "Um bravo lutador.", "PC"))
         id_personagem = cursor.fetchone()[0]
         cursor.execute("INSERT INTO PC (id_personagem, hp, mp, xp, absorcao, atk, lvl, luck, combat_status, coins, id_sala) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
@@ -90,13 +105,13 @@ class DatabaseController:
 
     def criar_interacao_mercador(self, player_id):
         cursor = self.conn.cursor()
-        cursor.execute("INSERT INTO Dialogo (id_personagem, texto) VALUES (%s, %s)", (player_id, "Bem-vindo à minha loja! O que você deseja?"))
+        cursor.execute("INSERT INTO Dialogo (id_personagem, texto) VALUES (%s, %s)", (2, 'Bem-vindo à minha loja! O que você deseja?'))
         self.conn.commit()
-        cursor.close()
+        
 
     def criar_interacao_contratante(self, player_id):
         cursor = self.conn.cursor()
-        cursor.execute("INSERT INTO Dialogo (id_personagem, texto) VALUES (%s, %s)", (player_id, "Preciso de sua ajuda para derrotar os inimigos!"))
+        cursor.execute("INSERT INTO Dialogo (id_personagem, texto) VALUES (%s, %s)", (4, 'Preciso de sua ajuda para derrotar os inimigos!'))
         self.conn.commit()
         cursor.close()
     
