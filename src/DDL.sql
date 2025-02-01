@@ -83,6 +83,7 @@ CREATE TABLE IF NOT EXISTS SalaBau (
     id_bau INT NOT NULL REFERENCES Bau(id_bau),
     id_sala INT NOT NULL REFERENCES Sala(id_sala),
     PRIMARY KEY (id_bau, id_sala)
+    UNIQUE (id_bau) -- Garante que um baú só esteja em uma sala
 );
 
 CREATE TABLE IF NOT EXISTS Sala (
@@ -94,7 +95,7 @@ CREATE TABLE IF NOT EXISTS Sala (
 );
 
 CREATE TABLE IF NOT EXISTS Conexao (
-    id_conexao PRIMARY KEY,
+    id_conexao INT PRIMARY KEY NOT NULL,
     id_sala_origem INT NOT NULL,
     id_sala_destino INT NOT NULL,
     direcao VARCHAR(20) NOT NULL,
@@ -113,6 +114,7 @@ CREATE TABLE IF NOT EXISTS Regiao (
     dificuldade VARCHAR(50) NOT NULL,
     FOREIGN KEY (id_regiao_conectada) REFERENCES Regiao(id_regiao),
     FOREIGN KEY (id_mundo) REFERENCES Mundo(id_mundo)
+    CHECK (id_regiao != id_regiao_conectada) -- Evita loops
 );
 
 CREATE TABLE IF NOT EXISTS Mundo (
@@ -199,6 +201,7 @@ CREATE TABLE IF NOT EXISTS Contrato (
     FOREIGN KEY (id_missao) REFERENCES Missao(id_missao),
     FOREIGN KEY (id_dependencia) REFERENCES Contrato(id_missao),
     FOREIGN KEY (id_contratante) REFERENCES Contratante(id_contratante)
+    CHECK (id_missao != id_dependencia) -- Evita loops
 );
 
 CREATE TABLE IF NOT EXISTS Item (
@@ -208,20 +211,24 @@ CREATE TABLE IF NOT EXISTS Item (
 );
 
 CREATE TABLE IF NOT EXISTS Chave (
+    id_item INT PRIMARY KEY REFERENCES Item(id_item),
     bau_requerido VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Arma (
+    id_item INT PRIMARY KEY REFERENCES Item(id_item),
     dano INT NOT NULL CHECK (dano BETWEEN 1 AND 1000)
 );
 
 CREATE TABLE  IF NOT EXISTS Consumivel (
+    id_item INT PRIMARY KEY REFERENCES Item(id_item),
     id_efeito INT NOT NULL,
     quantidade INT NOT NULL CHECK (quantidade BETWEEN 1 AND 1000),
     FOREIGN KEY (id_efeito) REFERENCES Efeito(id_efeito)
 );
 
 CREATE TABLE IF NOT EXISTS Grimorio (
+    id_item INT PRIMARY KEY REFERENCES Item(id_item),
     xp_necessario INT NOT NULL CHECK (xp_necessario BETWEEN 1 AND 1000),
     id_habilidade INT NOT NULL,
     FOREIGN KEY (id_habilidade) REFERENCES Habilidade(id_habilidade)
