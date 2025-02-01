@@ -53,14 +53,13 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 #### **7. Consultar salas conectadas a partir do personagem:**
 ```sql
 
-    SELECT sala.id_sala
-    FROM Sala sala
-    JOIN Personagem personagem ON personagem.id_sala = personagem.id_sala
-    WHERE personagem.id_sala_conectada = (
-        SELECT personagem.id_sala_conectada
-        FROM Sala sala2
-        WHERE sala2.id_sala = personagem.id_sala
-    );
+  SELECT id_sala_destino, direcao, descricao_conexao
+  FROM Conexao
+  WHERE id_sala_origem = (
+    SELECT id_sala
+    FROM PC
+    WHERE id_personagem = %s
+  );
 
 ```
 
@@ -74,7 +73,7 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
     SELECT id_sala
     FROM Personagem
     WHERE id_pc = %s
-  ) 
+  );
 
 ```
 
@@ -155,6 +154,7 @@ JOIN Mundo ON Regiao.id_mundo = Mundo.id_mundo;
 | :-: | :-: | :-: | :-: | 
 | `1.0`  | 23/12/2024 | Primeira versão do DQL | [Márcio Henrique](https://github.com/DeM4rcio)  |
 | `1.1`  | 23/12/2024 | Acresentando consultas  | [Márcio Henrique](https://github.com/DeM4rcio)  |
-| `1.1`  | 12/01/2024 | Acresentando consultas  | [Márcio Henrique](https://github.com/DeM4rcio)  |
+| `1.2`  | 12/01/2025 | Acresentando consultas  | [Márcio Henrique](https://github.com/DeM4rcio)  |
+| `1.3`  | 01/02/2025 | Acresentando consultas  | [Diego Carlito](https://github.com/DiegoCarlito)  |
 </center>
 
