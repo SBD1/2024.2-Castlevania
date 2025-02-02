@@ -21,8 +21,8 @@ INSERT INTO Conexao (id_conexao, id_sala_origem, id_sala_destino, direcao, descr
 
 -- Inserções na tabela Personagem
 INSERT INTO Personagem (id_personagem, nome, descricao, tipo) VALUES 
-(100, 'Mercador', 'Vendedor de itens raros.', 'NPC'),
-(101, 'Morcego', 'Um inimigo pequeno e traiçoeiro.', 'NPC'),
+(2, 'Mercador', 'Vendedor de itens raros.', 'NPC'),
+(3, 'Morcego', 'Um inimigo pequeno e traiçoeiro.', 'NPC'),
 (4, 'Contratante', 'Ajuda com contratos.', 'NPC') ON CONFLICT (id_personagem) DO NOTHING;
 
 -- Inserções na tabela PC
