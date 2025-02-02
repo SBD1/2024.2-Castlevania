@@ -86,7 +86,7 @@ class DatabaseController:
 
     def get_available_connections(self, player_id):
         cursor = self.conn.cursor()
-        cursor.execute("SELECT id_conexao, direcao, descricao_conexao FROM Conexao WHERE id_sala_origem = (SELECT id_sala FROM PC WHERE id_personagem = %s)", (player_id,))
+        cursor.execute("SELECT id_sala_destino, direcao, descricao_conexao FROM Conexao WHERE id_sala_origem = (SELECT id_sala FROM PC WHERE id_personagem = %s)", (player_id,))
         connections = cursor.fetchall()
         cursor.close()
         return connections
