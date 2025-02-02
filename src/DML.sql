@@ -104,7 +104,7 @@ INSERT INTO Historia (texto) VALUES
 (
     'O vento uiva como um lamento ancestral, ecoando pelo vale sombrio. A névoa rasteja pelo solo pedregoso, ocultando as sombras que se movem à espreita. Você sente um arrepio percorrer sua espinha quando avista, ao longe, a silhueta titânica do Castelo de Drácula, seus pináculos perfurando os céus enevoados.'
 
-)
+);
 
 INSERT INTO Historia (texto) VALUES 
 (
@@ -112,7 +112,7 @@ INSERT INTO Historia (texto) VALUES
 
 ??? - "Então... você ousa desafiar o Senhor das Trevas?"'
 
-)
+);
 
 INSERT INTO Historia (texto) VALUES 
 (
@@ -120,7 +120,7 @@ INSERT INTO Historia (texto) VALUES
 
 Encapuzado - "Poucos adentram estes domínios e vivem para contar a história. Você busca poder, vingança ou a ruína inevitável?"'
 
-)
+);
 
 
 INSERT INTO Historia (texto) VALUES 
@@ -129,14 +129,14 @@ INSERT INTO Historia (texto) VALUES
 
 Encapuzado - "Se deseja seguir adiante, deve provar seu valor. As forças das trevas não se curvam a meros mortais..."'
 
-)
+);
 
 
 INSERT INTO Historia (texto) VALUES 
 (
     'O vulto se dissipa como névoa, deixando para trás apenas um amuleto antigo. Ao pegá-lo, uma energia fria percorre seus dedos. O destino foi selado. A escuridão chama... e a caçada começa.'
 
-)
+);
 
 
 
