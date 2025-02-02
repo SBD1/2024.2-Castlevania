@@ -1,4 +1,6 @@
 import psycopg2
+import time
+import sys
 
 class DatabaseController:
     def __init__(self, dbname="mud_castlevania", user="user", password="admin", host="localhost", port="5432"):
@@ -71,7 +73,7 @@ class DatabaseController:
 
     def get_registered_players(self):
         cursor = self.conn.cursor()
-        cursor.execute("SELECT nome FROM Personagem WHERE tipo = 'PC'")
+        cursor.execute("SELECT id_personagem, nome FROM Personagem WHERE tipo = 'PC'")
         jogadores = [row[0] for row in cursor.fetchall()]
         cursor.close()
         return jogadores
@@ -83,9 +85,16 @@ class DatabaseController:
         cursor.close()
         return player[0]
 
+    def get_dialogo(self):
+        cursor = self.conn.cursor()
+        cursor.execute("SELECT texto FROM HISTORIA")
+        texto = cursor.fetchall()
+        cursor.close()
+        return texto
+    
     def get_available_connections(self, player_id):
         cursor = self.conn.cursor()
-        cursor.execute("SELECT id_conexao, direcao, descricao_conexao FROM Conexao WHERE id_sala_origem = (SELECT id_sala FROM PC WHERE id_personagem = %s)", (player_id,))
+        cursor.execute("SELECT id_sala_destino, direcao, descricao_conexao FROM Conexao WHERE id_sala_origem = (SELECT id_sala FROM PC WHERE id_personagem = %s)", (player_id,))
         connections = cursor.fetchall()
         cursor.close()
         return connections

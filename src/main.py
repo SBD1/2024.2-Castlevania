@@ -2,6 +2,7 @@ import time
 import psycopg2
 from control import DatabaseController
 from interacoes import exibir_dialogo, exibir_dialogo_mercador, exibir_dialogo_contratante
+import sys
 
 class TerminalInterface:
     def __init__(self, db_controller: DatabaseController):
@@ -74,7 +75,7 @@ class TerminalInterface:
 
         print("\nEscolha um jogador para iniciar:")
         for  index , jogador in enumerate(jogadores):
-            print(f"{jogador[0]}. {jogador[1]}")
+            print(f"{jogador}. {self.db_controller.get_player_id(jogador)}")
 
         print("")
 
@@ -93,11 +94,23 @@ class TerminalInterface:
             print("Entrada inválida. Por favor, digite um número.")
         self.db_controller.close()
 
+    def print_effect(self, text, delay=0.03):
+        """Imprime o texto com efeito de digitação."""
+        for char in text:
+            for char1 in char:
+                sys.stdout.write(char1)
+                sys.stdout.flush()
+                time.sleep(delay)
+        print()  
+
+
     def start_game(self):
         # Introdução ao jogo
         jogador_id = self.current_player_id
-        exibir_dialogo(self.db_controller, 1, jogador_id)
-
+        # exibir_dialogo(self.db_controller, 1, jogador_id)
+        texto = self.db_controller.get_dialogo()
+        for i in texto:
+            self.print_effect(i)
         # Interações com NPCs
         self.db_controller.criar_interacao_mercador(jogador_id)
         exibir_dialogo_mercador(self.db_controller, 2)

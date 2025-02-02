@@ -100,4 +100,44 @@ INSERT INTO Grimorio (id_item, xp_necessario, id_habilidade) VALUES
 INSERT INTO Contrato (id_missao, id_dependencia, id_contratante) VALUES 
 (1, NULL, 4);
 
+INSERT INTO Historia (texto) VALUES 
+(
+    'O vento uiva como um lamento ancestral, ecoando pelo vale sombrio. A névoa rasteja pelo solo pedregoso, ocultando as sombras que se movem à espreita. Você sente um arrepio percorrer sua espinha quando avista, ao longe, a silhueta titânica do Castelo de Drácula, seus pináculos perfurando os céus enevoados.'
+
+)
+
+INSERT INTO Historia (texto) VALUES 
+(
+    'Uma voz grave e soturna rompe o silêncio.
+
+??? - "Então... você ousa desafiar o Senhor das Trevas?"'
+
+)
+
+INSERT INTO Historia (texto) VALUES 
+(
+    'Uma figura encapuzada emerge da penumbra, seus olhos rubros brilhando na escuridão.
+
+Encapuzado - "Poucos adentram estes domínios e vivem para contar a história. Você busca poder, vingança ou a ruína inevitável?"'
+
+)
+
+
+INSERT INTO Historia (texto) VALUES 
+(
+    'Antes que possa responder, um corvo grasna alto, e o céu se ilumina com um relâmpago. De repente, o chão sob seus pés parece tremer, como se algo ancestral despertasse.
+
+Encapuzado - "Se deseja seguir adiante, deve provar seu valor. As forças das trevas não se curvam a meros mortais..."'
+
+)
+
+
+INSERT INTO Historia (texto) VALUES 
+(
+    'O vulto se dissipa como névoa, deixando para trás apenas um amuleto antigo. Ao pegá-lo, uma energia fria percorre seus dedos. O destino foi selado. A escuridão chama... e a caçada começa.'
+
+)
+
+
+
 COMMIT;

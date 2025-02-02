@@ -256,7 +256,7 @@ CREATE TABLE IF NOT EXISTS Grimorio (
 
 CREATE TABLE IF NOT EXISTS Historia (
     id_item SERIAL PRIMARY KEY,
-    texto VARCHAR(500),
+    texto VARCHAR(500)
 );
 
 
