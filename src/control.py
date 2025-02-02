@@ -71,10 +71,18 @@ class DatabaseController:
 
     def get_registered_players(self):
         cursor = self.conn.cursor()
-        cursor.execute("SELECT nome FROM Personagem WHERE tipo = 'PC'")
-        jogadores = [row[0] for row in cursor.fetchall()]
+        cursor.execute("SELECT id_personagem, nome FROM Personagem WHERE tipo = 'PC'")
+        jogadores = [row for row in cursor.fetchall()]
         cursor.close()
         return jogadores
+    
+    def get_player_id(self, player_id):
+        cursor = self.conn.cursor()
+        
+        cursor.execute("SELECT nome FROM Personagem WHERE id_personagem = %s", (player_id,))
+        player = cursor.fetchone()
+        cursor.close()
+        return player[0]
 
     def get_available_connections(self, player_id):
         cursor = self.conn.cursor()
@@ -91,6 +99,7 @@ class DatabaseController:
 
     def get_status(self, player_id):
         cursor = self.conn.cursor()
+        print(player_id)
         cursor.execute("SELECT p.nome, pc.lvl, pc.xp, pc.hp, pc.hp, s.nome FROM Personagem p JOIN PC pc ON p.id_personagem = pc.id_personagem JOIN Sala s ON pc.id_sala = s.id_sala WHERE p.id_personagem = %s", (player_id,))
         status = cursor.fetchall()
         cursor.close()

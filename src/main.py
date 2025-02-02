@@ -66,29 +66,32 @@ class TerminalInterface:
     def select_player_and_start_game(self):
         self.db_controller.connect()
         jogadores = self.db_controller.get_registered_players()
-        self.db_controller.close()
+        
 
         if not jogadores:
             print("Nenhum jogador registrado para iniciar o jogo.")
             return
 
         print("\nEscolha um jogador para iniciar:")
-        for index, jogador in enumerate(jogadores):
-            print(f"{index + 1}. {jogador}")
+        for  index , jogador in enumerate(jogadores):
+            print(f"{jogador[0]}. {jogador[1]}")
 
         print("")
 
         choice = input("Digite o número do jogador escolhido: ").strip()
         try:
-            choice_index = int(choice) - 1
-            if 0 <= choice_index < len(jogadores):
-                self.current_player_id = choice_index + 1  # Considera o ID como o índice + 1
-                print(f"Jogador {jogadores[choice_index]} selecionado. Iniciando o jogo...")
+            choice_index = int(choice)
+            player = self.db_controller.get_player_id(choice_index)
+            
+            if player:
+                self.current_player_id = choice_index  # Considera o ID como o índice + 1
+                print(f"Jogador {player} selecionado. Iniciando o jogo...")
                 self.start_game()
             else:
                 print("Número inválido. Tente novamente.")
         except ValueError:
             print("Entrada inválida. Por favor, digite um número.")
+        self.db_controller.close()
 
     def start_game(self):
         # Introdução ao jogo
