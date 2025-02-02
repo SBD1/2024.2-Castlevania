@@ -254,7 +254,10 @@ CREATE TABLE IF NOT EXISTS Grimorio (
     FOREIGN KEY (id_habilidade) REFERENCES Habilidade(id_habilidade)
 );
 
-
+CREATE TABLE IF NOT EXISTS Historia (
+    id_item SERIAL PRIMARY KEY,
+    texto VARCHAR(500)
+);
 
 
 
