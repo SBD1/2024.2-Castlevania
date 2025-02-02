@@ -71,22 +71,14 @@ class DatabaseController:
 
     def get_registered_players(self):
         cursor = self.conn.cursor()
-        cursor.execute("SELECT id_personagem, nome FROM Personagem WHERE tipo = 'PC'")
-        jogadores = [row for row in cursor.fetchall()]
+        cursor.execute("SELECT nome FROM Personagem WHERE tipo = 'PC'")
+        jogadores = [row[0] for row in cursor.fetchall()]
         cursor.close()
         return jogadores
-    
-    def get_player_id(self, player_id):
-        cursor = self.conn.cursor()
-        
-        cursor.execute("SELECT nome FROM Personagem WHERE id_personagem = %s", (player_id,))
-        player = cursor.fetchone()
-        cursor.close()
-        return player[0]
 
     def get_available_connections(self, player_id):
         cursor = self.conn.cursor()
-        cursor.execute("SELECT id_sala_destino, direcao, descricao_conexao FROM Conexao WHERE id_sala_origem = (SELECT id_sala FROM PC WHERE id_personagem = %s)", (player_id,))
+        cursor.execute("SELECT id_conexao, direcao, descricao_conexao FROM Conexao WHERE id_sala_origem = (SELECT id_sala FROM PC WHERE id_personagem = %s)", (player_id,))
         connections = cursor.fetchall()
         cursor.close()
         return connections
@@ -97,9 +89,53 @@ class DatabaseController:
         self.conn.commit()
         cursor.close()
 
+    def enemy(self, id_sala):
+        """Consulta os inimigos na sala especificada."""
+        cursor = self.conn.cursor()
+        try:
+            # Consulta SQL para obter informações sobre os inimigos na sala
+            cursor.execute("""
+                SELECT 
+                    i.id_personagem AS id_inimigo,
+                    ii.vida_atual,
+                    ii.absorcao,
+                    ii.atk,
+                    ii.habilidade,
+                    ii.combat_status
+                FROM InstanciaInimigo ii
+                JOIN Inimigo i ON ii.id_inimigo = i.id_personagem
+                WHERE ii.id_sala = %s;
+            """, (id_sala,))
+
+            # Recupera os resultados
+            inimigos = cursor.fetchall()
+            
+            # Se não houver inimigos, retorna uma lista vazia
+            if not inimigos:
+                return []
+
+            # Organiza os resultados em um formato de dicionário
+            inimigos_data = [
+                {
+                    "id_inimigo": inimigo[0],
+                    "vida_atual": inimigo[1],
+                    "absorcao": inimigo[2],
+                    "atk": inimigo[3],
+                    "habilidade": inimigo[4],
+                    "combat_status": inimigo[5]
+                } for inimigo in inimigos
+            ]
+            return inimigos_data
+
+        except Exception as e:
+            print(f"Erro ao consultar inimigos: {e}")
+            return []  # Retorna uma lista vazia em caso de erro
+        finally:
+            cursor.close()
+
+
     def get_status(self, player_id):
         cursor = self.conn.cursor()
-        print(player_id)
         cursor.execute("SELECT p.nome, pc.lvl, pc.xp, pc.hp, pc.hp, s.nome FROM Personagem p JOIN PC pc ON p.id_personagem = pc.id_personagem JOIN Sala s ON pc.id_sala = s.id_sala WHERE p.id_personagem = %s", (player_id,))
         status = cursor.fetchall()
         cursor.close()
