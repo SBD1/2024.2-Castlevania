@@ -75,6 +75,13 @@ class DatabaseController:
         jogadores = [row[0] for row in cursor.fetchall()]
         cursor.close()
         return jogadores
+    
+    def get_player_id(self, player_id):
+        cursor = self.conn.cursor()
+        cursor.execute("SELECT nome FROM Personagem WHERE id_personagem = %s", (player_id,))
+        player = cursor.fetchone()
+        cursor.close()
+        return player[0]
 
     def get_available_connections(self, player_id):
         cursor = self.conn.cursor()
