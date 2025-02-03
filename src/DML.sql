@@ -28,16 +28,14 @@ INSERT INTO Conexao (id_conexao, id_sala_origem, id_sala_destino, direcao, descr
 (5, 3, 4, 'Norte', 'Uma porta pesada leva à biblioteca antiga.'),
 (6, 4, 5, 'Norte', 'Uma escadaria leva ao salão do trono.') ON CONFLICT (id_conexao) DO NOTHING;
 
--- Inserções na tabela Conexao
-INSERT INTO Conexao (id_conexao, id_sala_origem, id_sala_destino, direcao, descricao_conexao) VALUES 
-(1, 1, 2, 'Norte', 'Um corredor escuro leva à entrada do castelo.'),
-(2, 2, 1, 'Sul', 'Um corredor escuro leva de volta ao jardim.') ON CONFLICT (id_conexao) DO NOTHING;
-
 -- Inserções na tabela Personagem
 INSERT INTO Personagem (id_personagem, nome, descricao, tipo) VALUES 
 (2, 'Mercador', 'Vendedor de itens raros.', 'NPC'),
 (3, 'Morcego', 'Um inimigo pequeno e traiçoeiro.', 'NPC'),
-(4, 'Contratante', 'Ajuda com contratos.', 'NPC') ON CONFLICT (id_personagem) DO NOTHING;
+(4, 'Contratante', 'Ajuda com contratos.', 'NPC'),
+(5, 'Drácula', 'O lendário Senhor das Trevas.', 'NPC'),
+(6, 'Esqueleto Guerreiro', 'Um inimigo armado com espada e escudo.', 'NPC'),
+(7, 'Bibliotecário', 'Um NPC que oferece informações e itens raros.', 'NPC') ON CONFLICT (id_personagem) DO NOTHING;
 
 -- Inserções na tabela PC
 
@@ -45,23 +43,31 @@ INSERT INTO Personagem (id_personagem, nome, descricao, tipo) VALUES
 INSERT INTO NPC (id_personagem, tipo) VALUES 
 (2, 'Mercador'),
 (3, 'Inimigo'),
-(4, 'Contratante') ON CONFLICT (id_personagem) DO NOTHING;
+(4, 'Contratante'),
+(5, 'Chefe'),
+(6, 'Inimigo'),
+(7, 'Mercador') ON CONFLICT (id_personagem) DO NOTHING;
 
 -- Inserções na tabela Mercador
 INSERT INTO Mercador (id_personagem, id_sala) VALUES 
-(2, 2);
+(2, 2),
+(7, 4);
 
 -- Inserções na tabela Contratante
 INSERT INTO Contratante ( id_personagem, id_sala) VALUES
-(4,2);
+(4, 2);
 
 -- Inserções na tabela Inimigo
 INSERT INTO Inimigo (id_personagem, hp, xp, absorcao, atk, habilidade) VALUES 
-(3, 50, 10, 5, 10, 5);
+(3, 50, 10, 5, 10, 5),
+(6, 80, 20, 10, 15, 5),
+(5, 500, 100, 50, 40, 20);
 
 -- Inserções na tabela InstanciaInimigo
 INSERT INTO InstanciaInimigo (id_instancia, id_inimigo, id_sala, vida_atual, absorcao, atk, habilidade, combat_status) VALUES 
-(1, 3, 2, 50, 5, 10, 5, 'Normal');
+(1, 3, 2, 50, 5, 10, 5, 'Normal'),
+(2, 6, 3, 80, 10, 15, 5, 'Normal'),
+(3, 5, 5, 500, 50, 40, 20, 'Normal');
 
 -- Inserções na tabela Item
 INSERT INTO Item (id_item, nome, descricao) VALUES 
