@@ -111,11 +111,17 @@ class TerminalInterface:
 
     def player_movement(self):
         while True:
+            self.db_controller.connect()
+            sala_atual_id, sala_atual_nome = self.get_current_room_with_name()
+            self.db_controller.close()
+
             print("\nMovimento do Jogador:")
+            print(f"Você está na sala: {sala_atual_nome} (ID: {sala_atual_id})")
             print("1. Explorar Sala Atual")
             print("2. Mover para outra sala")
             print("3. Ver status do jogador")
-            print("4. Sair do jogo")
+            print("4. Ver inventário")
+            print("5. Sair do jogo")
 
             choice = input("Escolha uma opção: ").strip()
 
@@ -127,6 +133,8 @@ class TerminalInterface:
             elif choice == "3":
                 self.show_player_status()
             elif choice == "4":
+                self.show_inventory()
+            elif choice == "5":
                 print("Saindo do jogo...")
                 break
             else:
@@ -162,6 +170,22 @@ class TerminalInterface:
         cursor = self.db_controller.conn.cursor()
         cursor.execute("SELECT id_sala FROM PC WHERE id_personagem = %s", (self.current_player_id,))
         sala_atual = cursor.fetchone()[0]
+        cursor.close()
+        return sala_atual
+
+    def get_current_room_with_name(self):
+        """Obtém o ID e o nome da sala atual do jogador."""
+        cursor = self.db_controller.conn.cursor()
+        cursor.execute(
+            """
+            SELECT s.id_sala, s.nome 
+            FROM Sala s
+            JOIN PC p ON s.id_sala = p.id_sala
+            WHERE p.id_personagem = %s
+            """,
+            (self.current_player_id,),
+        )
+        sala_atual = cursor.fetchone()
         cursor.close()
         return sala_atual
 
@@ -202,13 +226,114 @@ class TerminalInterface:
 
     def fight_enemy(self, inimigo):
         print("Iniciando combate...")
-        # Lógica de combate aqui
-        pass
+        player_hp = 100  # Exemplo de HP do jogador
+        enemy_hp = inimigo["vida_atual"]
+
+        while player_hp > 0 and enemy_hp > 0:
+            print("\nEscolha sua ação:")
+            print("1. Atacar")
+            print("2. Usar item")
+            print("3. Fugir")
+
+            choice = input("Escolha uma ação: ").strip()
+
+            if choice == "1":
+                dano = 10  # Exemplo de dano do jogador
+                enemy_hp -= dano
+                print(f"Você atacou e causou {dano} de dano. Vida do inimigo: {enemy_hp}")
+                if enemy_hp <= 0:
+                    print("Você derrotou o inimigo!")
+                    # Atualizar XP e recompensas
+                    break
+                dano_inimigo = inimigo["atk"]
+                player_hp -= dano_inimigo
+                print(f"O inimigo atacou e causou {dano_inimigo} de dano. Sua vida: {player_hp}")
+                if player_hp <= 0:
+                    print("Você foi derrotado!")
+                    break
+            elif choice == "2":
+                print("Você usou um item.")
+                # Implementar lógica de itens
+                pass
+            elif choice == "3":
+                print("Você fugiu do combate.")
+                break
+            else:
+                print("Opção inválida.")
 
     def handle_merchant_interaction(self):
         print("Interagindo com o mercador...")
-        # Lógica de negociação aqui
-        pass
+        while True:
+            print("\nMenu do Mercador:")
+            print("1. Comprar item")
+            print("2. Sair")
+
+            choice = input("Escolha uma opção: ").strip()
+
+            if choice == "1":
+                print("Comprando item...")
+                # Implementar lógica de compra
+                pass
+            elif choice == "2":
+                print("Saindo do mercador...")
+                break
+            else:
+                print("Opção inválida.")
+
+    def show_inventory(self):
+        """Exibe o inventário do jogador e permite usar itens."""
+        self.db_controller.connect()
+        cursor = self.db_controller.conn.cursor()
+        cursor.execute(
+            """
+            SELECT i.id_instancia_item, item.nome, item.descricao 
+            FROM Inventario i
+            JOIN InstanciaItem ii ON i.id_instancia_item = ii.id_instancia_item
+            JOIN Item item ON ii.id_item = item.id_item
+            WHERE i.id_inventario = %s
+            """,
+            (self.current_player_id,),
+        )
+        inventario = cursor.fetchall()
+        cursor.close()
+        self.db_controller.close()
+
+        if inventario:
+            print("\nInventário:")
+            for index, item in enumerate(inventario):
+                print(f"[{index + 1}] {item[1]} - {item[2]}")
+
+            choice = input("Escolha o número do item para usar ou pressione Enter para voltar: ").strip()
+            if choice.isdigit():
+                item_index = int(choice) - 1
+                if 0 <= item_index < len(inventario):
+                    item_id = inventario[item_index][0]
+                    print(f"Você usou o item: {inventario[item_index][1]}")
+                    self.use_item(item_id)
+                else:
+                    print("Opção inválida.")
+        else:
+            print("Seu inventário está vazio.")
+
+    def use_item(self, item_id):
+        """Usa um item e remove do inventário."""
+        self.db_controller.connect()
+        cursor = self.db_controller.conn.cursor()
+        try:
+            # Exemplo: Lógica para aplicar o efeito do item
+            cursor.execute(
+                """
+                DELETE FROM Inventario WHERE id_instancia_item = %s AND id_inventario = %s
+                """,
+                (item_id, self.current_player_id),
+            )
+            self.db_controller.conn.commit()
+            print("Item usado com sucesso!")
+        except Exception as e:
+            print(f"Erro ao usar item: {e}")
+        finally:
+            cursor.close()
+            self.db_controller.close()
 
     def handle_contractor_interaction(self):
         print("Interagindo com o contratante...")
