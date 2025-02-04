@@ -87,3 +87,8 @@ CREATE OR REPLACE TRIGGER trigger_respawn_inimigo
 AFTER DELETE ON InstanciaInimigo
 FOR EACH ROW
 EXECUTE FUNCTION respawn_inimigo();
+
+CREATE TRIGGER trigger_validar_personagem
+BEFORE INSERT OR UPDATE ON Personagem
+FOR EACH ROW
+EXECUTE FUNCTION validar_personagem();
