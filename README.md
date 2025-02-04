@@ -62,3 +62,9 @@ mkdocs serve
   - [DML](./docs/modulo2/dml.md)
   - [DQL](./docs/modulo2/dql.md)
   - [Álgebra Relacional](./docs/modulo2/algebra_relacional.md)
+
+- Módulo 3
+
+  - [Funcionamento do Jogo](./docs/modulo3/jogo.md)
+  - [Triggers](./docs/modulo3/triggers.md)
+  - [Stored Procedures](./docs/modulo3/procedimentos.md)
