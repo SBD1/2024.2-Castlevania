@@ -78,12 +78,53 @@ class DatabaseController:
         cursor.close()
         return jogadores
     
+    def get_registered_players_1(self):
+        cursor = self.conn.cursor()
+        cursor.execute("SELECT id_personagem, nome FROM Personagem WHERE tipo = 'PC'")
+        jogadores = [row[1] for row in cursor.fetchall()]
+        cursor.close()
+        return jogadores
+
     def get_player_id(self, player_id):
         cursor = self.conn.cursor()
         cursor.execute("SELECT nome FROM Personagem WHERE id_personagem = %s", (player_id,))
         player = cursor.fetchone()
         cursor.close()
         return player[0]
+    
+    def get_player_name(self, player_name):
+        cursor = self.conn.cursor()
+        cursor.execute("SELECT id_personagem FROM Personagem WHERE nome = %s", (player_name,))
+        player = cursor.fetchone()
+        cursor.close()
+        return player[0]
+
+    def get_enemy_sala(self, sala_id):
+        cursor = self.conn.cursor()
+        cursor.execute("SELECT * FROM instanciaInimigo WHERE id_sala = %s", (sala_id,))
+        enemy = cursor.fetchone()
+        cursor.close()
+      
+        return enemy
+    
+    def get_sala_by_name(self, sala_name):
+        cursor = self.conn.cursor()
+        cursor.execute("SELECT id_sala FROM Sala WHERE nome = %s", (sala_name,))
+        enemy = cursor.fetchone()
+        cursor.close()
+        return enemy
+
+    def att_status_player(self, player_id, value):
+        cursor = self.conn.cursor()
+        cursor.execute("UPDATE PC SET hp = %s WHERE id_personagem = %s", (value, player_id,))
+        cursor.close()
+     
+    
+    def att_status_instacia(self, instacia_id,  value):
+        cursor = self.conn.cursor()
+        cursor.execute("UPDATE instanciaInimigo SET vida_atual = %s WHERE id_instancia = %s", (value,instacia_id,))
+        cursor.close()
+         
 
     def get_dialogo(self):
         cursor = self.conn.cursor()

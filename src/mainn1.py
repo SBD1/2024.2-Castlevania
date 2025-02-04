@@ -46,10 +46,12 @@ class TerminalInterface:
     def list_players(self):
         self.db_controller.connect()
         jogadores = self.db_controller.get_registered_players()
+        jogadores_nome = self.db_controller.get_registered_players_1()
         self.db_controller.close()
+        print(jogadores)
         if jogadores:
             print("\nJogadores Registrados:")
-            for jogador in jogadores:
+            for jogador in jogadores_nome:
                 print(f"- {jogador}")
         else:
             print("Nenhum jogador registrado.")
@@ -226,8 +228,14 @@ class TerminalInterface:
 
     def fight_enemy(self, inimigo):
         print("Iniciando combate...")
-        player_hp = 100  # Exemplo de HP do jogador
-        enemy_hp = inimigo["vida_atual"]
+        self.db_controller.connect()
+        player = self.db_controller.get_status(self.current_player_id)[0]  # Exemplo de HP do jogador
+        player_hp = player[3]
+        player_sala = player[5]
+        enemy = self.db_controller.get_enemy_sala(self.db_controller.get_sala_by_name(player_sala))
+        enemy_hp = enemy[3]
+        
+        # enemy_hp = inimigo["vida_atual"]
 
         while player_hp > 0 and enemy_hp > 0:
             print("\nEscolha sua ação:")
@@ -239,7 +247,9 @@ class TerminalInterface:
 
             if choice == "1":
                 dano = 10  # Exemplo de dano do jogador
+                
                 enemy_hp -= dano
+                self.db_controller.att_status_instacia(enemy[0], enemy_hp)
                 print(f"Você atacou e causou {dano} de dano. Vida do inimigo: {enemy_hp}")
                 if enemy_hp <= 0:
                     print("Você derrotou o inimigo!")
@@ -247,6 +257,7 @@ class TerminalInterface:
                     break
                 dano_inimigo = inimigo["atk"]
                 player_hp -= dano_inimigo
+                self.db_controller.att_status_player(self.current_player_id, player_hp)
                 print(f"O inimigo atacou e causou {dano_inimigo} de dano. Sua vida: {player_hp}")
                 if player_hp <= 0:
                     print("Você foi derrotado!")
@@ -260,6 +271,7 @@ class TerminalInterface:
                 break
             else:
                 print("Opção inválida.")
+        self.db_controller.close()
 
     def handle_merchant_interaction(self):
         print("Interagindo com o mercador...")
