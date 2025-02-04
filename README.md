@@ -34,6 +34,26 @@ Simon Belmont deve atravessar o castelo cheio de monstros e criaturas sobrenatur
 mkdocs serve
 ```
 
+
+### Como jogar?
+Instale as dependências
+```
+sudo apt install python3.10.12
+
+# Criação do ambiente virtual
+python3 -m venv env
+
+# Ativação do ambiente virtual
+source env/bin/activate
+
+# Instalação das dependências
+pip install -r requirements.txt
+
+```
+Instale Software necessários 
+- [VsCode](https://code.visualstudio.com/download) ou IDE de preferência
+- [PostgreSQL no Linux](https://www.hostinger.com.br/tutoriais/instalar-postgresql-ubuntu-20-04) ou [PostgreSQL no Windows](https://forum.casadodesenvolvedor.com.br/topic/46698-como-instalar-o-banco-de-dados-postgresql-no-windows/)
+
 ## 📎 Apresentações
 
 <div align="center">
