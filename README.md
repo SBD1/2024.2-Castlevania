@@ -42,7 +42,7 @@ mkdocs serve
 | ------ | ---------------------------- | ---------- |
 | 1      | [Apresentação Módulo 1](https://youtu.be/StAxu6V-pvs?si=bhTU_5ZB98D4P6_M)    | 25/11/2024 |
 | 2      | [Apresentação Módulo 2](https://youtu.be/nT-5Z1CONrc?si=xSQ4u3-1xHR65ZMX)    | 23/12/2024 |
-| 3      | [Apresentação Módulo 3]()    | (https://www.youtube.com/watch?v=2Awaq075XBE&ab_channel=emivaltojr) |
+| 3      | [Apresentação Módulo 3](https://www.youtube.com/watch?v=2Awaq075XBE&ab_channel=emivaltojr) | 03/02/2025  |
 
 </div>
 
