@@ -116,3 +116,42 @@ BEGIN
     RETURN OLD;
 END;
 $$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION validar_personagem() RETURNS TRIGGER AS $$
+BEGIN
+    
+    IF NEW.tipo = 'PC' THEN
+        IF NOT EXISTS (SELECT 1 FROM PC WHERE id_personagem = NEW.id_personagem) THEN
+            RAISE EXCEPTION 'Todo Personagem do tipo PC deve ter um registro correspondente na tabela PC';
+        END IF;
+    ELSIF NEW.tipo = 'NPC' THEN
+        IF NOT EXISTS (SELECT 1 FROM NPC WHERE id_personagem = NEW.id_personagem) THEN
+            RAISE EXCEPTION 'Todo Personagem do tipo NPC deve ter um registro correspondente na tabela NPC';
+        END IF;
+    END IF;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION validar_especializacao_personagem() RETURNS TRIGGER AS $$
+BEGIN
+    
+    IF TG_TABLE_NAME = 'pc' THEN
+        IF NOT EXISTS (SELECT 1 FROM Personagem WHERE id_personagem = NEW.id_personagem AND tipo = 'PC') THEN
+            RAISE EXCEPTION 'Não é possível inserir um PC sem um registro correspondente na tabela Personagem';
+        END IF;
+    
+    
+    ELSIF TG_TABLE_NAME = 'npc' THEN
+        IF NOT EXISTS (SELECT 1 FROM Personagem WHERE id_personagem = NEW.id_personagem AND tipo = 'NPC') THEN
+            RAISE EXCEPTION 'Não é possível inserir um NPC sem um registro correspondente na tabela Personagem';
+        END IF;
+    END IF;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
