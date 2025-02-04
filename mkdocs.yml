@@ -20,7 +20,10 @@ nav:
     - Data Query Language: "modulo2/dql.md"
     - Algebra Relacional: "modulo2/algebra_relacional.md"
     - Terminal: "modulo2/terminal.md"
-
+  - Entrega 3: 
+    - Triggers: "modulo3/triggers.md"
+    - Procedures: "modulo3/procedimentos.md"
+    - O Jogo: "modulo3/jogo.md"
 
 theme:
   name: material
