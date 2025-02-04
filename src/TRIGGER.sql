@@ -92,3 +92,14 @@ CREATE TRIGGER trigger_validar_personagem
 BEFORE INSERT OR UPDATE ON Personagem
 FOR EACH ROW
 EXECUTE FUNCTION validar_personagem();
+
+
+CREATE TRIGGER trigger_validar_pc
+BEFORE INSERT OR UPDATE ON PC
+FOR EACH ROW
+EXECUTE FUNCTION validar_especializacao_personagem();
+
+CREATE TRIGGER trigger_validar_npc
+BEFORE INSERT OR UPDATE ON NPC
+FOR EACH ROW
+EXECUTE FUNCTION validar_especializacao_personagem();
