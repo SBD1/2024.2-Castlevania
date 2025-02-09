@@ -3,6 +3,7 @@ import psycopg2
 from control import DatabaseController
 from interacoes import exibir_dialogo, exibir_dialogo_mercador, exibir_dialogo_contratante
 import sys
+import select
 
 class TerminalInterface:
     def __init__(self, db_controller: DatabaseController):
@@ -96,13 +97,18 @@ class TerminalInterface:
         self.db_controller.close()
 
     def print_effect(self, text, delay=0.03):
-        """Imprime o texto com efeito de digitação."""
-        for char in text:
-            for char1 in char:
-                sys.stdout.write(char1)
+            """Imprime o texto com efeito de digitação, podendo ser cancelado com Enter."""
+            for char in text:
+                if select.select([sys.stdin], [], [], 0)[0]:  # Se Enter for pressionado
+                    sys.stdin.read(1)  # Limpa o buffer
+                    sys.stdout.write(text[text.index(char):])  # Exibe o restante do texto imediatamente
+                    sys.stdout.flush()
+                    print()
+                    return
+                sys.stdout.write(char)
                 sys.stdout.flush()
                 time.sleep(delay)
-        print()
+            print()
 
     def start_game(self):
         jogador_id = self.current_player_id
@@ -110,6 +116,7 @@ class TerminalInterface:
         for i in texto:
             self.print_effect(i)
         self.player_movement()
+
 
     def player_movement(self):
         while True:
@@ -123,7 +130,8 @@ class TerminalInterface:
             print("2. Mover para outra sala")
             print("3. Ver status do jogador")
             print("4. Ver inventário")
-            print("5. Sair do jogo")
+            print("5. Listar Missões")
+            print("6. Sair do jogo")
 
             choice = input("Escolha uma opção: ").strip()
 
@@ -137,10 +145,21 @@ class TerminalInterface:
             elif choice == "4":
                 self.show_inventory()
             elif choice == "5":
+                self.show_missions()
+            elif choice == "6":
                 print("Saindo do jogo...")
                 break
             else:
                 print("Opção inválida, tente novamente.")
+    
+    
+    def show_missions (self):
+        self.db_controller.connect()
+        missoes = self.db_controller.show_missoes()
+        print("------Missões a serem realizadas------")
+        for missao in missoes:
+            print(missao)
+        print("-------------------------------------")
 
     def explore_current_room(self):
         self.db_controller.connect()
@@ -153,16 +172,22 @@ class TerminalInterface:
         print("\nExplorando a sala atual...")
         if inimigos:
             print("Inimigos encontrados!")
+            print("+-----------------+")
+            for i in range(5):  # Altura da sala
+                if i == 2:  # Centralizando os inimigos
+                    inimigos_str = " ".join(["(o_o)" for _ in inimigos])
+                    print(f"| {inimigos_str:<13} |")
+                else:
+                    print("|                 |")
+            print("+-----------------+")
             self.handle_combat(inimigos)
+            
         elif mercador:
             print("Você encontrou um mercador!")
             self.handle_merchant_interaction()
         elif contratante:
             print("Você encontrou um contratante!")
             self.handle_contractor_interaction()
-        elif missoes:
-            print("Missões disponíveis!")
-            self.handle_missions(missoes)
         else:
             print("Nada de interessante na sala.")
 
@@ -201,15 +226,7 @@ class TerminalInterface:
         cursor.close()
         return npc
 
-    def get_missions_in_room(self, sala_id):
-        cursor = self.db_controller.conn.cursor()
-        cursor.execute(
-            "SELECT id_missao, nome FROM Missao WHERE id_missao IN (SELECT id_missao FROM Contrato WHERE id_contratante IN (SELECT id_personagem FROM NPC WHERE id_personagem IN (SELECT id_personagem FROM Contratante WHERE id_sala = %s)))",
-            (sala_id,),
-        )
-        missoes = cursor.fetchall()
-        cursor.close()
-        return missoes
+    
 
     def handle_combat(self, inimigos):
         for inimigo in inimigos:
