@@ -276,6 +276,8 @@ class TerminalInterface:
                 self.db_controller.att_status_instacia(enemy[0], enemy_hp)
                 print(f"Você atacou e causou {dano} de dano. Vida do inimigo: {enemy_hp}")
                 if enemy_hp <= 0:
+                    self.db_controller.del_status_instacia()
+                    cursor.execute("SELECT respawn_inimigo();")
                     print("Você derrotou o inimigo!")
                     break
                 dano_inimigo = inimigo["atk"]

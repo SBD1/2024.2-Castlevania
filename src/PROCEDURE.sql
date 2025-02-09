@@ -113,7 +113,7 @@ BEGIN
     INSERT INTO InstanciaInimigo (id_inimigo, id_sala, vida_atual, absorcao, atk, habilidade, combat_status)
     VALUES (OLD.id_inimigo, nova_sala, 100, OLD.absorcao, OLD.atk, OLD.habilidade, 'Normal');
 
-    RETURN OLD;
+    RETURN format('A instância %s foi movida para a sala %s', OLD.id_inimigo, nova_sala);
 END;
 $$ LANGUAGE plpgsql;
 

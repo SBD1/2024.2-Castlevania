@@ -125,6 +125,11 @@ class DatabaseController:
         cursor.execute("UPDATE instanciaInimigo SET vida_atual = %s WHERE id_instancia = %s", (value,instacia_id,))
         cursor.close()
          
+    def del_status_instacia(self, instacia_id):
+        cursor = self.conn.cursor()
+        cursor.execute("DELETE FROM instanciaInimigo WHERE id_instancia = %s", (instacia_id,))
+        cursor.execute("SELECT respawn_inimigo();")
+        cursor.close()
 
     def get_dialogo(self):
         cursor = self.conn.cursor()

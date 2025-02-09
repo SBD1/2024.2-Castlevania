@@ -42,10 +42,10 @@ INSERT INTO Personagem (id_personagem, nome, descricao, tipo) VALUES
 -- Inserções na tabela NPC
 INSERT INTO NPC (id_personagem, tipo) VALUES 
 (2, 'Mercador'),
-(3, 'Inimigo'),
+(3, 'Morcego'),
 (4, 'Contratante'),
 (5, 'Chefe'),
-(6, 'Inimigo'),
+(6, 'Bastião'),
 (7, 'Mercador') ON CONFLICT (id_personagem) DO NOTHING;
 
 -- Inserções na tabela Mercador
