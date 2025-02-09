@@ -4,6 +4,7 @@ from control import DatabaseController
 from interacoes import exibir_dialogo, exibir_dialogo_mercador, exibir_dialogo_contratante
 import sys
 import select
+import time
 
 class TerminalInterface:
     def __init__(self, db_controller: DatabaseController):
@@ -158,7 +159,7 @@ class TerminalInterface:
         missoes = self.db_controller.show_missoes()
         print("------Missões a serem realizadas------")
         for missao in missoes:
-            print(missao)
+            print(missao[0])
         print("-------------------------------------")
 
     def explore_current_room(self):
@@ -167,7 +168,7 @@ class TerminalInterface:
         inimigos = self.db_controller.enemy(sala_atual)
         mercador = self.get_npc_in_room(sala_atual, "Mercador")
         contratante = self.get_npc_in_room(sala_atual, "Contratante")
-        missoes = self.get_missions_in_room(sala_atual)
+        
 
         print("\nExplorando a sala atual...")
         if inimigos:
@@ -228,6 +229,13 @@ class TerminalInterface:
 
     
 
+    def draw_battle_interface(self, player_hp, enemy_hp, enemy_name):
+        print("=" * 40)
+        print(f"{enemy_name} (HP: {enemy_hp})")
+        print(" " * 20 + "VS")
+        print(f"Jogador (HP: {player_hp})")
+        print("=" * 40)
+
     def handle_combat(self, inimigos):
         for inimigo in inimigos:
             print(f"Você encontrou um inimigo: {inimigo['id_inimigo']}")
@@ -246,15 +254,15 @@ class TerminalInterface:
     def fight_enemy(self, inimigo):
         print("Iniciando combate...")
         self.db_controller.connect()
-        player = self.db_controller.get_status(self.current_player_id)[0]  # Exemplo de HP do jogador
+        player = self.db_controller.get_status(self.current_player_id)[0]
         player_hp = player[3]
         player_sala = player[5]
         enemy = self.db_controller.get_enemy_sala(self.db_controller.get_sala_by_name(player_sala))
         enemy_hp = enemy[3]
-        
-        # enemy_hp = inimigo["vida_atual"]
-
+        enemy_name = inimigo['id_inimigo']
+    
         while player_hp > 0 and enemy_hp > 0:
+            self.draw_battle_interface(player_hp, enemy_hp, enemy_name)
             print("\nEscolha sua ação:")
             print("1. Atacar")
             print("2. Usar item")
@@ -264,13 +272,11 @@ class TerminalInterface:
 
             if choice == "1":
                 dano = 10  # Exemplo de dano do jogador
-                
                 enemy_hp -= dano
                 self.db_controller.att_status_instacia(enemy[0], enemy_hp)
                 print(f"Você atacou e causou {dano} de dano. Vida do inimigo: {enemy_hp}")
                 if enemy_hp <= 0:
                     print("Você derrotou o inimigo!")
-                    # Atualizar XP e recompensas
                     break
                 dano_inimigo = inimigo["atk"]
                 player_hp -= dano_inimigo
