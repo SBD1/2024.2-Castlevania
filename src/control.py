@@ -3,7 +3,7 @@ import time
 import sys
 
 class DatabaseController:
-    def __init__(self, dbname="mud_castlevania", user="user", password="admin", host="localhost", port="5432"):
+    def __init__(self, dbname="mud_castlevania1", user="user", password="admin", host="localhost", port="5432"):
         self.dbname = dbname
         self.user = user
         self.password = password

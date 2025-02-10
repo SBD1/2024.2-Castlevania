@@ -118,40 +118,31 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-
 CREATE OR REPLACE FUNCTION validar_personagem() RETURNS TRIGGER AS $$
 BEGIN
-    
+    -- Se o tipo for PC, insere na tabela PC se não existir
     IF NEW.tipo = 'PC' THEN
         IF NOT EXISTS (SELECT 1 FROM PC WHERE id_personagem = NEW.id_personagem) THEN
-            RAISE EXCEPTION 'Todo Personagem do tipo PC deve ter um registro correspondente na tabela PC';
+            INSERT INTO PC (id_personagem) VALUES (NEW.id_personagem);
         END IF;
+
+        -- Garante exclusividade: impede que um personagem PC esteja na tabela NPC
+        IF EXISTS (SELECT 1 FROM NPC WHERE id_personagem = NEW.id_personagem) THEN
+            RAISE EXCEPTION 'Personagem do tipo PC não pode estar na tabela NPC';
+        END IF;
+
+    -- Se o tipo for NPC, insere na tabela NPC se não existir
     ELSIF NEW.tipo = 'NPC' THEN
         IF NOT EXISTS (SELECT 1 FROM NPC WHERE id_personagem = NEW.id_personagem) THEN
-            RAISE EXCEPTION 'Todo Personagem do tipo NPC deve ter um registro correspondente na tabela NPC';
+            INSERT INTO NPC (id_personagem) VALUES (NEW.id_personagem);
+        END IF;
+
+        -- Garante exclusividade: impede que um personagem NPC esteja na tabela PC
+        IF EXISTS (SELECT 1 FROM PC WHERE id_personagem = NEW.id_personagem) THEN
+            RAISE EXCEPTION 'Personagem do tipo NPC não pode estar na tabela PC';
         END IF;
     END IF;
-    
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
 
-
-CREATE OR REPLACE FUNCTION validar_especializacao_personagem() RETURNS TRIGGER AS $$
-BEGIN
-    
-    IF TG_TABLE_NAME = 'pc' THEN
-        IF NOT EXISTS (SELECT 1 FROM Personagem WHERE id_personagem = NEW.id_personagem AND tipo = 'PC') THEN
-            RAISE EXCEPTION 'Não é possível inserir um PC sem um registro correspondente na tabela Personagem';
-        END IF;
-    
-    
-    ELSIF TG_TABLE_NAME = 'npc' THEN
-        IF NOT EXISTS (SELECT 1 FROM Personagem WHERE id_personagem = NEW.id_personagem AND tipo = 'NPC') THEN
-            RAISE EXCEPTION 'Não é possível inserir um NPC sem um registro correspondente na tabela Personagem';
-        END IF;
-    END IF;
-    
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
