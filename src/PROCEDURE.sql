@@ -101,48 +101,47 @@ CREATE OR REPLACE FUNCTION respawn_inimigo()
 RETURNS TRIGGER AS $$
 DECLARE
     nova_sala INT;
+    id_instancia INT;  -- Declara a variável id_instancia
 BEGIN
-    
+    -- Seleciona uma sala diferente da atual para o inimigo
     SELECT id_sala INTO nova_sala
     FROM Sala
     WHERE id_sala <> OLD.id_sala  
     ORDER BY RANDOM()
     LIMIT 1;
 
-   
+    -- Insere uma nova instância de inimigo (sem incluir o id_instancia no INSERT)
     INSERT INTO InstanciaInimigo (id_inimigo, id_sala, vida_atual, absorcao, atk, habilidade, combat_status)
-    VALUES (OLD.id_inimigo, nova_sala, 100, OLD.absorcao, OLD.atk, OLD.habilidade, 'Normal');
+    VALUES (OLD.id_inimigo, nova_sala, 100, OLD.absorcao, OLD.atk, OLD.habilidade, 'Normal')
+    RETURNING InstanciaInimigo.id_instancia INTO id_instancia;  -- Agora a sequência vai gerar o id_instancia automaticamente
 
-    RETURN format('A instância %s foi movida para a sala %s', OLD.id_inimigo, nova_sala);
+    -- Exibe uma mensagem no log
+    RAISE NOTICE 'A instância % foi movida para a sala %', id_instancia, nova_sala;
+
+    -- Retorna OLD ou NEW para que a trigger continue funcionando corretamente
+    RETURN OLD;  -- Ou RETURN NEW dependendo da lógica
 END;
 $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION validar_personagem() RETURNS TRIGGER AS $$
+DECLARE
+    novo_nome VARCHAR;
 BEGIN
-    -- Se o tipo for PC, insere na tabela PC se não existir
-    IF NEW.tipo = 'PC' THEN
-        IF NOT EXISTS (SELECT 1 FROM PC WHERE id_personagem = NEW.id_personagem) THEN
-            INSERT INTO PC (id_personagem) VALUES (NEW.id_personagem);
-        END IF;
-
-        -- Garante exclusividade: impede que um personagem PC esteja na tabela NPC
-        IF EXISTS (SELECT 1 FROM NPC WHERE id_personagem = NEW.id_personagem) THEN
-            RAISE EXCEPTION 'Personagem do tipo PC não pode estar na tabela NPC';
-        END IF;
-
-    -- Se o tipo for NPC, insere na tabela NPC se não existir
-    ELSIF NEW.tipo = 'NPC' THEN
-        IF NOT EXISTS (SELECT 1 FROM NPC WHERE id_personagem = NEW.id_personagem) THEN
-            INSERT INTO NPC (id_personagem) VALUES (NEW.id_personagem);
-        END IF;
-
-        -- Garante exclusividade: impede que um personagem NPC esteja na tabela PC
-        IF EXISTS (SELECT 1 FROM PC WHERE id_personagem = NEW.id_personagem) THEN
-            RAISE EXCEPTION 'Personagem do tipo NPC não pode estar na tabela PC';
-        END IF;
+    -- Gera o nome do personagem se não for informado
+    IF NEW.nome IS NULL THEN
+        RAISE EXCEPTION 'Erro: O nome do personagem não pode ser nulo';
+    ELSE
+        novo_nome := NEW.nome;
     END IF;
 
+    -- 🔹 Se o nome do personagem já existe em PC ou NPC, retorna NEW sem realizar a inserção
+    IF EXISTS (SELECT 1 FROM Personagem WHERE nome = novo_nome)
+        THEN
+        RAISE EXCEPTION 'Erro: O personagem já existe na tabela PC ou NPC';
+    END IF;
+
+    -- Retorna o NEW para permitir a inserção
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;

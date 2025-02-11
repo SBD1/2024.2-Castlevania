@@ -89,7 +89,7 @@ FOR EACH ROW
 EXECUTE FUNCTION respawn_inimigo();
 
 CREATE TRIGGER trigger_validar_personagem
-BEFORE INSERT OR UPDATE ON Personagem
+BEFORE INSERT ON Personagem
 FOR EACH ROW
 EXECUTE FUNCTION validar_personagem();
 

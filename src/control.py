@@ -3,7 +3,7 @@ import time
 import sys
 
 class DatabaseController:
-    def __init__(self, dbname="mud_castlevania1", user="user", password="admin", host="localhost", port="5432"):
+    def __init__(self, dbname="mud_castlevania4", user="user", password="admin", host="localhost", port="5432"):
         self.dbname = dbname
         self.user = user
         self.password = password
@@ -56,20 +56,32 @@ class DatabaseController:
         cursor.close()
 
     def add_player(self, nome):
-        cursor = self.conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM PERSONAGEM")
-        count = cursor.fetchone()[0]
+            cursor = self.conn.cursor()
 
-        # Se não houver nenhum personagem, cria a sala principal
-        if count == 0:
-            self.add_sala_principal()
+            # Verifica se há personagens antes de acessar last[-1]
+            cursor.execute("SELECT COUNT(*) FROM Personagem")
+            count = cursor.fetchone()[0]
 
-        cursor.execute("INSERT INTO Personagem (nome, descricao, tipo) VALUES (%s, %s, %s) RETURNING id_personagem", (nome, "Um bravo lutador.", "PC"))
-        id_personagem = cursor.fetchone()[0]
-        cursor.execute("INSERT INTO PC (id_personagem, hp, mp, xp, absorcao, atk, lvl, luck, combat_status, coins, id_sala) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
-                       (id_personagem, 1000, 500, 0, 50, 100, 1, 10, 'Normal', 100, 1))
-        self.conn.commit()
-        cursor.close()
+            if count == 0:
+                self.add_sala_principal()
+
+            # Insere o personagem e recupera o ID gerado
+            cursor.execute(
+                "INSERT INTO Personagem (nome, descricao, tipo) VALUES (%s, %s, %s) RETURNING id_personagem",
+                (nome, "Um bravo lutador.", "PC")
+            )
+            id_personagem = cursor.fetchone()[0]  # Captura o ID gerado automaticamente pelo PostgreSQL
+
+            # Agora inserimos na tabela PC, sem precisar calcular o ID manualmente
+            cursor.execute(
+                "INSERT INTO PC (id_personagem, hp, mp, xp, absorcao, atk, lvl, luck, combat_status, coins, id_sala) "
+                "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                (id_personagem, 1000, 500, 0, 50, 100, 1, 10, 'Normal', 100, 1)
+            )
+
+            self.conn.commit()
+            cursor.close()
+
 
     def get_registered_players(self):
         cursor = self.conn.cursor()
@@ -128,7 +140,7 @@ class DatabaseController:
     def del_status_instacia(self, instacia_id):
         cursor = self.conn.cursor()
         cursor.execute("DELETE FROM instanciaInimigo WHERE id_instancia = %s", (instacia_id,))
-        cursor.execute("SELECT respawn_inimigo();")
+       
         cursor.close()
 
     def get_dialogo(self):

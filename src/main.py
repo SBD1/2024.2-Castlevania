@@ -98,18 +98,12 @@ class TerminalInterface:
         self.db_controller.close()
 
     def print_effect(self, text, delay=0.03):
-            """Imprime o texto com efeito de digitação, podendo ser cancelado com Enter."""
-            for char in text:
-                if select.select([sys.stdin], [], [], 0)[0]:  # Se Enter for pressionado
-                    sys.stdin.read(1)  # Limpa o buffer
-                    sys.stdout.write(text[text.index(char):])  # Exibe o restante do texto imediatamente
-                    sys.stdout.flush()
-                    print()
-                    return
-                sys.stdout.write(char)
-                sys.stdout.flush()
-                time.sleep(delay)
-            print()
+        """Imprime o texto com efeito de digitação, podendo ser cancelado com Enter."""
+        for char in text:
+            for char1 in char:
+                print(char1, end='', flush=True)  # Imprime o caractere sem pular linha
+                time.sleep(delay)  # Aguarda o tempo definido (delay) entre cada caractere
+        print()  # Pula uma linha ao final
 
     def start_game(self):
         jogador_id = self.current_player_id
@@ -238,7 +232,7 @@ class TerminalInterface:
 
     def handle_combat(self, inimigos):
         for inimigo in inimigos:
-            print(f"Você encontrou um inimigo: {inimigo['id_inimigo']}")
+            print(f"Você encontrou um morcego")
             print("1. Lutar")
             print("2. Fugir")
             choice = input("Escolha uma ação: ").strip()
@@ -271,13 +265,13 @@ class TerminalInterface:
             choice = input("Escolha uma ação: ").strip()
 
             if choice == "1":
-                dano = 10  # Exemplo de dano do jogador
+                dano = 5  # Exemplo de dano do jogador
                 enemy_hp -= dano
                 self.db_controller.att_status_instacia(enemy[0], enemy_hp)
                 print(f"Você atacou e causou {dano} de dano. Vida do inimigo: {enemy_hp}")
-                if enemy_hp <= 0:
-                    self.db_controller.del_status_instacia()
-                    cursor.execute("SELECT respawn_inimigo();")
+                if enemy_hp <= 5:
+                    self.db_controller.del_status_instacia(enemy[0])
+                    
                     print("Você derrotou o inimigo!")
                     break
                 dano_inimigo = inimigo["atk"]
