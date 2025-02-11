@@ -1,0 +1,1453 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/SBD1/2024.2-Castlevania/modulo1/mer/">
+      
+      
+        <link rel="prev" href="../der/">
+      
+      
+        <link rel="next" href="../dd/">
+      
+      
+      <link rel="icon" href="../../assets/images/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.3">
+    
+    
+      
+        <title>Modelo Entidade Relacionamento - Castlevania</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mer-modelo-entidade-relacionamento" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Castlevania" class="md-header__button md-logo" aria-label="Castlevania" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Castlevania
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modelo Entidade Relacionamento
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SBD1/2024.2-Castlevania" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2024.2-Castlevania
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../apresentacao/modulo1/" class="md-tabs__link">
+          
+  
+  Apresentações
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../der/" class="md-tabs__link">
+          
+  
+  Entrega 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../modulo2/norm/" class="md-tabs__link">
+          
+  
+  Entrega 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../modulo3/triggers/" class="md-tabs__link">
+          
+  
+  Entrega 3
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Castlevania" class="md-nav__button md-logo" aria-label="Castlevania" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Castlevania
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SBD1/2024.2-Castlevania" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2024.2-Castlevania
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Apresentações
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Apresentações
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apresentacao/modulo1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apresentação 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apresentacao/modulo2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apresentação 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apresentacao/modulo3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apresentação 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Entrega 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Entrega 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../der/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diagrama Entidade Relacionamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Modelo Entidade Relacionamento
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Modelo Entidade Relacionamento
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidades
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atributos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atributos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relacionamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relacionamentos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dicionário de Dados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modelo Relacional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Entrega 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Entrega 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo2/norm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Normalização
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo2/ddl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Definition Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo2/dml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Manipulation Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo2/dql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Query Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo2/algebra_relacional/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algebra Relacional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo2/terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Entrega 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Entrega 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo3/triggers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Triggers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo3/procedimentos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Procedures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo3/jogo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    O Jogo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidades
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atributos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atributos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relacionamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relacionamentos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="mer-modelo-entidade-relacionamento">MER - Modelo Entidade Relacionamento</h1>
+<h2 id="introducao">Introdução</h2>
+<p>O Modelo Entidade Relacionamento de um bancos de dados é um modelo conceitual que descreve as entidades de um domínio de negócios, com seus atributos e seus relacionamentos.</p>
+<blockquote>
+<p>Entidades: os objetos da realidade a ser modelada.<br>
+Relacionamentos: as associações entre as entidades.<br>
+Atributos: características específicas de uma entidade.<br></p>
+</blockquote>
+<h2 id="entidades">Entidades</h2>
+<ul>
+<li><strong>Personagem</strong><ul>
+<li><strong>PC</strong></li>
+<li><strong>NPC</strong><ul>
+<li><strong>Mercador</strong></li>
+<li><strong>Contratante</strong></li>
+<li><strong>Inimigo</strong></li>
+<li><strong>Chefe</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Instância Inimigo</strong></li>
+<li><strong>Missão</strong><ul>
+<li><strong>Missão Principal</strong></li>
+<li><strong>Contrato</strong></li>
+</ul>
+</li>
+<li><strong>Inventário</strong></li>
+<li><strong>Diálogo</strong></li>
+<li><strong>Item</strong><ul>
+<li><strong>Grimório</strong></li>
+<li><strong>Consumível</strong></li>
+<li><strong>Arma</strong></li>
+<li><strong>Chave</strong></li>
+</ul>
+</li>
+<li><strong>Instância item</strong></li>
+<li><strong>Checkpoint</strong></li>
+<li><strong>Sala</strong></li>
+<li><strong>Região</strong></li>
+<li><strong>Mundo</strong></li>
+<li><strong>Baú</strong></li>
+<li><strong>Loja</strong></li>
+<li><strong>Transação</strong></li>
+<li><strong>Combate</strong></li>
+<li><strong>Habilidade</strong></li>
+<li><strong>Efeito</strong></li>
+</ul>
+<h2 id="atributos">Atributos</h2>
+<ul>
+<li><em>Personagem</em>: {<ins>id_personagem</ins>, nome, descricao, tipo}<ul>
+<li><em>PC</em>: {hp, mp, xp, absorcao, atk, lvl, luck, combat_status, coins, id_sala}</li>
+<li><em>NPC</em>: {tipo}<ul>
+<li><em>Mercador</em>: {id_sala}</li>
+<li><em>Contratante</em>: {id_sala}</li>
+<li><em>Inimigo</em>: {hp, xp, absorcao, atk, habilidade}</li>
+<li><em>Chefe</em>: {hp, xp, lvl, combat_status, absorção, atk, item_especial, id_sala}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em>Instância Inimigo</em>: {<ins>id_instancia_inimigo</ins>, id_inimigo, id_sala, vida_atual, absorcao, atk, habilidade, combat_status}</li>
+<li><em>Missão</em>: {<ins>id_missao</ins>, nome, descricao, qtd_xp, tipo}<ul>
+<li><em>Missão Principal</em>: {id_dependencia}</li>
+<li><em>Contrato</em>: {id_contratante, id_dependencia}</li>
+</ul>
+</li>
+<li><em>Inventário</em>: {<ins>id_inventario</ins>, id_instancia_item, capacidade, qtd_item}</li>
+<li><em>Diálogo</em>: {<ins>id_dialogo</ins>, id_personagem, texto}</li>
+<li><em>Item</em>: {<ins>id_item</ins>, nome, tipo, descricao, eh_unico, valor}<ul>
+<li><em>Grimório</em>: {xp_necessario}</li>
+<li><em>Consumível</em>: {id_efeito, quantidade}</li>
+<li><em>Arma</em>: {dano}</li>
+<li><em>Chave</em>: {bau_requerido}</li>
+</ul>
+</li>
+<li><em>Instância de Item</em>: {<ins>id_instancia_item</ins>, id_item, id_sala}</li>
+<li><em>Checkpoint</em>: {<ins>id_checkpoint</ins>, id_sala, id_pc}</li>
+<li><em>Sala</em>: {<ins>id_sala</ins>, id_sala_conectada, id_regiao, nome, descricao}</li>
+<li><em>Região</em>: {<ins>id_regiao</ins>, id_mundo, nome, descricao, dificuldade}</li>
+<li><em>Mundo</em>: {<ins>id_mundo</ins>, nome, data}</li>
+<li><em>Baú</em>: {<ins>id_bau</ins>, id_sala, itens, coins}</li>
+<li><em>Loja</em>: {<ins>id_loja</ins>, id_intancias_itens}</li>
+<li><em>Transação</em>: {<ins>id_transacao</ins>, id_mercador, id_pc, valor, tipo_transacao}</li>
+<li><em>Combate</em>: {<ins>id_combate</ins>, id_pc, id_instancia_inimigo, resultado}</li>
+<li><em>Habilidade</em>: {<ins>id_habilidade</ins>, id_habilidade_dependente, id_grimorio, id_efeito, tipo, custo_mp}</li>
+<li><em>Efeito</em>: {<ins>id_efeito</ins>, alcance, duracao}</li>
+</ul>
+<h2 id="relacionamentos">Relacionamentos</h2>
+<ul>
+<li><strong>PC <em>está</em> em Sala</strong></li>
+<li>(1,1) <strong>PC</strong> está em uma <strong>Sala</strong></li>
+<li>
+<p>(0,N) <strong>Sala</strong> pode conter vários PCs</p>
+</li>
+<li>
+<p><strong>NPC <em>está</em> em Sala</strong></p>
+</li>
+<li>(1,1) <strong>NPC</strong> está em uma <strong>Sala</strong></li>
+<li>
+<p>(0,N) <strong>Sala</strong> pode conter vários NPCs</p>
+</li>
+<li>
+<p><strong>NPC <em>possui</em> especializações</strong></p>
+</li>
+<li>(1,1) <strong>Mercador</strong> é um <strong>NPC</strong></li>
+<li>(1,1) <strong>Contratante</strong> é um <strong>NPC</strong></li>
+<li>(1,1) <strong>Inimigo</strong> é um <strong>NPC</strong></li>
+<li>
+<p>(1,1) <strong>Chefe</strong> é um <strong>NPC</strong></p>
+</li>
+<li>
+<p><strong>PC <em>possui</em> Inventário</strong></p>
+</li>
+<li>(0,N) <strong>PC</strong> possui itens no <strong>Inventário</strong></li>
+<li>
+<p>(1,1) <strong>Inventário</strong> pertence a um único <strong>PC</strong></p>
+</li>
+<li>
+<p><strong>Inimigo <em>possui</em> Instância Inimigo</strong></p>
+</li>
+<li>(1,1) <strong>Instância Inimigo</strong> representa um <strong>Inimigo</strong></li>
+<li>
+<p>(0,N) <strong>Inimigo</strong> pode ter várias instâncias</p>
+</li>
+<li>
+<p><strong>Contratante <em>fornece</em> Contrato</strong></p>
+</li>
+<li>(1,1) <strong>Contrato</strong> é atribuída por um <strong>Contratante</strong></li>
+<li>(0,N) <strong>Contratante</strong> pode atribuir várias <strong>Contratos</strong></li>
+<li>
+<p>(0,1) <strong>Contrato</strong> pode depender de um outro <strong>Contrato</strong></p>
+</li>
+<li>
+<p><strong>Missão <em>possui</em> especializações</strong></p>
+</li>
+<li>(1,1) <strong>Missão Principal</strong> é uma <strong>Missão</strong></li>
+<li>
+<p>(1,1) <strong>Contrato</strong> é uma <strong>Missão</strong></p>
+</li>
+<li>
+<p><strong>Missão Principal <em>depende</em> de outra Missão Principal</strong></p>
+</li>
+<li>(0,1) <strong>Missão Principal</strong> pode depender de outra <strong>Missão Principal</strong></li>
+<li>
+<p>(0,1) <strong>Missão Principal</strong> pode ser pré-requisito de outra missão</p>
+</li>
+<li>
+<p><strong>Inventário <em>possui</em> Instâncias de Itens</strong></p>
+</li>
+<li>(0,N) <strong>Inventário</strong> contém várias <strong>Instâncias de Itens</strong>  </li>
+<li>
+<p>(1,1) <strong>Instância de Item</strong> pertence a um único <strong>Inventário</strong></p>
+</li>
+<li>
+<p><strong>Item <em>possui</em> Instância Item</strong></p>
+</li>
+<li>(1,1) <strong>Instância Item</strong> representa um <strong>Item</strong>  </li>
+<li>
+<p>(0,N) <strong>Item</strong> pode ter várias instâncias</p>
+</li>
+<li>
+<p><strong>Personagem <em>possui</em> Diálogo</strong></p>
+</li>
+<li>(1,1) <strong>Personagem</strong> pode iniciar um <strong>Diálogo</strong></li>
+<li>(0,N) <strong>Diálogo</strong> pertence a um único <strong>Personagem</strong></li>
+<li>(0,1) <strong>Diálogo</strong> pode apontar para um próximo <strong>Diálogo</strong>  </li>
+<li>
+<p>(1,1) <strong>Diálogo</strong> pode ser parte de uma cadeia sequencial</p>
+</li>
+<li>
+<p><strong>Item <em>possui</em> especializações</strong></p>
+</li>
+<li>(1,1) <strong>Grimório</strong> é um <strong>Item</strong></li>
+<li>(1,1) <strong>Consumível</strong> é um <strong>Item</strong></li>
+<li>(1,1) <strong>Arma</strong> é um <strong>Item</strong></li>
+<li>
+<p>(1,1) <strong>Chave</strong> é um <strong>Item</strong></p>
+</li>
+<li>
+<p><strong>Loja <em>contém</em> Item</strong></p>
+</li>
+<li>(0,N) <strong>Item</strong> pode estar contido em várias <strong>Lojas</strong>  </li>
+<li>
+<p>(0,N) <strong>Loja</strong> pode conter vários <strong>Itens</strong></p>
+</li>
+<li>
+<p><strong>Item <em>está</em> em Baú</strong></p>
+</li>
+<li>(0,N) <strong>Item</strong> pode estar em vários <strong>Baús</strong>  </li>
+<li>
+<p>(1,1) <strong>Baú</strong> pode conter vários <strong>Itens</strong></p>
+</li>
+<li>
+<p><strong>Transação <em>envolve</em> Item</strong></p>
+</li>
+<li>(0,N) <strong>Item</strong> pode ser parte de uma <strong>Transação</strong>  </li>
+<li>
+<p>(1,1) <strong>Transação</strong> envolve pelo menos um <strong>Item</strong></p>
+</li>
+<li>
+<p><strong>Sala <em>contém</em> Checkpoint</strong></p>
+</li>
+<li>(1,1) <strong>Checkpoint</strong> está em uma <strong>Sala</strong>  </li>
+<li>
+<p>(0,N) <strong>Sala</strong> pode conter vários <strong>Checkpoints</strong></p>
+</li>
+<li>
+<p><strong>Checkpont <em>está</em> associado a um PC</strong></p>
+</li>
+<li>
+<p>(0,N) <strong>Checkpoint</strong> está associado a um <strong>PC</strong></p>
+</li>
+<li>
+<p><strong>Região <em>contém</em> Sala</strong></p>
+</li>
+<li>(1,1) <strong>Sala</strong> pertence a uma única <strong>Região</strong></li>
+<li>
+<p>(0,N) <strong>Região</strong> contém várias <strong>Salas</strong></p>
+</li>
+<li>
+<p><strong>Sala <em>conecta</em> Sala</strong></p>
+</li>
+<li>
+<p>(0,N) <strong>Sala</strong> pode se conectar a outras <strong>Salas</strong></p>
+</li>
+<li>
+<p><strong>Mundo <em>contém</em> Região</strong></p>
+</li>
+<li>(1,1) <strong>Região</strong> pertence a um único <strong>Mundo</strong>  </li>
+<li>
+<p>(0,N) <strong>Mundo</strong> contém várias <strong>Regiões</strong></p>
+</li>
+<li>
+<p><strong>Mercador <em>possui</em> Loja</strong></p>
+</li>
+<li>(1,1) <strong>Loja</strong> possui um único <strong>Mercador</strong>  </li>
+<li>
+<p>(1,1) <strong>Mercador</strong> possui uma única <strong>Loja</strong></p>
+</li>
+<li>
+<p><strong>Loja <em>possui</em> Instância Item</strong></p>
+</li>
+<li>(0,N) <strong>Loja</strong> possui várias <strong>Instâncias Itens</strong>  </li>
+<li>
+<p>(0,N) <strong>Instância Item</strong> pode estar em várias <strong>Lojas</strong></p>
+</li>
+<li>
+<p><strong>Mercador <em>realiza</em> Transação</strong></p>
+</li>
+<li>(1,1) <strong>Transação</strong> envolve um <strong>Mercador</strong>  </li>
+<li>
+<p>(0,N) <strong>Mercador</strong> pode realizar várias <strong>Transações</strong></p>
+</li>
+<li>
+<p><strong>Transação <em>envolve</em> PC</strong></p>
+</li>
+<li>(1,1) <strong>Transação</strong> envolve um <strong>PC</strong>  </li>
+<li>
+<p>(0,N) <strong>PC</strong> pode realizar várias <strong>Transações</strong></p>
+</li>
+<li>
+<p><strong>Transação <em>inclui</em> Instância Item</strong></p>
+</li>
+<li>(0,N) <strong>Transação</strong> inclui várias <strong>Instâncias de Itens</strong>  </li>
+<li>
+<p>(1,1) <strong>Instância de Item</strong> pode estar em várias <strong>Transações</strong></p>
+</li>
+<li>
+<p><strong>PC <em>derrota</em> Instância Inimigo</strong></p>
+</li>
+<li>(0,N) <strong>PC</strong> pode derrotar várias <strong>Instâncias Inimigos</strong></li>
+<li>
+<p>(0,1) <strong>Instância Inimigo</strong> pode ser derrotada por <strong>PC</strong></p>
+</li>
+<li>
+<p><strong>Habilidade <em>depende</em> de outra Habilidade</strong></p>
+</li>
+<li>(1,1) <strong>Habilidade</strong> pode depender de outra <strong>Habilidade</strong>  </li>
+<li>
+<p>(0,1) <strong>Habilidade</strong> pode ser pré-requisito de outra habilidade</p>
+</li>
+<li>
+<p><strong>Habilidade <em>contém</em> Efeito</strong></p>
+</li>
+<li>(0,1) <strong>Habilidade</strong> pode conter vários <strong>Efeitos</strong></li>
+<li>(0,N) <strong>Efeito</strong> pode estar contido em várias <strong>Habilidades</strong></li>
+</ul>
+<p><center></p>
+<h2 id="historico-de-versao">Histórico de Versão</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Versão</th>
+<th style="text-align: center;">Data</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Autor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>1.0</code></td>
+<td style="text-align: center;">24/11/2024</td>
+<td style="text-align: center;">Primeira versão  do MER</td>
+<td style="text-align: center;"><a href="https://github.com/DiegoCarlito">Diego Carlito</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>2.0</code></td>
+<td style="text-align: center;">22/12/2024</td>
+<td style="text-align: center;">Segunda versão  do MER</td>
+<td style="text-align: center;"><a href="https://github.com/DiegoCarlito">Diego Carlito</a></td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2088 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/SBD1/2024.2-Castlevania/modulo2/norm/">
+      
+      
+        <link rel="prev" href="../../modulo1/mr/">
+      
+      
+        <link rel="next" href="../ddl/">
+      
+      
+      <link rel="icon" href="../../assets/images/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.3">
+    
+    
+      
+        <title>Normalização - Castlevania</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introducao" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Castlevania" class="md-header__button md-logo" aria-label="Castlevania" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Castlevania
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Normalização
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SBD1/2024.2-Castlevania" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2024.2-Castlevania
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../apresentacao/modulo1/" class="md-tabs__link">
+          
+  
+  Apresentações
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../modulo1/der/" class="md-tabs__link">
+          
+  
+  Entrega 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Entrega 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../modulo3/triggers/" class="md-tabs__link">
+          
+  
+  Entrega 3
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Castlevania" class="md-nav__button md-logo" aria-label="Castlevania" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Castlevania
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SBD1/2024.2-Castlevania" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2024.2-Castlevania
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Apresentações
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Apresentações
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apresentacao/modulo1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apresentação 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apresentacao/modulo2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apresentação 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apresentacao/modulo3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apresentação 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Entrega 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Entrega 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo1/der/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diagrama Entidade Relacionamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo1/mer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modelo Entidade Relacionamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo1/dd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dicionário de Dados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo1/mr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modelo Relacional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Entrega 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Entrega 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Normalização
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Normalização
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introdução">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabelas-a-serem-normalizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabelas a serem Normalizadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-sala" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Sala
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-bau" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Bau
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabela Bau">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#correcao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correção
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-baus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Baus
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-chefe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Chefe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Checkpoint
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-mundo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Mundo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-instancia-inimigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Instância Inimigo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabela Instância Inimigo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#correcao_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correção
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-inimigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Inimigo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabela Inimigo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#correcao_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correção
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-regiao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Região
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-habilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Habilidade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-grimorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Grimório
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-consumivel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Consumível
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-arma" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Arma
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-chave" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Chave
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela PC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-transacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Transação
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-combate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Combate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Inventário
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-instancia-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Instância Item
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Item
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-efeito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Efeito
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-personagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Personagem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-npc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela NPC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-contratante" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Contratante
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-mercador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Mercador
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-loja" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Loja
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-missao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Missão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-contrato" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Contrato
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-missao-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Missão Principal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-missoes-realizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Missões Realizadas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-dialogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Diálogo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ddl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Definition Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Manipulation Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Query Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../algebra_relacional/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algebra Relacional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Entrega 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Entrega 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo3/triggers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Triggers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo3/procedimentos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Procedures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo3/jogo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    O Jogo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introdução">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabelas-a-serem-normalizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabelas a serem Normalizadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-sala" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Sala
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-bau" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Bau
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabela Bau">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#correcao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correção
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-baus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Baus
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-chefe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Chefe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Checkpoint
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-mundo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Mundo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-instancia-inimigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Instância Inimigo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabela Instância Inimigo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#correcao_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correção
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-inimigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Inimigo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabela Inimigo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#correcao_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correção
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-regiao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Região
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-habilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Habilidade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-grimorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Grimório
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-consumivel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Consumível
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-arma" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Arma
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-chave" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Chave
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela PC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-transacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Transação
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-combate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Combate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Inventário
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-instancia-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Instância Item
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Item
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-efeito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Efeito
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-personagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Personagem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-npc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela NPC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-contratante" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Contratante
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-mercador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Mercador
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-loja" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Loja
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-missao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Missão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-contrato" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Contrato
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-missao-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Missão Principal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-missoes-realizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Missões Realizadas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-dialogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela Diálogo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Normalização</h1>
+
+<h2 id="introducao">Introdução</h2>
+<p>A normalização é um processo utilizado no design de bancos de dados para organizar os dados de forma eficiente, reduzindo redundâncias e melhorando a integridade dos dados. Por meio de uma série de regras e formas normais, a normalização divide as informações em tabelas menores relacionadas, promovendo consistência e facilitando o gerenciamento. Esse processo ajuda a evitar anomalias em operações como inserção, atualização e exclusão, além de otimizar o desempenho e a escalabilidade do sistema.</p>
+<p>O processo de normalização se divide em 5 etapas, chamadas de Formas Normais (FN).</p>
+<ul>
+<li>
+<p><strong>1ª Forma Normal (1FN)</strong>: Na 1FN, cada campo da tabela deve conter apenas um único valor indivisível, e todos os registros da tabela devem ter a mesma estrutura, sem repetições de grupos de atributos.</p>
+</li>
+<li>
+<p><strong>2ª Forma Normal (2FN)</strong>: Para estar em 2FN, é necessário que não haja dependências parciais, ou seja, todos os atributos não-chave devem depender da totalidade da chave primária.</p>
+</li>
+<li>
+<p><strong>3ª Forma Normal (3FN)</strong>: Na 3FN, deve-se garantir que todos os atributos não-chave sejam diretamente dependentes da chave primária, sem intermediários.</p>
+</li>
+<li>
+<p><strong>Forma Normal de Boyce-Codd (FNBC)</strong>: A FNBC é uma versão mais rigorosa da 3ª Forma Normal. Por já atender a 2ª e 3ª forma Normal.</p>
+</li>
+<li>
+<p><strong>4ª Forma Normal (4FN)</strong>:  A 4FN exige que não existam dependências multivaloradas, onde um único atributo poderia ser relacionado a múltiplos valores de outro atributo de forma independente.</p>
+</li>
+</ul>
+<h3 id="tabelas-a-serem-normalizadas">Tabelas a serem Normalizadas</h3>
+<p>Todas as tabelas contidas na <a href="https://viewer.diagrams.net/?tags=%7B%7D&amp;lightbox=1&amp;highlight=0000ff&amp;edit=_blank&amp;layers=1&amp;nav=1&amp;title=MR-Castlevania.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1iqkQ5bLyo5ngIUHikCxP1Zgu3P8RBQPV%26export%3Ddownload">primeira versão do MR</a> ( modelo relacional), entraram no processo de normalização, sendo detalhadas a seguir.</p>
+<hr />
+<h2 id="tabela-sala">Tabela Sala</h2>
+<blockquote>
+<p>id-sala ➡ id_sala_conectada, id_regiao, nome e descr</p>
+</blockquote>
+<p>Na tabela Sala, os atributos <code>id-sala</code> , <code>id_sala_conectada</code>, <code>id_regiao</code>, <code>nome</code> e <code>descr</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+ Como a tabela possui apenas uma chave primária simples (id-sala), automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela item, todos os atributos (<code>id_sala_conectada</code>, <code>id_regiao</code>, <code>nome</code> e <code>descr</code>)  depende diretamente do <code>id-sala</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela Sala, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-bau">Tabela Bau</h2>
+<blockquote>
+<p>id-bau ➡ itens</p>
+</blockquote>
+<p>Na tabela Bau, o atributo <code>itens</code> fere essa propriedade isso porque terá vários itens sendo um atributo multivalorado. Para que atende a esse critério, será necessário que o atributo <code>itens</code> sejá parte da chave primária, tornando <code>id-bau</code> e <code>itens</code> chave primária composta.</p>
+<h3 id="correcao">Correção</h3>
+<p>Tornando <code>itens</code> como chave primária e mudando seu nome para melhor clareza para <code>item</code> agora ele atende a <strong>1ª Forma Normal</strong>.</p>
+<p>Como a tabela possui apenas dois atributos das quais compõe a chave a primária (composta) não é ferido a 2ª Forma Normal.
+Na tabela Bau todos os atributos são chaves.</p>
+<p>A tabela Bau, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-baus">Tabela Baus</h2>
+<blockquote>
+<p>id-bau, id-sala ➡ (nenhum outro atributo)</p>
+</blockquote>
+<p>Na tabela Baus, os atributos <code>id-sala</code> , <code>id_bau</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+ Como a tabela Baus possui apenas chave primária , automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela Baus, por não existir atributos não chave, automaticamente já é atendido a 3ª  Forma normal.</p>
+<p>A tabela Baus, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-chefe">Tabela Chefe</h2>
+<blockquote>
+<p>id-Chefe ➡ localização, hp, level, status, atk, item_especial</p>
+</blockquote>
+<p>Na tabela Chefe , os atributos <code>id-chefe</code> , <code>localização</code>, <code>hp</code>, <code>level</code>, <code>status</code>, <code>atk</code> e <code>item_especial</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+ Como a tabela Chefe possui apenas uma chave primária , automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela item, todos os atributos (<code>localização</code>, <code>hp</code>, <code>level</code> , <code>status</code>, <code>atk</code>, <code>item_especial</code>)  depende diretamente do <code>id-chefe</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela Chefe, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-checkpoint">Tabela Checkpoint</h2>
+<blockquote>
+<p>id-checkpoint ➡ id_sala, id_pc</p>
+</blockquote>
+<p>Na tabela Checkpoint , os atributos <code>id-checkpoint</code> , <code>id_sala</code>e <code>id_pc</code>, atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+ Como a tabela Checkpoint possui apenas uma chave primária , automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela item, todos os atributos (<code>id_sala</code>e <code>id_pc</code>)  depende diretamente do <code>id-checkpoint</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela Checkpoint, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-mundo">Tabela Mundo</h2>
+<blockquote>
+<p>id-mundo ➡ nome, data</p>
+</blockquote>
+<p>Na tabela Mundo , os atributos <code>id-mundo</code> , <code>nome</code>e <code>data</code>, atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+ Como a tabela Mundo possui apenas uma chave primária , automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela item, todos os atributos (<code>nome</code>e <code>id-data</code>)  depende diretamente do <code>id-mundo</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela Mundo, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-instancia-inimigo">Tabela Instância Inimigo</h2>
+<blockquote>
+<p>idInstancia ➡ idInimigo, localizacao, hp, absorcao, atk, habilidade, combatStatus</p>
+</blockquote>
+<p>Nessa tabela, observamos algumas violações às formas normais. Se tratando da primeira, não foram encontradas violações, mas quando tratamos da 2ª FN, identificamos que existem atributos que não dependem exclusivamente da chave primária, como o campo localização e os demais campos, hp, atk, habilidade, entre outros.</p>
+<h3 id="correcao_1">Correção</h3>
+<p>Foi criada uma tabela, statusNPC, que armazena todos os dados relacionados à atributos do NPC, como vida, dano, etc. Assim, para que um inimigo possua atributos, é necessário que tenha um idInstancia, atendendo à 2ª FN. Fazendo isso eliminamos também as dependências transitivas, atendendo assim à 3ª FN e a FNBC.</p>
+<hr />
+<h2 id="tabela-inimigo">Tabela Inimigo</h2>
+<blockquote>
+<p>id-inimigo ➡ hp, xp, absorcao, atk, habilidade</p>
+</blockquote>
+<p>A tabela se encontra na 1ª FN, por não haver atributos repetidos, ou seja, seus dados são atômicos. Porém enfrentamos o mesmo problema encontrado na tabela instanciaInimigo, com atributos não dependendo excluisivamente da chave idInimigo.</p>
+<h3 id="correcao_2">Correção</h3>
+<p>Foram retirados os campos de hp, atk, absorcao, etc, sendo referenciados em outra tabela através do campo idStatus. Além disso, tornamos o campo idInimigo uma chave primária, atendendo assim às 2ª e 3ª FN.</p>
+<hr />
+<h2 id="tabela-regiao">Tabela Região</h2>
+<blockquote>
+<p>idRegiao ➡ idRegiaoConectada, idMundo, nome, desc, dificuldade</p>
+</blockquote>
+<p>Atende à 1ª FN, por somente possuir valores atômicos, com cada linha sendo única. Também atende à 2ª FN por não possuir dependências parciais e por fim, atende à 3ª FN por não possuir dependências transitivas, por sua vez, também atende à FNBC.</p>
+<hr />
+<h2 id="tabela-habilidade">Tabela Habilidade</h2>
+<p>idHabilidade ➡ idHabilidadeDependente, idGrimorio, efeito, tipo, custo, descricao</p>
+<p>A tabela cumpre a 1ª Forma Normal porque todos os valores armazenados nas colunas são atômicos, ou seja, indivisíveis, e cada linha apresenta um identificador único. Ela também satisfaz a 2ª Forma Normal, já que não existem dependências parciais, ou seja, todas as colunas não-chave dependem integralmente da chave primária. Por fim, a tabela está em conformidade com a 3ª Forma Normal, pois não apresenta dependências transitivas, ou seja, não há colunas não-chave dependendo de outras colunas não-chave. Assim, ela também segue a FNBC (Forma Normal de Boyce-Codd).</p>
+<hr />
+<h2 id="tabela-grimorio">Tabela Grimório</h2>
+<blockquote>
+<p>idGrimorio ➡ idHabilidade</p>
+</blockquote>
+<p>Esta tabela respeita a 1ª Forma Normal, pois cada célula contém apenas um valor indivisível, garantindo que os dados sejam atômicos, e as linhas são identificadas unicamente. Na 2ª Forma Normal, não há dependências parciais, já que todas as colunas não-chave dependem completamente da chave primária. Na 3ª Forma Normal, a ausência de dependências transitivas entre colunas não-chave mostra que a tabela é eficiente. Dessa forma, ela também atende aos critérios da FNBC.</p>
+<hr />
+<h2 id="tabela-consumivel">Tabela Consumível</h2>
+<blockquote>
+<p>idItem ➡ efeito</p>
+</blockquote>
+<p>Em relação à 1ª Forma Normal, a tabela está normalizada porque armazena apenas valores atômicos em cada célula, e cada linha possui um identificador exclusivo. Quanto à 2ª Forma Normal, não existem dependências parciais, ou seja, todas as colunas que não fazem parte da chave primária dependem inteiramente dela. Na 3ª Forma Normal, a tabela não apresenta dependências transitivas, uma vez que as colunas não-chave não dependem umas das outras. Por isso, ela também segue os princípios da FNBC.</p>
+<hr />
+<h2 id="tabela-arma">Tabela Arma</h2>
+<blockquote>
+<p>idItem ➡ danoBase</p>
+</blockquote>
+<p>A tabela atende à 1ª Forma Normal, já que os dados armazenados são atômicos e não há repetições ou conjuntos de valores em uma mesma célula. Além disso, a tabela segue a 2ª Forma Normal porque não possui dependências parciais, garantindo que todas as colunas não-chave dependam da chave primária por completo. No que diz respeito à 3ª Forma Normal, não há dependências transitivas entre colunas não-chave. Por essas razões, a tabela também está em conformidade com a FNBC.</p>
+<hr />
+<h2 id="tabela-chave">Tabela Chave</h2>
+<blockquote>
+<p>idItem ➡ requerido</p>
+</blockquote>
+<p>Cumprindo a 1ª Forma Normal, a tabela contém apenas valores atômicos, sendo todos os dados indivisíveis, e cada linha tem um identificador exclusivo. Ela também obedece à 2ª Forma Normal, pois não existem dependências parciais entre as colunas, já que todas dependem diretamente da chave primária. Além disso, ao atender à 3ª Forma Normal, a tabela não apresenta dependências transitivas, tornando-a eficiente e bem projetada. Assim, ela segue os princípios da FNBC.</p>
+<hr />
+<h2 id="tabela-pc">Tabela PC</h2>
+<blockquote>
+<p>id-pc ➡ hp, mp, xp, absorção, atk, lvl, luck, combat_status, coins, localização</p>
+</blockquote>
+<p>Na tabela PC, os atributos <code>id-pc</code>, <code>hp</code>, <code>mp</code>, <code>xp</code>, <code>absorção</code>, <code>atk</code>, <code>lvl</code>, <code>luck</code>, <code>combat_status</code>, <code>coins</code> e <code>localização</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela PC possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela PC, todos os atributos (<code>hp</code>, <code>mp</code>, <code>xp</code>, <code>absorção</code>, <code>atk</code>, <code>lvl</code>, <code>luck</code>, <code>combat_status</code>, <code>coins</code>, <code>localização</code>) dependem diretamente do <code>id-pc</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela PC, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-transacao">Tabela Transação</h2>
+<blockquote>
+<p>id-transação ➡ id_mercador, id_pc, valor, tipo_transação</p>
+</blockquote>
+<p>Na tabela <strong>Transação</strong>, os atributos <code>id-transação</code>, <code>id_mercador</code>, <code>id_pc</code>, <code>valor</code> e <code>tipo_transação</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Transação</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Transação</strong>, todos os atributos (<code>id_mercador</code>, <code>id_pc</code>, <code>valor</code>, <code>tipo_transação</code>) dependem diretamente do <code>id-transação</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Transação</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-combate">Tabela Combate</h2>
+<blockquote>
+<p>id-combate ➡ id_pc, id_inimigo, resultado</p>
+</blockquote>
+<p>Na tabela <strong>Combate</strong>, os atributos <code>id-combate</code>, <code>id_pc</code>, <code>id_inimigo</code> e <code>resultado</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Combate</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Combate</strong>, todos os atributos (<code>id_pc</code>, <code>id_inimigo</code>, <code>resultado</code>) dependem diretamente do <code>id-combate</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Combate</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-inventario">Tabela Inventário</h2>
+<blockquote>
+<p>id-inventario ➡ id_instancias_itens, capacidade, qtd-itens</p>
+</blockquote>
+<p>Na tabela <strong>Inventário</strong>, os atributos <code>id-inventario</code>, <code>id_instancias_itens</code>, <code>capacidade</code> e <code>qtd-itens</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Inventário</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Inventário</strong>, todos os atributos (<code>id_instancias_itens</code>, <code>capacidade</code>, <code>qtd-itens</code>) dependem diretamente do <code>id-inventario</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Inventário</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-instancia-item">Tabela Instância Item</h2>
+<blockquote>
+<p>id-instancia-item ➡ id_item, id_sala</p>
+</blockquote>
+<p>Na tabela <strong>Instância Item</strong>, os atributos <code>id-instancia-item</code>, <code>id_item</code> e <code>id_sala</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Instância Item</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Instância Item</strong>, todos os atributos (<code>id_item</code>, <code>id_sala</code>) dependem diretamente do <code>id-instancia-item</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Instância Item</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-item">Tabela Item</h2>
+<blockquote>
+<p>id-item ➡ nome, tipo, descricao, eh_unico, valor</p>
+</blockquote>
+<p>Na tabela <strong>Item</strong>, os atributos <code>id-item</code>, <code>nome</code>, <code>tipo</code>, <code>descricao</code>, <code>eh_unico</code> e <code>valor</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Item</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Item</strong>, todos os atributos (<code>nome</code>, <code>tipo</code>, <code>descricao</code>, <code>eh_unico</code>, <code>valor</code>) dependem diretamente do <code>id-item</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Item</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-efeito">Tabela Efeito</h2>
+<blockquote>
+<p>id-efeito ➡ alcance, duracao</p>
+</blockquote>
+<p>Na tabela <strong>Efeito</strong>, os atributos <code>id-efeito</code>, <code>alcance</code> e <code>duracao</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Efeito</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Efeito</strong>, todos os atributos (<code>alcance</code>, <code>duracao</code>) dependem diretamente do <code>id-efeito</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Efeito</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-personagem">Tabela Personagem</h2>
+<blockquote>
+<p>id-personagem ➡ nome, descrição, tipo</p>
+</blockquote>
+<p>Na tabela <strong>Personagem</strong>, os atributos <code>id-personagem</code>, <code>nome</code>, <code>descrição</code> e <code>tipo</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Personagem</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Personagem</strong>, os atributos (<code>nome</code>, <code>descrição</code>, <code>tipo</code>) dependem diretamente do <code>id-personagem</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Personagem</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-npc">Tabela NPC</h2>
+<blockquote>
+<p>id-npc ➡ tipo</p>
+</blockquote>
+<p>Na tabela <strong>NPC</strong>, os atributos <code>id-npc</code> e <code>tipo</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>NPC</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>NPC</strong>, o atributo <code>tipo</code> depende diretamente do <code>id-npc</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>NPC</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-contratante">Tabela Contratante</h2>
+<blockquote>
+<p>id-contratante ➡ localização</p>
+</blockquote>
+<p>Na tabela <strong>Contratante</strong>, os atributos <code>id-contratante</code> e <code>localização</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Contratante</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Contratante</strong>, o atributo <code>localização</code> depende diretamente do <code>id-contratante</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Contratante</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-mercador">Tabela Mercador</h2>
+<blockquote>
+<p>id-mercador ➡ localização</p>
+</blockquote>
+<p>Na tabela <strong>Mercador</strong>, os atributos <code>id-mercador</code> e <code>localização</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Mercador</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Mercador</strong>, o atributo <code>localização</code> depende diretamente do <code>id-mercador</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Mercador</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-loja">Tabela Loja</h2>
+<blockquote>
+<p>id-loja ➡ id_mercador, id_instâncias_itens</p>
+</blockquote>
+<p>Na tabela <strong>Loja</strong>, os atributos <code>id-loja</code>, <code>id_mercador</code> e <code>id_instâncias_itens</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Loja</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Loja</strong>, todos os atributos (<code>id_mercador</code>, <code>id_instâncias_itens</code>) dependem diretamente do <code>id-loja</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Loja</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-missao">Tabela Missão</h2>
+<blockquote>
+<p>id-missao ➡ nome, qtd_xp, descr</p>
+</blockquote>
+<p>Na tabela <strong>Missão</strong>, os atributos <code>id-missao</code>, <code>nome</code>, <code>qtd_xp</code> e <code>descricao</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Missão</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Missão</strong>, os atributos (<code>nome</code>, <code>qtd_xp</code>, <code>descricao</code>) dependem diretamente do <code>id-missao</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Missão</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-contrato">Tabela Contrato</h2>
+<blockquote>
+<p>id-contrato ➡ id-contratante, id-dependencia</p>
+</blockquote>
+<p>Na tabela <strong>Contrato</strong>, os atributos <code>id-contrato</code>, <code>id-contratante</code> e <code>id-dependencia</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Contrato</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Contrato</strong>, os atributos (<code>id-contratante</code>, <code>id-dependencia</code>) dependem diretamente do <code>id-contrato</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Contrato</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-missao-principal">Tabela Missão Principal</h2>
+<blockquote>
+<p>id-principal ➡ id-dependencia</p>
+</blockquote>
+<p>Na tabela <strong>Missão Principal</strong>, os atributos <code>id-principal</code> e <code>id-dependencia</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Missão Principal</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Missão Principal</strong>, o atributo <code>id-dependencia</code> depende diretamente do <code>id-principal</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Missão Principal</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-missoes-realizadas">Tabela Missões Realizadas</h2>
+<blockquote>
+<p>id_missao, id_pc ➡ (nenhum outro atributo)</p>
+</blockquote>
+<p>Na tabela <strong>Missões Realizadas</strong>, os atributos <code>id_missao</code> e <code>id_pc</code> formam a chave primária composta, garantindo que ela esteja na 1ª Forma Normal, pois todos os atributos são atômicos e monovalorados.<br />
+Como não há outros atributos além da chave composta, todos os atributos dependem automaticamente da totalidade da chave primária, atendendo ao critério da 2ª Forma Normal.
+Na tabela <strong>Missões Realizadas</strong>, não existem atributos que possam depender transitivamente da chave primária composta, atendendo também à 3ª Forma Normal.</p>
+<p>A tabela <strong>Missões Realizadas</strong>, com atributos atômicos e sem dependências multivaloradas, satisfaz a 4ª Forma Normal.</p>
+<hr />
+<h2 id="tabela-dialogo">Tabela Diálogo</h2>
+<blockquote>
+<p>id-dialogo ➡ id-personagem, texto</p>
+</blockquote>
+<p>Na tabela <strong>Diálogo</strong>, os atributos <code>id-dialogo</code>, <code>id-personagem</code> e <code>texto</code> atendem a esse critério, garantindo que ela esteja na 1ª Forma Normal.
+Como a tabela <strong>Diálogo</strong> possui apenas uma chave primária, automaticamente todos os atributos dependem da chave em sua totalidade.
+Na tabela <strong>Diálogo</strong>, os atributos (<code>id-personagem</code>, <code>texto</code>) dependem diretamente do <code>id-dialogo</code>, atendendo ao critério da 3ª Forma Normal.</p>
+<p>A tabela <strong>Diálogo</strong>, com atributos atômicos e monovalorados, não apresenta tais dependências, satisfazendo assim a 4ª Forma Normal.</p>
+<h2 id="historico-de-versao">Histórico de Versão</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Versão</th>
+<th style="text-align: center;">Data</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Autor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>1.0</code></td>
+<td style="text-align: center;">13/12/2024</td>
+<td style="text-align: center;">Primeira versão da Normalização</td>
+<td style="text-align: center;"><a href="https://github.com/DeM4rcio">Márcio Henrique</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1.1</code></td>
+<td style="text-align: center;">13/12/2024</td>
+<td style="text-align: center;">Normalização das tabelas (Mundo, Checkpoint, Sala, Bau, Baus, Chefe)</td>
+<td style="text-align: center;"><a href="https://github.com/DeM4rcio">Márcio Henrique</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1.2</code></td>
+<td style="text-align: center;">20/12/2024</td>
+<td style="text-align: center;">Normalização das tabelas (PC, Transação, Combate, Inventário, Instância Item, Item)</td>
+<td style="text-align: center;"><a href="https://github.com/DiegoCarlito">Diego Carlito</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1.3</code></td>
+<td style="text-align: center;">21/12/2024</td>
+<td style="text-align: center;">Normalização das tabelas (instanciaInimigo, inimigo, regiao, habilidade, grimorio, consumivel, arma, chave)</td>
+<td style="text-align: center;"><a href="https://github.com/filipe-002">Filipe Carvalho</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1.4</code></td>
+<td style="text-align: center;">22/12/2024</td>
+<td style="text-align: center;">Normalização das tabelas (Efeito, Personagem, NPC, Contratante, Mercador, Loja)</td>
+<td style="text-align: center;"><a href="https://github.com/DiegoCarlito">Diego Carlito</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1.5</code></td>
+<td style="text-align: center;">22/12/2024</td>
+<td style="text-align: center;">Normalização das tabelas (Missão, Contrato, Missão Principal, Missões Realizadas, Diálogo)</td>
+<td style="text-align: center;"><a href="https://github.com/DiegoCarlito">Diego Carlito</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
